@@ -31,8 +31,5 @@ public class University {
     public void addDepartment(Department t){this.departments.add(t);}
     public void addRoom(Room t){this.rooms.add(t);}
 
-    @Override
-    public String toString() {
-        return "ID: "+ id+ "Name: "+ name+ "City: "+ city;
-    }
+
 }

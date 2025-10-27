@@ -18,8 +18,4 @@ public class Teacher extends Staff{
     public String getDepartmentId() {return departmentId;}
     public void setDepartmentId(String departmentId) { this.departmentId = departmentId;}
 
-    @Override
-    public String toString() {
-        return "ID: "+super.getId() +"Name: "+ super.getName()+ "Title: " +title +"DepID: "+ departmentId;
-    }
 }

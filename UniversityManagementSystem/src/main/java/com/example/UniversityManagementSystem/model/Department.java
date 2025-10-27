@@ -29,8 +29,4 @@ public class Department {
     public void addCourse(Course t){this.courses.add(t);}
     public void addTeacher(Teacher t){this.teachers.add(t);}
 
-    @Override
-    public String toString() {
-        return "ID: "+ id + "Name: "+ name;
-    }
 }

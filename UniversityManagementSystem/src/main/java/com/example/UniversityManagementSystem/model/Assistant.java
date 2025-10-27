@@ -13,9 +13,4 @@ public class Assistant extends Staff{
     public void setRole(String role) {this.role = role;}
 
 
-    @Override
-    public String toString() {
-        return "ID: "+ super.getId()+ "Name: "+super.getName()+ "Role: "+role;
-    }
-
 }
