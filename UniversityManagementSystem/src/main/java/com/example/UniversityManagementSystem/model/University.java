@@ -25,6 +25,7 @@ public class University {
     public void setName(String name) { this.name = name;}
     public String getCity() { return city;}
     public void setCity(String city) { this.city = city;}
+    public List<Department> getDepartments() { return departments;}
 
 
     public void addDepartment(Department t){this.departments.add(t);}
