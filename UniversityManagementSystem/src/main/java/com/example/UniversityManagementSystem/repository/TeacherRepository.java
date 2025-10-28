@@ -19,7 +19,6 @@ public class TeacherRepository {
             }
         }
         return null;
-
     }
 
     public List<Teacher> findAll(){
