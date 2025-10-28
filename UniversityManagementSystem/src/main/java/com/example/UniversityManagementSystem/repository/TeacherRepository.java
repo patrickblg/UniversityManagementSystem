@@ -31,6 +31,11 @@ public class TeacherRepository {
     }
 
     public void delete(String id) {
-        //TODO
+        for (int i = 0; i < teachers.size(); i++) {
+            if (teachers.get(i).getId().equals(id)) {
+                teachers.remove(i);
+                i--;  // adjust index after removal
+            }
+        }
     }
 }
