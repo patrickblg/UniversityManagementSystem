@@ -9,7 +9,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class UniversityManagementSystemApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UniversityManagementSystemApplication.class, args);
+
+        SpringApplication.run(UniversityManagementSystemApplication.class, args);
+        Teacher teacher= new Teacher("Id1","Ion","prof","info");
+
+        System.out.println(teacher);
 	}
 
 

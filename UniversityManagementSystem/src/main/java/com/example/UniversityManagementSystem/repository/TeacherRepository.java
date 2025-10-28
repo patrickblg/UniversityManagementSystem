@@ -34,7 +34,7 @@ public class TeacherRepository {
         for (int i = 0; i < teachers.size(); i++) {
             if (teachers.get(i).getId().equals(id)) {
                 teachers.remove(i);
-                i--;  // adjust index after removal
+                i--;
             }
         }
     }
