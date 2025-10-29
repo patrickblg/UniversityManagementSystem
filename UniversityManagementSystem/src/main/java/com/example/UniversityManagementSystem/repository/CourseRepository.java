@@ -1,16 +1,19 @@
 package com.example.UniversityManagementSystem.repository;
 import com.example.UniversityManagementSystem.model.Course;
+import com.fasterxml.jackson.databind.ser.Serializers;
 
 import java.util.List;
 import java.util.ArrayList;
 
-public class CourseRepository {
+public class CourseRepository implements BaseRepo<Course> {
     private final List<Course> courses = new ArrayList<>();
+
+    @Override
     public Course save(Course c) {
         courses.add(c);
         return c;
     }
-
+    @Override
     public List<Course> findAll() {
         List<Course> coursesTemp = new ArrayList<>();
         for (Course c : courses) {
@@ -18,8 +21,8 @@ public class CourseRepository {
         }
         return coursesTemp;
     }
-
-    public Course findById(int id) {
+    @Override
+    public Course findById(String id) {
         for (Course c : courses) {
             if(c.getCourseId().equals(id)) {
                 return c;
@@ -27,7 +30,7 @@ public class CourseRepository {
         }
         return null;
     }
-
+    @Override
     public void delete(String id) {
         for (int i = 0; i<courses.size(); i++) {
             if(courses.get(i).getCourseId().equals(id)) {

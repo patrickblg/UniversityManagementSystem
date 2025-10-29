@@ -4,12 +4,15 @@ import com.example.UniversityManagementSystem.model.Student;
 import java.util.List;
 import java.util.ArrayList;
 
-public class StudentRepository {
+public class StudentRepository implements BaseRepo<Student> {
     private final List<Student> students = new ArrayList<>();
+
+    @Override
     public Student save(Student s) {
         students.add(s);
         return s;
     }
+    @Override
     public Student findById(String id) {
         for (Student s : students) {
             if(s.getStudentId().equals(id)) {
@@ -18,7 +21,7 @@ public class StudentRepository {
         }
         return null;
     }
-
+    @Override
     public List<Student> findAll() {
         List<Student>studentsTemp = new ArrayList<>();
         for (Student s : students) {
@@ -27,6 +30,7 @@ public class StudentRepository {
         return studentsTemp;
     }
 
+    @Override
     public void delete(String id) {
         for (int i = 0; i < students.size(); i++) {
             if(students.get(i).getStudentId().equals(id)) {

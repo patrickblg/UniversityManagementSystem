@@ -4,14 +4,15 @@ import com.example.UniversityManagementSystem.model.Teacher;
 import java.util.List;
 import java.util.ArrayList;
 
-public class TeacherRepository {
+public class TeacherRepository implements BaseRepo<Teacher> {
     private final List<Teacher> teachers = new ArrayList<>();
 
+    @Override
     public Teacher save(Teacher t){
         teachers.add(t);
         return t;
     }
-
+    @Override
     public Teacher findById(String id){
         for(Teacher t: teachers){
             if(t.getId().equals(id)){
@@ -21,6 +22,7 @@ public class TeacherRepository {
         return null;
     }
 
+    @Override
     public List<Teacher> findAll(){
         List<Teacher>tempList= new ArrayList<>();
         for(Teacher t: teachers){
@@ -28,7 +30,7 @@ public class TeacherRepository {
         }
         return tempList;
     }
-
+    @Override
     public void delete(String id) {
         for (int i = 0; i < teachers.size(); i++) {
             if (teachers.get(i).getId().equals(id)) {

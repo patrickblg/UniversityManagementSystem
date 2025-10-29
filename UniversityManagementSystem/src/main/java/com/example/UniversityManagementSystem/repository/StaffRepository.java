@@ -6,15 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class StaffRepository {
+public class StaffRepository implements BaseRepo<Staff> {
 
     private final List<Staff> staff= new ArrayList<>();
 
+    @Override
     public Staff save(Staff s){
         staff.add(s);
         return s;
     }
-
+    @Override
     public List<Staff> findAll(){
         List<Staff>templist= new ArrayList<>();
         for(Staff s:staff){
@@ -22,6 +23,8 @@ public class StaffRepository {
         }
         return templist;
     }
+
+    @Override
     public Staff findById(String id){
         for(Staff s:staff){
             if(s.getId().equals(id)){
@@ -30,6 +33,7 @@ public class StaffRepository {
         }
         return null;
     }
+    @Override
     public void delete(String id){
         for(int i=0;i<staff.size();i++){
             if(staff.get(i).getId().equals(id)){

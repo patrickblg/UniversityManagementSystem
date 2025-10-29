@@ -4,13 +4,15 @@ import com.example.UniversityManagementSystem.model.Enrollment;
 import java.util.List;
 import java.util.ArrayList;
 
-public class EnrollmentRepository {
+public class EnrollmentRepository implements BaseRepo<Enrollment> {
     private final List<Enrollment> enrollments = new ArrayList<>();
+
+    @Override
     public Enrollment save(Enrollment e) {
         enrollments.add(e);
         return e;
     }
-
+    @Override
     public Enrollment findById(String id) {
         for (Enrollment e : enrollments) {
             if (e.getId().equals(id)) {
@@ -19,10 +21,18 @@ public class EnrollmentRepository {
         }
         return null;
     }
-
-    public void delete(Enrollment e) {
+    @Override
+    public List<Enrollment> findAll() {
+        List<Enrollment> tempList = new ArrayList<>();
+        for (Enrollment e : enrollments) {
+            tempList.add(e);
+        }
+        return tempList;
+    }
+    @Override
+    public void delete(String id) {
         for (int i = 0; i < enrollments.size(); i++) {
-            if (enrollments.get(i).getId().equals(e.getId())) {
+            if (enrollments.get(i).getId().equals(id)) {
                 enrollments.remove(i);
                 i--;
             }
