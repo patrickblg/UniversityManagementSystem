@@ -1,9 +1,11 @@
 package com.example.UniversityManagementSystem.repository;
 import com.example.UniversityManagementSystem.model.Teacher;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.ArrayList;
 
+@Repository
 public class TeacherRepository implements BaseRepo<Teacher> {
     private final List<Teacher> teachers = new ArrayList<>();
 
