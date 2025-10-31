@@ -23,11 +23,7 @@ public class EnrollmentRepository implements BaseRepo<Enrollment> {
     }
     @Override
     public List<Enrollment> findAll() {
-        List<Enrollment> tempList = new ArrayList<>();
-        for (Enrollment e : enrollments) {
-            tempList.add(e);
-        }
-        return tempList;
+        return enrollments;
     }
     @Override
     public void delete(String id) {

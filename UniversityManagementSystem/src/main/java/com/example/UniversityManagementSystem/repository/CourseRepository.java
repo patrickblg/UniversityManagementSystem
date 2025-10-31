@@ -15,11 +15,7 @@ public class CourseRepository implements BaseRepo<Course> {
     }
     @Override
     public List<Course> findAll() {
-        List<Course> coursesTemp = new ArrayList<>();
-        for (Course c : courses) {
-            coursesTemp.add(c);
-        }
-        return coursesTemp;
+        return courses;
     }
     @Override
     public Course findById(String id) {

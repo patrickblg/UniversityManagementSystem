@@ -23,11 +23,7 @@ public class StudentRepository implements BaseRepo<Student> {
     }
     @Override
     public List<Student> findAll() {
-        List<Student>studentsTemp = new ArrayList<>();
-        for (Student s : students) {
-            studentsTemp.add(s);
-        }
-        return studentsTemp;
+        return students;
     }
 
     @Override

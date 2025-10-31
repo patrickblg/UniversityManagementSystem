@@ -23,11 +23,7 @@ public class TeachingAssignmentRepository implements BaseRepo<TeachingAssignment
     }
     @Override
     public List<TeachingAssignment> findAll() {
-        List<TeachingAssignment> teachingAssignmentsTemp = new ArrayList<>();
-        for (TeachingAssignment teachingAssignment : teachingAssignments) {
-            teachingAssignmentsTemp.add(teachingAssignment);
-        }
-        return teachingAssignmentsTemp;
+        return teachingAssignments;
 
     }
     @Override
