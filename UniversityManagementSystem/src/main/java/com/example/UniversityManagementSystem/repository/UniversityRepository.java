@@ -5,7 +5,7 @@ import com.example.UniversityManagementSystem.model.University;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UniveristyRepository implements BaseRepo<University> {
+public class UniversityRepository implements BaseRepo<University> {
     private final List<University>  universities= new ArrayList<>();
 
     @Override
