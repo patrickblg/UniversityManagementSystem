@@ -1,9 +1,10 @@
 package com.example.UniversityManagementSystem.service;
 import com.example.UniversityManagementSystem.model.Student;
 import com.example.UniversityManagementSystem.repository.StudentRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class StudentService {
     private StudentRepository studentRepository;
     public StudentService(StudentRepository studentRepository) {

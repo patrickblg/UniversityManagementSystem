@@ -2,9 +2,10 @@ package com.example.UniversityManagementSystem.service;
 
 import com.example.UniversityManagementSystem.model.Assistant;
 import com.example.UniversityManagementSystem.repository.AssistantRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class AssistantService {
 
     private AssistantRepository assistantRepository;

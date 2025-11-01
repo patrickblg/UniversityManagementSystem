@@ -2,9 +2,10 @@ package com.example.UniversityManagementSystem.service;
 
 import com.example.UniversityManagementSystem.model.Enrollment;
 import com.example.UniversityManagementSystem.repository.EnrollmentRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class EnrollmentService {
     private EnrollmentRepository enrollmentRepository;
     public EnrollmentService(EnrollmentRepository enrollmentRepository) {

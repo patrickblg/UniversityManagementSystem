@@ -2,10 +2,11 @@ package com.example.UniversityManagementSystem.service;
 
 import com.example.UniversityManagementSystem.model.Staff;
 import com.example.UniversityManagementSystem.repository.StaffRepository;
+import org.springframework.stereotype.Service;
 
 
 import java.util.List;
-
+@Service
 public class StaffService {
     private StaffRepository staffRepository;
 
