@@ -12,6 +12,8 @@ public class Enrollment {
         this.courseId = courseId;
         this.grade = grade;
     }
+    public Enrollment() {}
+
     public String getId() {
         return id;
     }

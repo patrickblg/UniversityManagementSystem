@@ -14,6 +14,9 @@ public class Student {
         this.name = name;
         this.enrollments = new ArrayList<>();
     }
+    public Student(){
+
+    }
     public String getStudentId() {
         return studentId;
     }
