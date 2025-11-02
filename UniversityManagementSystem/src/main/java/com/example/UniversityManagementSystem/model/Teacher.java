@@ -11,6 +11,11 @@ public class Teacher extends Staff{
         this.title=title;
         this.departmentId=departmentId;
     }
+
+    //EmptyConstructor for Thymeleaf
+    public Teacher(){
+
+    }
     //Getters and Setters
     public String getTitle() {return title;}
     public void setTitle(String title) { this.title = title; }

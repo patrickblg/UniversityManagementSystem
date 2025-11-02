@@ -8,6 +8,10 @@ public class Assistant extends Staff{
         super(id,name);
         this.role=role;
     }
+    //EmptyConstructor for Thymeleaf
+    public Assistant(){
+
+    }
 
     public String getRole() {return role;}
     public void setRole(String role) {this.role = role;}

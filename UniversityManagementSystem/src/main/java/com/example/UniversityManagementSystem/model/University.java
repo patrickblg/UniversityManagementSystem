@@ -17,6 +17,10 @@ public class University {
         this.departments = new ArrayList<>();
         this.rooms = new ArrayList<>();
     }
+    //Empty constructor for Thymeleaf
+    public University(){
+
+    }
 
     //Getters and Setters
     public String getId() { return id;}
