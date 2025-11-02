@@ -1,9 +1,10 @@
 package com.example.UniversityManagementSystem.repository;
 import com.example.UniversityManagementSystem.model.TeachingAssignment;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.ArrayList;
-
+@Repository
 public class TeachingAssignmentRepository implements BaseRepo<TeachingAssignment> {
     private final List<TeachingAssignment> teachingAssignments = new ArrayList<>();
 

@@ -1,9 +1,10 @@
 package com.example.UniversityManagementSystem.repository;
 import com.example.UniversityManagementSystem.model.Enrollment;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.ArrayList;
-
+@Repository
 public class EnrollmentRepository implements BaseRepo<Enrollment> {
     private final List<Enrollment> enrollments = new ArrayList<>();
 

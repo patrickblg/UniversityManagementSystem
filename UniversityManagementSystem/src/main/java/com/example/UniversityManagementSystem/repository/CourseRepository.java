@@ -1,10 +1,12 @@
 package com.example.UniversityManagementSystem.repository;
 import com.example.UniversityManagementSystem.model.Course;
 import com.fasterxml.jackson.databind.ser.Serializers;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.ArrayList;
 
+@Repository
 public class CourseRepository implements BaseRepo<Course> {
     private final List<Course> courses = new ArrayList<>();
 

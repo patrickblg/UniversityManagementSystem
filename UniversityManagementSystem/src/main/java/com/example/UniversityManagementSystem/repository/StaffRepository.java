@@ -1,11 +1,12 @@
 package com.example.UniversityManagementSystem.repository;
 
 import com.example.UniversityManagementSystem.model.Staff;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Repository
 public class StaffRepository implements BaseRepo<Staff> {
 
     private final List<Staff> staff= new ArrayList<>();

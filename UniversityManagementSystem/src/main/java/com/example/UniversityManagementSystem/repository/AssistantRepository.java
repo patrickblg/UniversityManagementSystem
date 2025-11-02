@@ -1,10 +1,11 @@
 package com.example.UniversityManagementSystem.repository;
 
 import com.example.UniversityManagementSystem.model.Assistant;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class AssistantRepository implements BaseRepo<Assistant> {
 
     private final List<Assistant> assistants= new ArrayList<>();
