@@ -26,11 +26,7 @@ public class TeacherRepository implements BaseRepo<Teacher> {
 
     @Override
     public List<Teacher> findAll(){
-        List<Teacher>tempList= new ArrayList<>();
-        for(Teacher t: teachers){
-            tempList.add(t);
-        }
-        return tempList;
+        return teachers;
     }
     @Override
     public void delete(String id) {
