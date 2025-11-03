@@ -3,7 +3,6 @@ package com.example.UniversityManagementSystem.controller;
 import com.example.UniversityManagementSystem.model.University;
 import com.example.UniversityManagementSystem.service.UniversityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.batch.BatchTransactionManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

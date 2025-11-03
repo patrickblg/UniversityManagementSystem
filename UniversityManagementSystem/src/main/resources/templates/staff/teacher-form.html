@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/formStyle.css}">
 <head>
     <title>Add Teacher</title>
     <meta charset="UTF-8">
 </head>
 <body>
 <h1>Add New Teacher</h1>
-
+<div class="main">
 <form th:action="@{/staff/add-teacher}" method="post" th:object="${teacher}">
     <label>ID:</label>
     <input type="text" th:field="*{id}" required><br><br>
@@ -25,6 +26,6 @@
 
 <br>
 <a th:href="@{/staff}">Back to Staff List</a>
-
+</div>
 </body>
 </html>
