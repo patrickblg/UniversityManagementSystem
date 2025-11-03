@@ -7,14 +7,16 @@ public class Course {
     private String courseId;
     private String title;
     private int credits;
+    private double duration;
     private List<Enrollment> enrollments;
     private List<TeachingAssignment> assignments;
 
 
-    public Course(String courseId, String title, int credits) {
+    public Course(String courseId, String title, int credits, double duration) {
         this.courseId = courseId;
         this.title = title;
         this.credits = credits;
+        this.duration = duration;
         this.enrollments = new ArrayList<>();
         this.assignments = new ArrayList<>();
     }
@@ -56,5 +58,13 @@ public class Course {
 
     public void addteachingAssignments(  TeachingAssignment assignment ) {
         assignments.add(assignment) ;
+    }
+
+    public double getDuration() {
+        return duration;
+    }
+
+    public void setDuration(double duration) {
+        this.duration = duration;
     }
 }
