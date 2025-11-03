@@ -32,15 +32,11 @@ public class StudentController {
 
     @GetMapping
     public String getStudentsAndEnrollments(Model model) {
-        List<Student> students = studentService.findAllStudents();
-        List<Enrollment> enrollments = enrollmentService.getAllEnrollments();
 
-        Map<String, Long> enrollmentCountMap = enrollments.stream()
-                .collect(Collectors.groupingBy(Enrollment::getStudentId, Collectors.counting()));
+        enrollmentService.getEnrollmentCountsPerStudent(studentService.findAllStudents());
 
-        model.addAttribute("students", students);
-        model.addAttribute("enrollments", enrollments);
-        model.addAttribute("enrollmentCountMap", enrollmentCountMap);
+        model.addAttribute("students", studentService.findAllStudents());
+        model.addAttribute("enrollments", enrollmentService.getAllEnrollments());
 
         return "student/index";
     }

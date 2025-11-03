@@ -8,11 +8,13 @@ public class Student {
     private String studentId;
     private String name;
     private List<Enrollment> enrollments;
+    private int enrollmentCount;
 
     public Student(String studentId, String name) {
         this.studentId = studentId;
         this.name = name;
         this.enrollments = new ArrayList<>();
+        this.enrollmentCount = 0;
     }
     public Student(){
 
@@ -34,6 +36,12 @@ public class Student {
     }
     public void addEnrollment(Enrollment enrollment) {
         this.enrollments.add(enrollment);
+    }
+    public int getEnrollmentCount() {
+        return enrollmentCount;
+    }
+    public void setEnrollmentCount(int enrollmentCount) {
+        this.enrollmentCount = enrollmentCount;
     }
 
 }

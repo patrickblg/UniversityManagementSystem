@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" th:href="@{css/staffStyle.css}">
+<link rel="stylesheet" th:href="@{css/indexStyle.css}">
 
 <head>
     <title>Staff List</title>
@@ -26,7 +26,7 @@
         <tr th:each="s : ${students}">
             <td th:text="${s.studentId}">Id</td>
             <td th:text="${s.name}">Name</td>
-            <td th:text="${enrollmentCountMap[s.studentId] != null ? enrollmentCountMap[s.studentId] : 0}">0</td>
+            <td th:text="${s.enrollmentCount}">0</td>
             <td>
                 <form th:action="@{'/student/' + ${s.studentId} + '/delete'}" method="post">
                     <button type="submit">Delete</button>
