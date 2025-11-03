@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" th:href="@{css/staffStyle.css}">
+<link rel="stylesheet" th:href="@{/css/indexStyle.css}">
 
 <head>
     <title>Staff List</title>
     <meta charset="UTF-8">
 </head>
 <body>
-<h1>All Staff Members</h1>
+<h1>Staff Members</h1>
 
 <!-- Teachers -->
 <div class="main">
@@ -47,7 +47,6 @@
         <th>ID</th>
         <th>Name</th>
         <th>Role</th>
-        <th>Department</th>
         <th>Action</th>
     </tr>
     </thead>
@@ -56,7 +55,6 @@
         <td th:text="${a.id}">Id</td>
         <td th:text="${a.name}">Name</td>
         <td th:text="${a.role}">Role</td>
-        <td th:text="${a.departmentId}">Dept</td>
         <td>
             <form th:action="@{'/staff/assistant/' + ${a.id} + '/delete'}" method="post">
                 <button type="submit">Delete</button>
