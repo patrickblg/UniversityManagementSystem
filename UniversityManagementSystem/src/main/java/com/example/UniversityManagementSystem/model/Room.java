@@ -6,11 +6,15 @@ public class Room {
     private String roomId;
     private double capacity;
     private String number;
+    private String name;
     List<Course> courses;
-    public Room(String roomId, double capacity, String number) {
+
+
+    public Room(String roomId, double capacity, String number, String name) {
         this.roomId = roomId;
         this.capacity = capacity;
         this.number = number;
+        this.name = name;
         this.courses = new ArrayList<>();
     }
     public Room() {}
@@ -37,5 +41,12 @@ public class Room {
     }
     public void addCourse(Course course) {
         this.courses.add(course);
+    }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

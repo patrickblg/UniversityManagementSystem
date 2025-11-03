@@ -19,6 +19,7 @@
             <th>ID</th>
             <th>Number</th>
             <th>Capacity</th>
+            <th>Name</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -27,6 +28,7 @@
             <td th:text="${r.roomId}">Id</td>
             <td th:text="${r.number}">Number</td>
             <td th:text="${r.capacity}">Capacity</td>
+            <td th:text="${r.name}">Capacity</td>
             <td>
                 <form th:action="@{'/room/' + ${r.roomId} + '/delete'}" method="post">
                     <button type="submit">Delete</button>
