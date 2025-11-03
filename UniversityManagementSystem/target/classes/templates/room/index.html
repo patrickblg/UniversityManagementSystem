@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{css/indexStyle.css}">
+
+<head>
+    <title>Rooms</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1> Rooms</h1>
+
+
+<div class="main">
+    <h2>Rooms</h2>
+    <a th:href="@{/room/new}">Add New Room</a>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Number</th>
+            <th>Capacity</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="r : ${rooms}">
+            <td th:text="${r.roomId}">Id</td>
+            <td th:text="${r.number}">Number</td>
+            <td th:text="${r.capacity}">Capacity</td>
+            <td>
+                <form th:action="@{'/room/' + ${r.roomId} + '/delete'}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

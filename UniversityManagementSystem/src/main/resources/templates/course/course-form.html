@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/formStyle.css}">
+<head>
+    <title>Add Assistant</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Add New Assistant</h1>
+<div class="main">
+    <form th:action="@{/course/add-course}" method="post" th:object="${course}">
+        <label>ID:</label>
+        <input type="text" th:field="*{courseId}" required><br><br>
+
+        <label>Title:</label>
+        <input type="text" th:field="*{title}" required><br><br>
+
+        <label>Credits:</label>
+        <input type="text" th:field="*{credits}" required><br><br>
+
+
+        <button type="submit">Save</button>
+    </form>
+
+    <br>
+    <a th:href="@{/staff}">Back to Courses</a>
+</div>
+</body>
+
+</html>
