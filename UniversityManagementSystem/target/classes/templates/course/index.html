@@ -18,6 +18,7 @@
             <th>ID</th>
             <th>Title</th>
             <th>Credits</th>
+            <th>Duration</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -26,6 +27,7 @@
             <td th:text="${c.courseId}">Id</td>
             <td th:text="${c.title}">Title</td>
             <td th:text="${c.credits}">Credits</td>
+            <td th:text="${c.duration}">Credits</td>
             <td>
                 <form th:action="@{'/course/' + ${c.courseId} + '/delete'}" method="post">
                     <button type="submit">Delete</button>
@@ -47,7 +49,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="ta : ${teachingassignments}">
+        <tr th:each="ta : ${teachingAssignments}">
             <td th:text="${ta.id}">Id</td>
             <td th:text="${ta.courseId}">CourseID</td>
             <td th:text="${ta.staffId}">StaffID</td>
