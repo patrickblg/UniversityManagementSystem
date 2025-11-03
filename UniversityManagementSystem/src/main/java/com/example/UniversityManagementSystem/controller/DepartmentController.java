@@ -30,7 +30,7 @@ public class DepartmentController {
         return "department/form";
     }
 
-    @PostMapping
+    @PostMapping("add-department")
     public String addDepartment(@ModelAttribute Department department) {
         departmentService.save(department);
         return "redirect:/department";

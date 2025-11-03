@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{css/indexStyle.css}">
+
 <head>
+    <title>Departments</title>
     <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
+<h1> Departments</h1>
 
+
+<div class="main">
+    <h2>Departments</h2>
+    <a th:href="@{/department/new}">Add New Department</a>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Number</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="d : ${departments}">
+            <td th:text="${d.id}">Id</td>
+            <td th:text="${d.name}">Name</td>
+
+            <td>
+                <form th:action="@{'/department/' + ${d.id} + '/delete'}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
