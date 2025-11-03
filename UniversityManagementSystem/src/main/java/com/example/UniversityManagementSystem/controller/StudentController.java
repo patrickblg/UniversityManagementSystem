@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 //student+enrollment
 @Controller
 @RequestMapping("/student")
@@ -27,16 +31,24 @@ public class StudentController {
     }
 
     @GetMapping
-    public String getStudentsAndEnrollments(Model model){
-        model.addAttribute("students", studentService.findAllStudents());
-        model.addAttribute("enrollments", enrollmentService.getAllEnrollments());
-        return "students/index";
+    public String getStudentsAndEnrollments(Model model) {
+        List<Student> students = studentService.findAllStudents();
+        List<Enrollment> enrollments = enrollmentService.getAllEnrollments();
+
+        Map<String, Long> enrollmentCountMap = enrollments.stream()
+                .collect(Collectors.groupingBy(Enrollment::getStudentId, Collectors.counting()));
+
+        model.addAttribute("students", students);
+        model.addAttribute("enrollments", enrollments);
+        model.addAttribute("enrollmentCountMap", enrollmentCountMap);
+
+        return "student/index";
     }
 
     @GetMapping("/new-student")
     public String showStudentForm(Model model){
         model.addAttribute("student", new Student());
-        return "students/students-form";
+        return "student/student-form";
     }
 
     @PostMapping("/add-student")
@@ -45,10 +57,10 @@ public class StudentController {
         return "redirect:/student";
     }
 
-    @GetMapping("/new-enrollmemt")
+    @GetMapping("/new-enrollment")
     public String showEnrollmentForm(Model model){
         model.addAttribute("enrollment", new Enrollment());
-        return "students/enrollment-form";
+        return "student/enrollment-form";
     }
 
     @PostMapping("/add-enrollment")
@@ -57,13 +69,13 @@ public class StudentController {
         return "redirect:/student";
     }
 
-    @PostMapping("/student/{id}/delete")
+    @PostMapping("/{id}/delete")
     public String deleteStudent(@PathVariable String id){
         studentService.deleteStudentById(id);
         return "redirect:/student";
     }
 
-    @PostMapping
+    @PostMapping("/enrollment/{id}/delete")
     public String deleteEnrollment(@PathVariable String id){
         enrollmentService.deleteEnrollmentById(id);
         return "redirect:/student";
