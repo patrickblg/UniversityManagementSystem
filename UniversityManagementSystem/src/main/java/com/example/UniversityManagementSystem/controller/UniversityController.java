@@ -34,7 +34,7 @@ public class UniversityController {
     }
 
     //adauga o universitate noua si te redirectioneza inapoi pe pagina principala
-    @PostMapping
+    @PostMapping("/add-university")
     public String addUniversity(@ModelAttribute University university){
         universityService.saveUniversity(university);
         return "redirect:/university";

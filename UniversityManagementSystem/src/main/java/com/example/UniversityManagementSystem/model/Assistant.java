@@ -1,5 +1,8 @@
 package com.example.UniversityManagementSystem.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Assistant extends Staff{
     private String role;//LAB/TA/GRADER
 
@@ -7,6 +10,7 @@ public class Assistant extends Staff{
     public Assistant(String id, String name, String role){
         super(id,name);
         this.role=role;
+        List<TeachingAssignment> teachingAssignments=new ArrayList<TeachingAssignment>();
     }
     //EmptyConstructor for Thymeleaf
     public Assistant(){

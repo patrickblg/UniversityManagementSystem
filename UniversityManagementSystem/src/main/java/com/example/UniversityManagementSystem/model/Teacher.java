@@ -1,5 +1,8 @@
 package com.example.UniversityManagementSystem.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Teacher extends Staff{
 
     private String title;
@@ -10,6 +13,7 @@ public class Teacher extends Staff{
         super(id,name);
         this.title=title;
         this.departmentId=departmentId;
+        List<TeachingAssignment> teachingAssignments=new ArrayList<TeachingAssignment>();
     }
 
     //EmptyConstructor for Thymeleaf
