@@ -15,7 +15,11 @@ public class RoomRepository  implements BaseRepo<Room>{
     }
     @Override
     public List<Room> findAll() {
-        return rooms;
+        List<Room>tempList=new ArrayList<>();
+        for(Room r:rooms){
+            tempList.add(r);
+        }
+        return tempList;
     }
 
     @Override

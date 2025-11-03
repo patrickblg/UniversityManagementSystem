@@ -18,6 +18,9 @@ public class Course {
         this.enrollments = new ArrayList<>();
         this.assignments = new ArrayList<>();
     }
+    public Course() {
+
+    }
 
     public String getCourseId() {
         return courseId;

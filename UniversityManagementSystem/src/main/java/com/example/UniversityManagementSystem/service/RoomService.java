@@ -9,7 +9,7 @@ import java.util.List;
 public class RoomService {
     private RoomRepository roomRepository;
 
-    public RoomService(RoomRepository assistantRepository) {
+    public RoomService(RoomRepository roomRepository) {
         this.roomRepository= roomRepository;
     }
 

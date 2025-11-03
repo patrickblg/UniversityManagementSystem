@@ -12,6 +12,7 @@ public class TeachingAssignment {
         this.staffId = staffId;
         this.managing = managing;
     }
+    public TeachingAssignment() {}
     public String getId() {
         return id;
     }

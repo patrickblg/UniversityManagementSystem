@@ -17,6 +17,10 @@ public class Department {
         List<Teacher> teachers = new ArrayList<>();
     }
 
+    public Department() {
+
+    }
+
     //Getters and Setters
     public String getId() {return id;}
     public void setId(String id) {this.id = id;}

@@ -13,6 +13,7 @@ public class Room {
         this.number = number;
         this.courses = new ArrayList<>();
     }
+    public Room() {}
     public String getRoomId() {
         return roomId;
     }

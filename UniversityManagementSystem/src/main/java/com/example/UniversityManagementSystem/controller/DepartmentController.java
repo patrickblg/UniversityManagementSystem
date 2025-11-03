@@ -26,19 +26,19 @@ public class DepartmentController {
 
     @GetMapping("/new")
     public String showAddForm(Model model) {
-        model.addAttribute("department", new Department("", ""));
+        model.addAttribute("department", new Department());
         return "department/form";
     }
 
     @PostMapping
     public String addDepartment(@ModelAttribute Department department) {
         departmentService.save(department);
-        return "redirect:/departments";
+        return "redirect:/department";
     }
     @PostMapping("/{id}/delete")
     public String deleteDepartment(@PathVariable String id) {
         departmentService.deleteDepartment(id);
-        return "redirect:/departments";
+        return "redirect:/department";
     }
 
 }
