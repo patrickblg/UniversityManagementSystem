@@ -1,9 +1,0 @@
-staff\\
-teacher\\
-assistant\\
-university\\
-department
-
-
-
---de adaugat atribute
