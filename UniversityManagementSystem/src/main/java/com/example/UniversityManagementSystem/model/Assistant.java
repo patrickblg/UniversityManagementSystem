@@ -17,6 +17,8 @@ public class Assistant extends Staff{
 
     }
 
+
+
     public AssistantRole getRole() {return role;}
     public void setRole(AssistantRole role) {this.role = role;}
 

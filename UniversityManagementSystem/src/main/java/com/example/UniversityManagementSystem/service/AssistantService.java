@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public class AssistantService {
 
-    private AssistantRepository assistantRepository;
+    private final AssistantRepository assistantRepository;
 
     public AssistantService(AssistantRepository assistantRepository) {
         this.assistantRepository= assistantRepository;
