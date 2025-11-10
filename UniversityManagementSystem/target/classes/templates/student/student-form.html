@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Add New Student</h1>
-
+<div class="main">
 <form th:action="@{/student/add-student}" method="post" th:object="${student}">
     <label>ID:</label>
     <input type="text" th:field="*{studentId}" required><br><br>
@@ -20,6 +20,6 @@
 
 <br>
 <a th:href="@{/student}">Back to Student</a>
-
+</div>
 </body>
 </html>

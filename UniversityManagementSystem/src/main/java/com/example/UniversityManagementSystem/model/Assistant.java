@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Assistant extends Staff{
-    private String role;//LAB/TA/GRADER
+    private AssistantRole role;//LAB/TA/GRADER
 
     //Constructor
-    public Assistant(String id, String name, String role){
+    public Assistant(String id, String name, AssistantRole role){
         super(id,name);
         this.role=role;
         List<TeachingAssignment> teachingAssignments=new ArrayList<TeachingAssignment>();
@@ -17,8 +17,8 @@ public class Assistant extends Staff{
 
     }
 
-    public String getRole() {return role;}
-    public void setRole(String role) {this.role = role;}
+    public AssistantRole getRole() {return role;}
+    public void setRole(AssistantRole role) {this.role = role;}
 
 
 }

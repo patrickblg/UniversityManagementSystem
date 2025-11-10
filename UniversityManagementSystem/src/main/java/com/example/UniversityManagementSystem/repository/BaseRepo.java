@@ -1,7 +1,6 @@
 package com.example.UniversityManagementSystem.repository;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository

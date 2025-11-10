@@ -4,9 +4,9 @@ public class Enrollment {
     private String id;
     private String studentId;
     private String courseId;
-    private String grade;
+    private Grades grade;
 
-    public Enrollment(String id, String studentId, String courseId, String grade) {
+    public Enrollment(String id, String studentId, String courseId, Grades grade) {
         this.id = id;
         this.studentId = studentId;
         this.courseId = courseId;
@@ -32,10 +32,10 @@ public class Enrollment {
     public void setCourseId(String courseId) {
         this.courseId = courseId;
     }
-    public String getGrade() {
+    public Grades getGrade() {
         return grade;
     }
-    public void setGrade(String grade) {
+    public void setGrade(Grades grade) {
         this.grade = grade;
     }
 

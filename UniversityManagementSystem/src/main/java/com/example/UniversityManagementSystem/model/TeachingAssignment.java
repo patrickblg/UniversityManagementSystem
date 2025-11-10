@@ -4,9 +4,9 @@ public class TeachingAssignment {
     private String id;
     private String courseId;
     private String staffId;
-    private String managing;
+    private ManagingRole managing;
 
-    public TeachingAssignment(String id, String courseId, String staffId, String managing) {
+    public TeachingAssignment(String id, String courseId, String staffId, ManagingRole managing) {
         this.id = id;
         this.courseId = courseId;
         this.staffId = staffId;
@@ -31,10 +31,10 @@ public class TeachingAssignment {
     public void setStaffId(String staffId) {
         this.staffId = staffId;
     }
-    public String getManaging() {
+    public ManagingRole getManaging() {
         return managing;
     }
-    public void setManaging(String managing) {
+    public void setManaging(ManagingRole managing) {
         this.managing = managing;
     }
 
