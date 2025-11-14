@@ -4,14 +4,14 @@ package com.example.UniversityManagementSystem.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Student {
-    private String studentId;
+public class Student implements Identifiable{
+    private String id;
     private String name;
     private List<Enrollment> enrollments;
     private int enrollmentCount;
 
     public Student(String studentId, String name) {
-        this.studentId = studentId;
+        this.id = studentId;
         this.name = name;
         this.enrollments = new ArrayList<>();
         this.enrollmentCount = 0;
@@ -19,11 +19,13 @@ public class Student {
     public Student(){
 
     }
-    public String getStudentId() {
-        return studentId;
+    @Override
+    public String getId() {
+        return id;
     }
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
+    @Override
+    public void setId(String studentId) {
+        this.id = studentId;
     }
     public String getName() {
         return name;

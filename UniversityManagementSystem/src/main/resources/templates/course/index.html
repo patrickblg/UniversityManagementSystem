@@ -24,7 +24,7 @@
         </thead>
         <tbody>
         <tr th:each="c : ${courses}">
-            <td th:text="${c.courseId}">Id</td>
+            <td th:text="${c.id}">Id</td>
             <td th:text="${c.title}">Title</td>
             <td th:text="${c.credits}">Credits</td>
             <td th:text="${c.duration}">Credits</td>
@@ -51,8 +51,8 @@
         <tbody>
         <tr th:each="ta : ${teachingAssignments}">
             <td th:text="${ta.id}">Id</td>
-            <td th:text="${ta.courseId}">CourseID</td>
-            <td th:text="${ta.staffId}">StaffID</td>
+            <td th:text="${ta.id}">CourseID</td>
+            <td th:text="${ta.id}">StaffID</td>
             <td th:text="${ta.managing}">StaffID</td>
             <td>
                 <form th:action="@{'/course/teachingassignment/' + ${ta.id} + '/delete'}" method="post">

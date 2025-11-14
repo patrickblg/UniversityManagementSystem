@@ -3,7 +3,7 @@ package com.example.UniversityManagementSystem.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Department {
+public class Department implements Identifiable {
     private String id;
     private String name;
     private List<Course> courses;
@@ -22,7 +22,9 @@ public class Department {
     }
 
     //Getters and Setters
+    @Override
     public String getId() {return id;}
+    @Override
     public void setId(String id) {this.id = id;}
     public String getName() { return name;}
     public void setName(String name) { this.name = name;}

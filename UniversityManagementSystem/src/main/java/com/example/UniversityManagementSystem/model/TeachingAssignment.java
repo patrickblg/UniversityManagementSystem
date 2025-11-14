@@ -1,6 +1,8 @@
 package com.example.UniversityManagementSystem.model;
 
-public class TeachingAssignment {
+import java.io.Serializable;
+
+public class TeachingAssignment implements Identifiable{
     private String id;
     private String courseId;
     private String staffId;
@@ -13,9 +15,11 @@ public class TeachingAssignment {
         this.managing = managing;
     }
     public TeachingAssignment() {}
+    @Override
     public String getId() {
         return id;
     }
+    @Override
     public void setId(String id) {
         this.id = id;
     }

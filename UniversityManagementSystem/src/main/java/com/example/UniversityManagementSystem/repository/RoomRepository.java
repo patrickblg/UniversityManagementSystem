@@ -25,7 +25,7 @@ public class RoomRepository  implements BaseRepo<Room>{
     @Override
     public Room findById(String roomId) {
         for (Room r : rooms) {
-            if (r.getRoomId().equals(roomId)) {
+            if (r.getId().equals(roomId)) {
                 return r;
             }
         }
@@ -34,7 +34,7 @@ public class RoomRepository  implements BaseRepo<Room>{
     @Override
     public void delete(String roomId) {
         for (int i = 0; i < rooms.size(); i++) {
-            if (rooms.get(i).getRoomId().equals(roomId)) {
+            if (rooms.get(i).getId().equals(roomId)) {
                 rooms.remove(i);
                 i--;
             }

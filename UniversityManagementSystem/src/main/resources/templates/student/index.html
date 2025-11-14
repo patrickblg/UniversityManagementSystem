@@ -24,11 +24,11 @@
         </thead>
         <tbody>
         <tr th:each="s : ${students}">
-            <td th:text="${s.studentId}">Id</td>
+            <td th:text="${s.id}">Id</td>
             <td th:text="${s.name}">Name</td>
             <td th:text="${s.enrollmentCount}">0</td>
             <td>
-                <form th:action="@{'/student/' + ${s.studentId} + '/delete'}" method="post">
+                <form th:action="@{'/student/' + ${s.id} + '/delete'}" method="post">
                     <button type="submit">Delete</button>
                 </form>
             </td>
@@ -53,7 +53,7 @@
         <tr th:each="e : ${enrollments}">
             <td th:text="${e.id}">Id</td>
             <td th:text="${e.studentId}">Name</td>
-            <td th:text="${e.courseId}">Role</td>
+            <td th:text="${e.id}">Role</td>
             <td th:text="${e.grade}">Dept</td>
             <td>
                 <form th:action="@{'/student/enrollment/' + ${e.id} + '/delete'}" method="post">
