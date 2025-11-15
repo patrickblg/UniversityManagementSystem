@@ -29,7 +29,7 @@
             <td th:text="${c.credits}">Credits</td>
             <td th:text="${c.duration}">Credits</td>
             <td>
-                <form th:action="@{'/course/' + ${c.courseId} + '/delete'}" method="post">
+                <form th:action="@{'/course/' + ${c.id} + '/delete'}" method="post">
                     <button type="submit">Delete</button>
                 </form>
             </td>
