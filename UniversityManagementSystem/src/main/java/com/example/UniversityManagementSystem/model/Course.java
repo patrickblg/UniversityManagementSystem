@@ -3,8 +3,8 @@ package com.example.UniversityManagementSystem.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Course {
-    private String courseId;
+public class Course implements Identifiable {
+    private String id;
     private String title;
     private int credits;
     private double duration;
@@ -12,8 +12,8 @@ public class Course {
     private List<TeachingAssignment> assignments;
 
 
-    public Course(String courseId, String title, int credits, double duration) {
-        this.courseId = courseId;
+    public Course(String id, String title, int credits, double duration) {
+        this.id = id;
         this.title = title;
         this.credits = credits;
         this.duration = duration;
@@ -23,13 +23,15 @@ public class Course {
     public Course() {
 
     }
-
-    public String getCourseId() {
-        return courseId;
+    @Override
+    public String getId() {
+        return id;
     }
 
-    public void setCourseId(String courseId) {
-        this.courseId = courseId;
+
+    @Override
+    public void setId(String id) {
+        this.id=id;
     }
 
     public String getTitle() {

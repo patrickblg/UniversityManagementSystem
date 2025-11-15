@@ -1,25 +1,21 @@
 package com.example.UniversityManagementSystem.repository;
 
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.example.UniversityManagementSystem.model.Identifiable;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
-public class InFileRepo<T> implements BaseRepo<T> {
+public class InFileRepo<T extends Identifiable> implements BaseRepo<T> {
 
     private final ObjectMapper mapper = new ObjectMapper();
     private final String filePath;
     private final Class<T> type;
-    private final Function<T, String> idGetter;
 
-    public InFileRepo(String filePath,Class<T> type,Function<T, String> idGetter ) {
+    public InFileRepo(String filePath,Class<T> type ) {
         this.filePath = filePath;
         this.type = type;
-        this.idGetter = idGetter;
     }
 
 
@@ -53,7 +49,7 @@ public class InFileRepo<T> implements BaseRepo<T> {
     @Override
     public T findById(String id) {
         return readAll().stream()
-                .filter(entity -> id.equals(idGetter.apply(entity)))
+                .filter(e -> id.equals(e.getId()) )
                 .findFirst()
                 .orElse(null);
     }
@@ -71,7 +67,7 @@ public class InFileRepo<T> implements BaseRepo<T> {
     @Override
     public void delete(String id) {
         List<T> all = readAll();
-        boolean removed = all.removeIf(e -> id.equals(idGetter.apply(e)));
+        boolean removed = all.removeIf(e -> id.equals(e.getId()));
         System.out.println("Deleting entity with id=" + id + " success=" + removed);
         writeAll(all);
     }

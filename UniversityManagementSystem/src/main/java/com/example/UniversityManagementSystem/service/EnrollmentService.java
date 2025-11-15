@@ -30,7 +30,7 @@ public class EnrollmentService {
         for (Student s : students) {
             int count = 0;
             for (Enrollment e : enrollments) {
-                if (e.getStudentId().equals(s.getStudentId())) {
+                if (e.getStudentId().equals(s.getId())) {
                     count++;
                 }
             }

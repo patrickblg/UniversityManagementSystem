@@ -1,28 +1,31 @@
 package com.example.UniversityManagementSystem.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-public class Room {
-    private String roomId;
+public class Room  implements Identifiable{
+    private String id;
     private double capacity;
     private String number;
     private String name;
     List<Course> courses;
 
 
-    public Room(String roomId, double capacity, String number, String name) {
-        this.roomId = roomId;
+    public Room(String id, double capacity, String number, String name) {
+        this.id = id;
         this.capacity = capacity;
         this.number = number;
         this.name = name;
         this.courses = new ArrayList<>();
     }
     public Room() {}
-    public String getRoomId() {
-        return roomId;
+    @Override
+    public String getId() {
+        return id;
     }
-    public void setRoomId(String roomId) {
-        this.roomId = roomId;
+    @Override
+    public void setId(String roomId) {
+        this.id= id;
     }
     public double getCapacity() {
         return capacity;

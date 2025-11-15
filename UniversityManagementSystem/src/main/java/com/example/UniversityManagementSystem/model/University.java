@@ -2,7 +2,7 @@ package com.example.UniversityManagementSystem.model;
 import java.util.List;
 import java.util.ArrayList;
 
-public class University {
+public class University implements Identifiable{
     private String id;
     private String name;
     private String city;
@@ -23,7 +23,9 @@ public class University {
     }
 
     //Getters and Setters
+    @Override
     public String getId() { return id;}
+    @Override
     public void setId(String id) { this.id = id;}
     public String getName() { return name;}
     public void setName(String name) { this.name = name;}

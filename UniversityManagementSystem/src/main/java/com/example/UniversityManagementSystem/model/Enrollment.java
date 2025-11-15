@@ -1,6 +1,6 @@
 package com.example.UniversityManagementSystem.model;
 
-public class Enrollment {
+public class Enrollment implements Identifiable{
     private String id;
     private String studentId;
     private String courseId;
@@ -13,10 +13,11 @@ public class Enrollment {
         this.grade = grade;
     }
     public Enrollment() {}
-
+    @Override
     public String getId() {
         return id;
     }
+    @Override
     public void setId(String id) {
         this.id = id;
     }

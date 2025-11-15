@@ -10,7 +10,7 @@
 <div class="main">
     <form th:action="@{/room/add-room}" method="post" th:object="${room}">
         <label>ID:</label>
-        <input type="text" th:field="*{roomId}" required><br><br>
+        <input type="text" th:field="*{id}" required><br><br>
 
         <label>Number:</label>
         <input type="text" th:field="*{number}" required><br><br>
