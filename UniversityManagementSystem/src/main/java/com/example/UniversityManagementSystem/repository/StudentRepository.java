@@ -16,7 +16,7 @@ public class StudentRepository implements BaseRepo<Student> {
     @Override
     public Student findById(String id) {
         for (Student s : students) {
-            if(s.getId().equals(id)) {
+            if(s.getStudentId().equals(id)) {
                 return s;
             }
         }
@@ -30,7 +30,7 @@ public class StudentRepository implements BaseRepo<Student> {
     @Override
     public void delete(String id) {
         for (int i = 0; i < students.size(); i++) {
-            if(students.get(i).getId().equals(id)) {
+            if(students.get(i).getStudentId().equals(id)) {
                 students.remove(i);
                 i--;
             }
