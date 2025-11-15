@@ -2,38 +2,10 @@ package com.example.UniversityManagementSystem.repository;
 import com.example.UniversityManagementSystem.model.TeachingAssignment;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.ArrayList;
+
 @Repository
-public class TeachingAssignmentRepository implements BaseRepo<TeachingAssignment> {
-    private final List<TeachingAssignment> teachingAssignments = new ArrayList<>();
-
-    @Override
-    public TeachingAssignment save(TeachingAssignment teachingAssignment) {
-        teachingAssignments.add(teachingAssignment);
-        return teachingAssignment;
-    }
-    @Override
-    public TeachingAssignment findById(String id) {
-        for (TeachingAssignment teachingAssignment : teachingAssignments) {
-            if (teachingAssignment.getId().equals(id)) {
-                return teachingAssignment;
-            }
-        }
-        return null;
-    }
-    @Override
-    public List<TeachingAssignment> findAll() {
-        return teachingAssignments;
-
-    }
-    @Override
-    public void delete(String id){
-        for(int i=0;i<teachingAssignments.size();i++){
-            if(teachingAssignments.get(i).getId().equals(id)){
-                teachingAssignments.remove(i);
-                i--;
-            }
-        }
+public class TeachingAssignmentRepository extends InFileRepo<TeachingAssignment> {
+    public TeachingAssignmentRepository() {
+        super("src/main/resources/data/teachingassignment.json", TeachingAssignment.class);
     }
 }
