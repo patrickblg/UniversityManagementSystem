@@ -3,7 +3,6 @@ import com.example.UniversityManagementSystem.model.University;
 import com.example.UniversityManagementSystem.repository.UniversityRepository;
 import org.springframework.stereotype.Service;
 
-
 import java.util.List;
 @Service
 public class UniversityService {
