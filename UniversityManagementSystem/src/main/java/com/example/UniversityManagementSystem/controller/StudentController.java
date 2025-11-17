@@ -61,7 +61,11 @@ public class StudentController {
 
     @PostMapping("/add-enrollment")
     public String addEnrollment(@ModelAttribute Enrollment enrollment){
-        enrollmentService.saveEnrollment(enrollment);
+        try {
+            enrollmentService.saveEnrollment(enrollment);
+        }catch (IllegalArgumentException e){
+            return  "redirect:/student";
+        }
         return "redirect:/student";
     }
 

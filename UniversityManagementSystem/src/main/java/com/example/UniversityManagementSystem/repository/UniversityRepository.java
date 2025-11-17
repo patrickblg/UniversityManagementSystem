@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UniversityRepository extends InFileRepo<University> {
     public UniversityRepository() {
-        super("src/main/resources/data/university.json", University.class);
+        super("UniversityManagementSystem/src/main/resources/data/university.json", University.class);
     }
 
 }

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class RoomRepository  extends InFileRepo<Room>{
     public RoomRepository() {
-        super("room.json",Room.class);
+        super("UniversityManagementSystem/src/main/resources/data/room.json",Room.class);
     }
 }
