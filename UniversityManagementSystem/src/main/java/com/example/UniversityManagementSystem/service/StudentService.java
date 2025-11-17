@@ -6,12 +6,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public class StudentService {
-    private StudentRepository studentRepository;
+    private final StudentRepository studentRepository;
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
-    public Student saveStudent(Student s) {
-        return studentRepository.save(s);
+    public void saveStudent(Student s) {
+        studentRepository.save(s);
     }
 
     public List<Student> findAllStudents(){
@@ -23,5 +23,9 @@ public class StudentService {
 
     public void deleteStudentById(String id){
         studentRepository.delete(id);
+    }
+
+    public void updateStudent(Student student){
+        studentRepository.update(student);
     }
 }

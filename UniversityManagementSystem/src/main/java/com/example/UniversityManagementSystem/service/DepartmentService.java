@@ -49,5 +49,9 @@ public class DepartmentService {
         }
     }
 
+    public void updateDepartment(Department department){
+        departmentRepository.update(department);
+    }
+
 
 }

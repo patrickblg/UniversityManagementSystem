@@ -71,5 +71,16 @@ public class InFileRepo<T extends Identifiable> implements BaseRepo<T> {
         writeAll(all);
         return entity;
     }
+    @Override
+    public T update(T entity) {
+        List<T> all = readAll();
+        all.removeIf(e -> e.getId().equals(entity.getId()));
+        all.add(entity);
+        writeAll(all);
+
+        return entity;
+    }
+
+
 }
 

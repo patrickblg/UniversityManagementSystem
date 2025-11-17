@@ -11,4 +11,6 @@ public interface BaseRepo<T> {
     List<T>findAll();
     void delete(String id);
 
+    T update(T t);
+
 }

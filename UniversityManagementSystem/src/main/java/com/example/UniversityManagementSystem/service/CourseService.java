@@ -48,8 +48,9 @@ public class CourseService {
     }
 
 
-
-
+    public void updateCourse(Course c){
+        courseRepository.update(c);
+    }
 }
 
 

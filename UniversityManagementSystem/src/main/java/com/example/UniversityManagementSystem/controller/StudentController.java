@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 //student+enrollment
 @Controller
@@ -50,6 +47,22 @@ public class StudentController {
     @PostMapping("/add-student")
     public String addStudent(@ModelAttribute Student student){
         studentService.saveStudent(student);
+        return "redirect:/student";
+    }
+    @GetMapping("/{id}/edit-student")
+    public String showEditStudentForm(@PathVariable String id, Model model) {
+        Student student = studentService.findStudent(id);
+        if (student == null) return "redirect:/student";
+
+        model.addAttribute("student", student);
+        return "student/student-edit-form";
+    }
+
+    @PostMapping("/{id}/update-student")
+    public String updateStudent(@PathVariable String id, @ModelAttribute Student updatedStudent) {
+
+        updatedStudent.setId(id);
+        studentService.updateStudent(updatedStudent);
         return "redirect:/student";
     }
 

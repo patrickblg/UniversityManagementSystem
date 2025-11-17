@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class TeacherService {
 
-    private TeacherRepository teacherRepository;
+    private final TeacherRepository teacherRepository;
     public TeacherService(TeacherRepository teacherRepository){
         this.teacherRepository = teacherRepository;
     }
@@ -24,5 +24,8 @@ public class TeacherService {
     }
     public void delete(String id){
         teacherRepository.delete(id);
+    }
+    public void updateTeacher(Teacher teacher){
+        teacherRepository.update(teacher);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.UniversityManagementSystem.service;
 
+import com.example.UniversityManagementSystem.model.Course;
 import com.example.UniversityManagementSystem.model.Enrollment;
 import com.example.UniversityManagementSystem.model.Student;
 import com.example.UniversityManagementSystem.repository.EnrollmentRepository;
@@ -10,9 +11,11 @@ import java.util.List;
 public class EnrollmentService {
     private final EnrollmentRepository enrollmentRepository;
     private final StudentService studentService;
-    public EnrollmentService(EnrollmentRepository enrollmentRepository, StudentService studentService) {
+    private final CourseService courseService;
+    public EnrollmentService(EnrollmentRepository enrollmentRepository, StudentService studentService, CourseService courseService) {
         this.enrollmentRepository = enrollmentRepository;
         this.studentService = studentService;
+        this.courseService= courseService;
     }
     public Enrollment getEnrollmentById(String id) {
         return enrollmentRepository.findById(id);
@@ -24,6 +27,9 @@ public class EnrollmentService {
 
         if(studentService.findStudent(e.getStudentId())==null){
             throw new IllegalArgumentException("Cannot create enrollment, student does not exist");
+        }
+        if(courseService.findCourseById(e.getCourseId())==null){
+            throw new IllegalArgumentException("Cannot create enrollment, course does not exist");
         }
         return enrollmentRepository.save(e);
     }

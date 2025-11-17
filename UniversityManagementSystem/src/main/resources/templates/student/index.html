@@ -18,7 +18,6 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Enrollments</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -26,11 +25,13 @@
         <tr th:each="s : ${students}">
             <td th:text="${s.id}">Id</td>
             <td th:text="${s.name}">Name</td>
-            <td th:text="${s.enrollmentCount}">0</td>
             <td>
                 <form th:action="@{'/student/' + ${s.id} + '/delete'}" method="post">
                     <button type="submit">Delete</button>
                 </form>
+                <a th:href="@{'/student/' + ${s.id} + '/edit-student'}">
+                    <button type="button">Edit</button>
+                </a>
             </td>
         </tr>
         </tbody>
