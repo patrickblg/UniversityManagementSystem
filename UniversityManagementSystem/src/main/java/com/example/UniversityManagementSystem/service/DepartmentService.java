@@ -38,12 +38,12 @@ public class DepartmentService {
         departmentRepository.delete(departmentId);
 
         for(Course course : courseRepository.findAll()){
-            if(course.getId().equals(departmentId)){
+            if(course.getDepartmentId().equals(departmentId)){
                 courseRepository.delete(course.getId());
             }
         }
         for(Teacher teacher : teacherRepository.findAll()){
-            if(teacher.getId().equals(departmentId)){
+            if(teacher.getDepartmentId().equals(departmentId)){
                 teacherRepository.delete(teacher.getId());
             }
         }

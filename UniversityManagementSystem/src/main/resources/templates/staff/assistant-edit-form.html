@@ -7,7 +7,7 @@
 
 <h1>Edit Assistant</h1>
 
-<form th:action="@{'/staff/assistant' + ${assistant.id} + '/update-assistant'}" method="post">
+<form th:action="@{'/staff/assistant/' + ${assistant.id} + '/update-assistant'}" method="post">
 
     <label>ID:</label>
     <input type="text" th:value="${assistant.id}" disabled/>
@@ -15,12 +15,12 @@
     <br/>
 
     <label>Name:</label>
-    <input type="text" th:value="${assistant.name}" required/>
+    <input name="name" type="text" th:value="${assistant.name}" required/>
 
     <br/>
 
     <label>Role:</label>
-    <input type="text" th:value="${assistant.role}" required/>
+    <input name="role" type="text" th:value="${assistant.role}" required/>
 
     <br/>
 

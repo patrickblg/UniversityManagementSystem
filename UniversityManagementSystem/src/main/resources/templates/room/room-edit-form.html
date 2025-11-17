@@ -7,7 +7,7 @@
 
 <h1>Edit Room</h1>
 
-<form th:action="@{'/room' + ${room.id} + '/update-room'}" method="post">
+<form th:action="@{'/room/' + ${room.id} + '/update-room'}" method="post">
 
     <label>ID:</label>
     <input type="text" th:value="${room.id}" disabled/>
@@ -15,17 +15,17 @@
     <br/>
 
     <label>Number:</label>
-    <input type="text" th:value="${room.number}" required/>
+    <input name="number" type="text" th:value="${room.number}" required/>
 
     <br/>
 
     <label>Capacity:</label>
-    <input type="text" th:value="${room.capacity}" required/>
+    <input name="capacity" type="text" th:value="${room.capacity}" required/>
 
     <br/>
 
     <label>Name:</label>
-    <input type="text" th:value="${room.name}" required/>
+    <input name="name" type="text" th:value="${room.name}" required/>
 
     <br/>
 

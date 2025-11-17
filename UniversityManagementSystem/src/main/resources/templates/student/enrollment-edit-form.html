@@ -7,7 +7,7 @@
 
 <h1>Edit Enrollment</h1>
 
-<form th:action="@{'/student/enrollment' + ${enrollment.id} + '/update-enrollment'}" method="post">
+<form th:action="@{'/student/enrollment/' + ${enrollment.id} + '/update-enrollment'}" method="post">
 
     <label>ID:</label>
     <input type="text" th:value="${enrollment.id}" disabled/>

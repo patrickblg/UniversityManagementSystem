@@ -7,7 +7,7 @@
 
 <h1>Edit University</h1>
 
-<form th:action="@{'/university' + ${university.id} + '/update-university'}" method="post">
+<form th:action="@{'/university/' + ${university.id} + '/update-university'}" method="post">
 
     <label>ID:</label>
     <input type="text" th:value="${university.id}" disabled/>
@@ -15,12 +15,12 @@
     <br/>
 
     <label>Name:</label>
-    <input type="text" th:value="${university.name}" required/>
+    <input name="name" type="text" th:value="${university.name}" required/>
 
     <br/>
 
     <label>City:</label>
-    <input type="text" th:value="${university.city}" required/>
+    <input name="city" type="text" th:value="${university.city}" required/>
 
     <br/>
 

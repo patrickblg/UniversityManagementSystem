@@ -81,6 +81,22 @@ public class StudentController {
         }
         return "redirect:/student";
     }
+    @GetMapping("/enrollment/{id}/edit-enrollment")
+    public String showEditEnrollmentForm(@PathVariable String id, Model model) {
+        Enrollment enrollment = enrollmentService.getEnrollmentById(id);
+        if (enrollment == null) return "redirect:/student";
+
+        model.addAttribute("enrollemnt", enrollment);
+        return "student/enrollment-edit-form";
+    }
+
+    @PostMapping("/enrollment/{id}/update-enrollment")
+    public String updateEnrollment(@PathVariable String id, @ModelAttribute Enrollment updatedEnrollment) {
+
+        updatedEnrollment.setId(id);
+        enrollmentService.updateEnrollment(updatedEnrollment);
+        return "redirect:/student";
+    }
 
     @PostMapping("/{id}/delete")
     public String deleteStudent(@PathVariable String id){

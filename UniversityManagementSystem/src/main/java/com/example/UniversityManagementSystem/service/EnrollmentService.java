@@ -41,12 +41,6 @@ public class EnrollmentService {
 
         enrollmentRepository.delete(id);
 
-        for(Student s: studentRepository.findAll()){
-            if(s.getId().equals(id)){
-                studentRepository.delete(s.getId());
-            }
-
-        }
     }
     public void getEnrollmentCountsPerStudent(List<Student> students) {
         List<Enrollment> enrollments = getAllEnrollments();
@@ -60,6 +54,10 @@ public class EnrollmentService {
             }
             s.setEnrollmentCount(count);
         }
+    }
+
+    public void updateEnrollment(Enrollment enrollment) {
+        enrollmentRepository.update(enrollment);
     }
 
 

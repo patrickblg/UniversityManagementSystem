@@ -7,7 +7,7 @@
 
 <h1>Edit Department</h1>
 
-<form th:action="@{'/department' + ${department.id} + '/update-department'}" method="post">
+<form th:action="@{'/department/' + ${department.id} + '/update-department'}" method="post">
 
     <label>ID:</label>
     <input type="text" th:value="${department.id}" disabled/>
@@ -15,7 +15,7 @@
     <br/>
 
     <label>Name:</label>
-    <input type="text" th:value="${department.name}" required/>
+    <input name="name" type="text" th:value="${department.name}" required/>
 
     <br/>
 

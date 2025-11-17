@@ -7,7 +7,7 @@
 
 <h1>Edit Teacher</h1>
 
-<form th:action="@{'/staff/teacher' + ${teacher.id} + '/update-teacher'}" method="post">
+<form th:action="@{'/staff/teacher/' + ${teacher.id} + '/update-teacher'}" method="post">
 
     <label>ID:</label>
     <input type="text" th:value="${teacher.id}" disabled/>
@@ -15,17 +15,17 @@
     <br/>
 
     <label>DepartmentID:</label>
-    <input type="text" th:value="${teacher.departmentId}" disabled/>
+    <input name="departmentId" type="text" th:value="${teacher.departmentId}" disabled/>
 
     <br/>
 
     <label>Name:</label>
-    <input type="text" th:value="${teacher.name}" required/>
+    <input name="name" type="text" th:value="${teacher.name}" required/>
 
     <br/>
 
     <label>Title:</label>
-    <input type="text" th:value="${teacher.title}" required/>
+    <input name="title" type="text" th:value="${teacher.title}" required/>
 
     <br/>
 

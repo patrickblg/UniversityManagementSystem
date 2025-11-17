@@ -7,7 +7,7 @@
 
 <h1>Edit Course</h1>
 
-<form th:action="@{'/course' + ${course.id} + '/update-course'}" method="post">
+<form th:action="@{'/course/' + ${course.id} + '/update-course'}" method="post">
 
     <label>ID:</label>
     <input type="text" th:value="${course.id}" disabled/>
@@ -26,18 +26,18 @@
 
 
     <label>Title:</label>
-    <input type="text" th:value="${course.title}" required/>
+    <input name="title" type="text" th:value="${course.title}" required/>
 
     <br/>
 
     <label>Credits:</label>
-    <input type="text" th:value="${course.credits}" required/>
+    <input name="credits" type="text" th:value="${course.credits}" required/>
 
     <br/>
 
 
     <label>Duration:</label>
-    <input type="text" th:value="${course.duration}" required/>
+    <input name="duration" type="text" th:value="${course.duration}" required/>
 
     <br/>
 
