@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 public class CourseRepository extends InFileRepo<Course> {
 
     public CourseRepository(){
-        super("course.json",Course.class);
+        super("UniversityManagementSystem/src/main/resources/data/course.json",Course.class);
     }
 }
 

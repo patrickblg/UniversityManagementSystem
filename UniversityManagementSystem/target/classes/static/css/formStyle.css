@@ -41,6 +41,7 @@ form{
 input{
     font-size: 18px;
     width:100px;
+    height: 10px;
     padding:8px;
 
 }

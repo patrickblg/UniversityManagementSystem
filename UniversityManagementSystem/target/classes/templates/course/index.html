@@ -19,6 +19,8 @@
             <th>Title</th>
             <th>Credits</th>
             <th>Duration</th>
+            <th>DepartmentId</th>
+            <th>RoomId</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -28,6 +30,8 @@
             <td th:text="${c.title}">Title</td>
             <td th:text="${c.credits}">Credits</td>
             <td th:text="${c.duration}">Credits</td>
+            <td th:text="${c.departmentId}">Credits</td>
+            <td th:text="${c.roomId}">Credits</td>
             <td>
                 <form th:action="@{'/course/' + ${c.id} + '/delete'}" method="post">
                     <button type="submit">Delete</button>

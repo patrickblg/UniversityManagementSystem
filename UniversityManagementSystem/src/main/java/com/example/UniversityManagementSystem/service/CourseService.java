@@ -1,15 +1,23 @@
 package com.example.UniversityManagementSystem.service;
 import com.example.UniversityManagementSystem.model.Course;
+import com.example.UniversityManagementSystem.model.Enrollment;
+import com.example.UniversityManagementSystem.model.TeachingAssignment;
 import com.example.UniversityManagementSystem.repository.CourseRepository;
+import com.example.UniversityManagementSystem.repository.EnrollmentRepository;
+import com.example.UniversityManagementSystem.repository.TeachingAssignmentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class CourseService {
-    private CourseRepository courseRepository;
+    private final CourseRepository courseRepository;
+    private final EnrollmentRepository enrollmentRepository;
+    private final TeachingAssignmentRepository teachingAssignmentRepository;
 
-    public CourseService(CourseRepository courseRepository) {
+    public CourseService(CourseRepository courseRepository,EnrollmentRepository enrollmentRepository,TeachingAssignmentRepository teachingAssignmentRepository) {
         this.courseRepository= courseRepository;
+        this.enrollmentRepository = enrollmentRepository;
+        this.teachingAssignmentRepository = teachingAssignmentRepository;
     }
     public Course saveCourse(Course c ){
         return courseRepository.save(c);
@@ -23,9 +31,23 @@ public class CourseService {
         return courseRepository.findById(id);
     }
 
-    public void deleteCourse(String id){
-        courseRepository.delete(id);
+    public void deleteCourse(String courseId){
+
+        courseRepository.delete(courseId);
+
+        for(Enrollment e:enrollmentRepository.findAll()){
+            if (e.getCourseId().equals(courseId)){
+                enrollmentRepository.delete(e.getId());
+            }
+        }
+        for(TeachingAssignment t:teachingAssignmentRepository.findAll()){
+            if(t.getCourseId().equals(courseId)){
+                teachingAssignmentRepository.delete(t.getId());
+            }
+        }
     }
+
+
 
 
 }

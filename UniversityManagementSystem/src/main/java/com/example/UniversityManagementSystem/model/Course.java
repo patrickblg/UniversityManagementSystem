@@ -8,15 +8,19 @@ public class Course implements Identifiable {
     private String title;
     private int credits;
     private double duration;
+    private String departmentId;
+    private String roomId;
     private List<Enrollment> enrollments;
     private List<TeachingAssignment> assignments;
 
 
-    public Course(String id, String title, int credits, double duration) {
+    public Course(String id, String title, int credits, double duration, String departmentId, String roomId) {
         this.id = id;
         this.title = title;
         this.credits = credits;
         this.duration = duration;
+        this.departmentId = departmentId;
+        this.roomId = roomId;
         this.enrollments = new ArrayList<>();
         this.assignments = new ArrayList<>();
     }
@@ -68,5 +72,21 @@ public class Course implements Identifiable {
 
     public void setDuration(double duration) {
         this.duration = duration;
+    }
+
+    public String getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public String getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
     }
 }
