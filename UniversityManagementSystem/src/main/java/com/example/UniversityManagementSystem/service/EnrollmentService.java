@@ -4,6 +4,7 @@ import com.example.UniversityManagementSystem.model.Course;
 import com.example.UniversityManagementSystem.model.Enrollment;
 import com.example.UniversityManagementSystem.model.Student;
 import com.example.UniversityManagementSystem.repository.EnrollmentRepository;
+import com.example.UniversityManagementSystem.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,10 +13,13 @@ public class EnrollmentService {
     private final EnrollmentRepository enrollmentRepository;
     private final StudentService studentService;
     private final CourseService courseService;
-    public EnrollmentService(EnrollmentRepository enrollmentRepository, StudentService studentService, CourseService courseService) {
+    private final StudentRepository studentRepository;
+
+    public EnrollmentService(EnrollmentRepository enrollmentRepository, StudentService studentService, CourseService courseService, StudentRepository studentRepository) {
         this.enrollmentRepository = enrollmentRepository;
         this.studentService = studentService;
         this.courseService= courseService;
+        this.studentRepository = studentRepository;
     }
     public Enrollment getEnrollmentById(String id) {
         return enrollmentRepository.findById(id);
@@ -34,7 +38,15 @@ public class EnrollmentService {
         return enrollmentRepository.save(e);
     }
     public void deleteEnrollmentById(String id) {
+
         enrollmentRepository.delete(id);
+
+        for(Student s: studentRepository.findAll()){
+            if(s.getId().equals(id)){
+                studentRepository.delete(s.getId());
+            }
+
+        }
     }
     public void getEnrollmentCountsPerStudent(List<Student> students) {
         List<Enrollment> enrollments = getAllEnrollments();
