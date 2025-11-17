@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Edit Student</title>
+    <title>Edit Enrollment</title>
 </head>
 <body>
 
-<h1>Edit Student</h1>
+<h1>Edit Enrollment</h1>
 
-<form th:action="@{'/student/' + ${enrollment.id} + '/update-enrollment'}" method="post">
+<form th:action="@{'/student/enrollment' + ${enrollment.id} + '/update-enrollment'}" method="post">
 
     <label>ID:</label>
     <input type="text" th:value="${enrollment.id}" disabled/>
@@ -15,17 +15,17 @@
     <br/>
 
     <label>StudentID:</label>
-    <input type="text" th:value="${student.id}" disabled/>
+    <input type="text" th:value="${enrollment.studentId}" disabled/>
 
     <br/>
 
     <label>CourseID:</label>
-    <input type="text" th:value="${course.id}" disabled/>
+    <input type="text" th:value="${erollment.courseId}" disabled/>
 
     <br/>
 
     <label>Grade:</label>
-    <input type="text" name="name" th:value="${enrollment.grade}" required/>
+    <input type="text" name="grade" th:value="${enrollment.grade}" required/>
 
     <br/><br/>
 
