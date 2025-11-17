@@ -13,7 +13,7 @@ public class InFileRepo<T extends Identifiable> implements BaseRepo<T> {
     private final String filePath;
     private final Class<T> type;
 
-    public InFileRepo(String filePath,Class<T> type ) {
+    public InFileRepo(String filePath, Class<T> type) {
         this.filePath = filePath;
         this.type = type;
     }
@@ -49,10 +49,21 @@ public class InFileRepo<T extends Identifiable> implements BaseRepo<T> {
     @Override
     public T findById(String id) {
         return readAll().stream()
-                .filter(e -> id.equals(e.getId()) )
+                .filter(e -> id != null && e.getId() != null && id.equals(e.getId()))
                 .findFirst()
                 .orElse(null);
     }
+
+    @Override
+    public void delete(String id) {
+        List<T> all = readAll();
+        boolean removed = all.removeIf(e ->
+                id != null && e.getId() != null && id.equals(e.getId())
+        );
+        System.out.println("Deleting entity with id=" + id + " success=" + removed);
+        writeAll(all);
+    }
+
 
     @Override
     public T save(T entity) {
@@ -61,15 +72,4 @@ public class InFileRepo<T extends Identifiable> implements BaseRepo<T> {
         writeAll(all);
         return entity;
     }
-
-
-
-    @Override
-    public void delete(String id) {
-        List<T> all = readAll();
-        boolean removed = all.removeIf(e -> id.equals(e.getId()));
-        System.out.println("Deleting entity with id=" + id + " success=" + removed);
-        writeAll(all);
-    }
 }
-

@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public class EnrollmentService {
-    private EnrollmentRepository enrollmentRepository;
-    public EnrollmentService(EnrollmentRepository enrollmentRepository) {
+    private final EnrollmentRepository enrollmentRepository;
+    private final StudentService studentService;
+    public EnrollmentService(EnrollmentRepository enrollmentRepository,StudentService studentService) {
         this.enrollmentRepository = enrollmentRepository;
+        this.studentService = studentService;
     }
     public Enrollment getEnrollmentById(String id) {
         return enrollmentRepository.findById(id);
@@ -19,6 +21,11 @@ public class EnrollmentService {
         return enrollmentRepository.findAll();
     }
     public Enrollment saveEnrollment(Enrollment e) {
+
+        if(studentService.findStudent(e.getStudentId())==null){
+            throw new IllegalArgumentException("Cannot Add Enrollment, Student does not exist");
+        }
+
         return enrollmentRepository.save(e);
     }
     public void deleteEnrollmentById(String id) {
