@@ -60,6 +60,9 @@
                 <form th:action="@{'/student/enrollment/' + ${e.id} + '/delete'}" method="post">
                     <button type="submit">Delete</button>
                 </form>
+                <a th:href="@{'/student/enrollment/' + ${e.id} + '/edit-enrollment'}">
+                    <button type="button">Edit</button>
+                </a>
             </td>
         </tr>
         </tbody>
