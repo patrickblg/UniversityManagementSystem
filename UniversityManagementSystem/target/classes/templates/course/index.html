@@ -36,6 +36,9 @@
                 <form th:action="@{'/course/' + ${c.id} + '/delete'}" method="post">
                     <button type="submit">Delete</button>
                 </form>
+                <a th:href="@{'/course/' + ${c.id} + '/edit-course'}">
+                    <button type="button">Edit</button>
+                </a>
             </td>
         </tr>
         </tbody>
@@ -62,6 +65,9 @@
                 <form th:action="@{'/course/teachingassignment/' + ${ta.id} + '/delete'}" method="post">
                     <button type="submit">Delete</button>
                 </form>
+                <a th:href="@{'/course/teachingassignment' + ${ta.id} + '/edit-teachingassignment'}">
+                    <button type="button">Edit</button>
+                </a>
             </td>
         </tr>
         </tbody>

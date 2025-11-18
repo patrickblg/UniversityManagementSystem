@@ -30,6 +30,9 @@
                 <form th:action="@{'/department/' + ${d.id} + '/delete'}" method="post">
                     <button type="submit">Delete</button>
                 </form>
+                <a th:href="@{'/department/' + ${d.id} + '/edit-department'}">
+                    <button type="button">Edit</button>
+                </a>
             </td>
         </tr>
         </tbody>
