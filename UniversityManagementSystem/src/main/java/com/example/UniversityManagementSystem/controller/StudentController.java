@@ -86,7 +86,7 @@ public class StudentController {
         Enrollment enrollment = enrollmentService.getEnrollmentById(id);
         if (enrollment == null) return "redirect:/student";
 
-        model.addAttribute("enrollemnt", enrollment);
+        model.addAttribute("enrollment", enrollment);
         return "student/enrollment-edit-form";
     }
 
