@@ -1,1 +1,6 @@
-[ ]
+[ {
+  "id" : "e1",
+  "studentId" : "s1",
+  "courseId" : "c1",
+  "grade" : "B"
+} ]

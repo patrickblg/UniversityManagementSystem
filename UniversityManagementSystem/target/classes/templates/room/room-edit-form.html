@@ -10,7 +10,7 @@
 <form th:action="@{'/room/' + ${room.id} + '/update-room'}" method="post">
 
     <label>ID:</label>
-    <input type="text" th:value="${room.id}" disabled/>
+    <input name="id" type="text" th:value="${room.id}" readonly/>
 
     <br/>
 

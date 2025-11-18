@@ -10,17 +10,17 @@
 <form th:action="@{'/course/teachingassignment' + ${teachingassignment.id} + '/update-teachingassignment'}" method="post">
 
     <label>ID:</label>
-    <input type="text" th:value="${teachingassignment.id}" disabled/>
+    <input name="id" type="text" th:value="${teachingassignment.id}" readonly/>
 
     <br/>
 
     <label>CourseId:</label>
-    <input type="text" th:value="${teachingassignment.courseId}" disabled/>
+    <input name="courseId" type="text" th:value="${teachingassignment.courseId}" readonly/>
 
     <br/>
 
     <label>StaffId:</label>
-    <input type="text" th:value="${teachingassignment.staffId}" disabled/>
+    <input name="staffId" type="text" th:value="${teachingassignment.staffId}" readonly/>
 
     <br/>
 
