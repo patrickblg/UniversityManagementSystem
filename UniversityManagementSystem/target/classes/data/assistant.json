@@ -1,1 +1,16 @@
-[ ]
+[ {
+  "id" : "a1",
+  "name" : "emil ganj",
+  "assignments" : null,
+  "role" : "TA"
+}, {
+  "id" : "a2",
+  "name" : "Dionisie Falaitar",
+  "assignments" : null,
+  "role" : "LAB"
+}, {
+  "id" : "a3",
+  "name" : "Gaius Iulius Caesar ",
+  "assignments" : null,
+  "role" : "GRADER"
+} ]

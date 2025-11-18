@@ -10,12 +10,12 @@
 <form th:action="@{'/staff/teacher/' + ${teacher.id} + '/update-teacher'}" method="post">
 
     <label>ID:</label>
-    <input type="text" th:value="${teacher.id}" disabled/>
+    <input name="id" type="text" th:value="${teacher.id}" readonly/>
 
     <br/>
 
     <label>DepartmentID:</label>
-    <input name="departmentId" type="text" th:value="${teacher.departmentId}" disabled/>
+    <input name="departmentId" type="text" th:value="${teacher.departmentId}" readonly/>
 
     <br/>
 

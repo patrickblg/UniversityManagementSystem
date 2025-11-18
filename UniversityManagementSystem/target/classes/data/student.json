@@ -4,11 +4,6 @@
   "enrollments" : null,
   "enrollmentCount" : 0
 }, {
-  "id" : "s2",
-  "name" : "alexandra",
-  "enrollments" : null,
-  "enrollmentCount" : 0
-}, {
   "id" : "s3",
   "name" : "andrei",
   "enrollments" : null,
@@ -21,6 +16,11 @@
 }, {
   "id" : "s5",
   "name" : "mihai",
+  "enrollments" : null,
+  "enrollmentCount" : 0
+}, {
+  "id" : "s2",
+  "name" : "alexandraa",
   "enrollments" : null,
   "enrollmentCount" : 0
 } ]

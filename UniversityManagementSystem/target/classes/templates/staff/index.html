@@ -28,7 +28,7 @@
         <td th:text="${t.id}">Id</td>
         <td th:text="${t.name}">Name</td>
         <td th:text="${t.title}">Title</td>
-        <td th:text="${t.id}">Dept</td>
+        <td th:text="${t.departmentId}">Dept</td>
         <td>
             <form th:action="@{'/staff/teacher/' + ${t.id} + '/delete'}" method="post">
                 <button type="submit">Delete</button>

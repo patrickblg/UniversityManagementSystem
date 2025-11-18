@@ -1,7 +1,31 @@
 [ {
+  "id" : "t2",
+  "name" : "cristi popesco",
+  "assignments" : null,
+  "title" : "hacker",
+  "departmentId" : "d5"
+}, {
   "id" : "t1",
   "name" : "popa ion",
   "assignments" : null,
-  "title" : "?",
+  "title" : "useless",
+  "departmentId" : "d1"
+}, {
+  "id" : "t3",
+  "name" : "Paul Surugiu",
+  "assignments" : null,
+  "title" : "Fuego",
+  "departmentId" : "d3"
+}, {
+  "id" : "t4",
+  "name" : "Cristi Scorobete",
+  "assignments" : null,
+  "title" : "Games",
+  "departmentId" : "d2"
+}, {
+  "id" : "t5",
+  "name" : "Alexandru Vaida Voevod",
+  "assignments" : null,
+  "title" : "Prof.",
   "departmentId" : "d1"
 } ]
