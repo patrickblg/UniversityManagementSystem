@@ -1,1 +1,31 @@
-[ ]
+[ {
+  "id" : "r1",
+  "capacity" : 200.0,
+  "number" : "123",
+  "name" : "pi",
+  "courses" : null
+}, {
+  "id" : "r2",
+  "capacity" : 30.0,
+  "number" : "124",
+  "name" : "platon",
+  "courses" : null
+}, {
+  "id" : "r3",
+  "capacity" : 200.0,
+  "number" : "125",
+  "name" : "omega",
+  "courses" : null
+}, {
+  "id" : "r4",
+  "capacity" : 30.0,
+  "number" : "126",
+  "name" : "alfa",
+  "courses" : null
+}, {
+  "id" : "r5",
+  "capacity" : 200.0,
+  "number" : "127",
+  "name" : "beta",
+  "courses" : null
+} ]
