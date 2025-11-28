@@ -3,7 +3,16 @@
     import java.io.Serializable;
     import java.util.ArrayList;
     import java.util.List;
+    //@Entity
     public class Room  implements Identifiable{
+        //@Id -cheie primara
+        //@GeneratedValue(strategy =GenerationType.IDENTITY)
+        //@JSONPROPERTY()...
+        //private string name
+        //
+        //
+        //
+
         private String id;
         private double capacity;
         private String number;

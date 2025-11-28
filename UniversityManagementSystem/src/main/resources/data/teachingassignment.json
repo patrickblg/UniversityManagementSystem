@@ -1,1 +1,21 @@
-[ ]
+[ {
+  "id" : "t1,c2,t4",
+  "courseId" : null,
+  "staffId" : null,
+  "managing" : "SEMINARY"
+}, {
+  "id" : "ta1,c1,t4",
+  "courseId" : null,
+  "staffId" : null,
+  "managing" : "SEMINARY"
+}, {
+  "id" : "ta1,c1,t4",
+  "courseId" : null,
+  "staffId" : null,
+  "managing" : "LAB"
+}, {
+  "id" : "ta1",
+  "courseId" : "c2",
+  "staffId" : "t4",
+  "managing" : "LAB"
+} ]

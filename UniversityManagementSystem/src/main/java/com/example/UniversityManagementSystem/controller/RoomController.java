@@ -56,4 +56,8 @@ public class RoomController {
         roomService.deleteRoom(id);
         return "redirect:/room";
     }
+
+    //@PostMapping
+    //public Room addRoom(@RequestBody Room room){
+        //return roomService.saveRoom(r);
 }

@@ -7,4 +7,22 @@
   "roomId" : "r1",
   "enrollments" : null,
   "assignments" : null
+}, {
+  "id" : "c2",
+  "title" : "analiza",
+  "credits" : 6,
+  "duration" : 2.0,
+  "departmentId" : "d2",
+  "roomId" : "r3",
+  "enrollments" : null,
+  "assignments" : null
+}, {
+  "id" : "c3",
+  "title" : "chimie organica",
+  "credits" : 4,
+  "duration" : 3.0,
+  "departmentId" : "d3",
+  "roomId" : "r5",
+  "enrollments" : null,
+  "assignments" : null
 } ]

@@ -13,4 +13,14 @@
   "name" : "Gaius Iulius Caesar ",
   "assignments" : null,
   "role" : "GRADER"
+}, {
+  "id" : "a4",
+  "name" : "Marian",
+  "assignments" : null,
+  "role" : "LAB"
+}, {
+  "id" : "a5",
+  "name" : "Alex",
+  "assignments" : null,
+  "role" : "GRADER"
 } ]

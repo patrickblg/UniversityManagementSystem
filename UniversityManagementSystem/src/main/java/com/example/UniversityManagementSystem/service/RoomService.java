@@ -33,4 +33,9 @@ public class RoomService {
         roomRepository.update(r);
     }
 
+    //public Room save(Room r){
+    //   return roomRepository.save(r);
+    //}
+
+
 }

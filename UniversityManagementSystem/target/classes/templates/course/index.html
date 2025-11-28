@@ -58,8 +58,8 @@
         <tbody>
         <tr th:each="ta : ${teachingassignments}">
             <td th:text="${ta.id}">Id</td>
-            <td th:text="${ta.id}">CourseID</td>
-            <td th:text="${ta.id}">StaffID</td>
+            <td th:text="${ta.courseId}">CourseID</td>
+            <td th:text="${ta.staffId}">StaffID</td>
             <td th:text="${ta.managing}">StaffID</td>
             <td>
                 <form th:action="@{'/course/teachingassignment/' + ${ta.id} + '/delete'}" method="post">

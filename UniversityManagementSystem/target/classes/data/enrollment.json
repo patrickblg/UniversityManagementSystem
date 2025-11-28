@@ -3,4 +3,19 @@
   "studentId" : "s1",
   "courseId" : "c1",
   "grade" : "B"
+}, {
+  "id" : "e2",
+  "studentId" : "s5",
+  "courseId" : "c2",
+  "grade" : "A"
+}, {
+  "id" : "e3",
+  "studentId" : "s2",
+  "courseId" : "c3",
+  "grade" : "C"
+}, {
+  "id" : "e4",
+  "studentId" : "s3",
+  "courseId" : "c2",
+  "grade" : "F"
 } ]

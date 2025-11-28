@@ -7,7 +7,7 @@
 
 <h1>Edit Teachingassignment</h1>
 
-<form th:action="@{'/course/teachingassignment' + ${teachingassignment.id} + '/update-teachingassignment'}" method="post">
+<form th:action="@{'/course/teachingassignment/' + ${teachingassignment.id} + '/update-teachingassignment'}" method="post">
 
     <label>ID:</label>
     <input name="id" type="text" th:value="${teachingassignment.id}" readonly/>
