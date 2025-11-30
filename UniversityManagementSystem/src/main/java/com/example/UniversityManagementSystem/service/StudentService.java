@@ -1,18 +1,16 @@
 package com.example.UniversityManagementSystem.service;
-import com.example.UniversityManagementSystem.model.Enrollment;
 import com.example.UniversityManagementSystem.model.Student;
-import com.example.UniversityManagementSystem.repository.EnrollmentRepository;
 import com.example.UniversityManagementSystem.repository.StudentRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class StudentService {
     private final StudentRepository studentRepository;
-    private final EnrollmentRepository enrollmentRepository;
-    public StudentService(StudentRepository studentRepository, EnrollmentRepository enrollmentRepository) {
+    public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
-        this.enrollmentRepository = enrollmentRepository;
+
     }
     public void saveStudent(Student s) {
         studentRepository.save(s);
@@ -21,6 +19,7 @@ public class StudentService {
     public List<Student> findAllStudents(){
         return studentRepository.findAll();
     }
+    @Transactional
     public Student findStudent(String id){
         return studentRepository.findById(id).orElse(null);
     }

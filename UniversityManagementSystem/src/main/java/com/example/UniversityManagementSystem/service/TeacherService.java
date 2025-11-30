@@ -1,6 +1,7 @@
 package com.example.UniversityManagementSystem.service;
 
 import com.example.UniversityManagementSystem.model.Teacher;
+import com.example.UniversityManagementSystem.repository.DepartmentRepository;
 import com.example.UniversityManagementSystem.repository.TeacherRepository;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +11,15 @@ import java.util.List;
 public class TeacherService {
 
     private final TeacherRepository teacherRepository;
-    public TeacherService(TeacherRepository teacherRepository){
+    private final DepartmentRepository departmentRepository;
+    public TeacherService(TeacherRepository teacherRepository, DepartmentRepository departmentRepository) {
         this.teacherRepository = teacherRepository;
+        this.departmentRepository = departmentRepository;
     }
     public Teacher save(Teacher teacher){
+        if (teacher.getDepartment() == null || teacher.getDepartment().getId() == null || !departmentRepository.existsById(teacher.getDepartment().getId())) {
+            throw new IllegalArgumentException("Nu se poate salva profesorul: Departamentul asociat nu există.");
+        }
         return teacherRepository.save(teacher);
     }
     public List<Teacher> findAll(){

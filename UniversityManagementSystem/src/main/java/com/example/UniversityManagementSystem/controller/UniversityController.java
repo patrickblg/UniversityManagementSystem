@@ -1,6 +1,5 @@
 package com.example.UniversityManagementSystem.controller;
 
-import com.example.UniversityManagementSystem.model.Student;
 import com.example.UniversityManagementSystem.model.University;
 import com.example.UniversityManagementSystem.service.UniversityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +45,7 @@ public class UniversityController {
         if (university == null) return "redirect:/university";
 
         model.addAttribute("university", university);
-        return "student/university-edit-form";
+        return "university/form";
     }
 
     @PostMapping("/{id}/update-university")

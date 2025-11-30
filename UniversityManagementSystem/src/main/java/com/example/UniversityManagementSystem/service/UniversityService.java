@@ -1,6 +1,7 @@
 package com.example.UniversityManagementSystem.service;
 import com.example.UniversityManagementSystem.model.University;
 import com.example.UniversityManagementSystem.repository.UniversityRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,8 @@ public class UniversityService {
         return universityRepository.findAll();
     }
 
+
+    @Transactional
     public University findUniversityById(String id){
         return universityRepository.findById(id).orElse(null);
     }

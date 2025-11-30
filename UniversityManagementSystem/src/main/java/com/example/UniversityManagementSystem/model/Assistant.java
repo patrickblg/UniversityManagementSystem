@@ -1,7 +1,6 @@
 package com.example.UniversityManagementSystem.model;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity

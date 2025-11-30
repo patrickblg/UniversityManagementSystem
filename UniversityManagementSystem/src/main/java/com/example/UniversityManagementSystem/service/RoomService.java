@@ -2,18 +2,24 @@ package com.example.UniversityManagementSystem.service;
 
 import com.example.UniversityManagementSystem.model.Room;
 import com.example.UniversityManagementSystem.repository.RoomRepository;
+import com.example.UniversityManagementSystem.repository.UniversityRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class RoomService {
     private final RoomRepository roomRepository;
+    private final UniversityRepository universityRepository;
 
-    public RoomService(RoomRepository roomRepository) {
+    public RoomService(RoomRepository roomRepository, UniversityRepository universityRepository) {
         this.roomRepository= roomRepository;
+        this.universityRepository = universityRepository;
     }
 
     public void saveRoom (Room r){
+        if (r.getUniversity() == null || r.getUniversity().getId() == null || !universityRepository.existsById(r.getUniversity().getId())) {
+            throw new IllegalArgumentException("Nu se poate salva sala: Universitatea asociată nu există.");
+        }
         roomRepository.save(r);
     }
 
@@ -30,12 +36,12 @@ public class RoomService {
     }
 
     public void updateRoom(Room r){
+        if (r.getUniversity() == null || r.getUniversity().getId() == null || !universityRepository.existsById(r.getUniversity().getId())) {
+            throw new IllegalArgumentException("Nu se poate salva sala: Universitatea asociată nu există.");
+        }
         roomRepository.save(r);
     }
 
-    //public Room save(Room r){
-    //   return roomRepository.save(r);
-    //}
 
 
 }

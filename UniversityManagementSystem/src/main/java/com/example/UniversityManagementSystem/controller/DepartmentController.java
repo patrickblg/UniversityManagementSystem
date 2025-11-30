@@ -1,6 +1,5 @@
 package com.example.UniversityManagementSystem.controller;
 import com.example.UniversityManagementSystem.model.Department;
-import com.example.UniversityManagementSystem.model.Room;
 import com.example.UniversityManagementSystem.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

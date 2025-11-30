@@ -2,6 +2,7 @@ package com.example.UniversityManagementSystem.service;
 
 import com.example.UniversityManagementSystem.model.Assistant;
 import com.example.UniversityManagementSystem.repository.AssistantRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,14 +15,15 @@ public class AssistantService {
         this.assistantRepository= assistantRepository;
     }
 
-    public Assistant saveAssistant(Assistant t){
-        return assistantRepository.save(t);
+    public void saveAssistant(Assistant t){
+        assistantRepository.save(t);
     }
 
     public List<Assistant> findAllAssistants(){
         return assistantRepository.findAll();
     }
 
+    @Transactional
     public Assistant findAssistantById(String id){
         return assistantRepository.findById(id).orElse(null);
     }

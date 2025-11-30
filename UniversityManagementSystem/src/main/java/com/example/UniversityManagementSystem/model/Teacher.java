@@ -1,20 +1,24 @@
 package com.example.UniversityManagementSystem.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
 public class Teacher extends Staff{
 
     private String title;
-    private String departmentId;
+
+    @ManyToOne
+    @JoinColumn(name="department_id")
+    @JsonBackReference
+    private Department department;
+
 
     //Constructor
-    public Teacher(String id, String name,String title){
+    public Teacher(String id, String name,String title) {
         super(id,name);
         this.title=title;
-        this.departmentId=departmentId;
+
 
     }
 
@@ -26,7 +30,7 @@ public class Teacher extends Staff{
     public String getTitle() {return title;}
     public void setTitle(String title) { this.title = title; }
 
-    public String getDepartmentId() {return departmentId;}
-    public void setDepartmentId(String departmentId) { this.departmentId = departmentId;}
+    public Department getDepartment() {return department;}
+    public void setDepartment(Department department) { this.department = department; }
 
 }

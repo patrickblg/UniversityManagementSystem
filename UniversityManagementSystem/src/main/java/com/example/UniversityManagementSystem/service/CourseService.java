@@ -1,29 +1,30 @@
 package com.example.UniversityManagementSystem.service;
 import com.example.UniversityManagementSystem.model.Course;
-import com.example.UniversityManagementSystem.model.Enrollment;
-import com.example.UniversityManagementSystem.model.TeachingAssignment;
-import com.example.UniversityManagementSystem.repository.CourseRepository;
-import com.example.UniversityManagementSystem.repository.EnrollmentRepository;
-import com.example.UniversityManagementSystem.repository.TeachingAssignmentRepository;
+import com.example.UniversityManagementSystem.repository.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class CourseService {
     private final CourseRepository courseRepository;
-    private final EnrollmentRepository enrollmentRepository;
-    private final TeachingAssignmentRepository teachingAssignmentRepository;
-    private final DepartmentService departmentService;
+    private final DepartmentRepository departmentRepository;
+    private final RoomRepository roomRepository;
 
-    public CourseService(CourseRepository courseRepository,EnrollmentRepository enrollmentRepository,TeachingAssignmentRepository teachingAssignmentRepository, DepartmentService departmentService) {
+    public CourseService(CourseRepository courseRepository, DepartmentRepository departmentRepository, RoomRepository roomRepository) {
         this.courseRepository= courseRepository;
-        this.enrollmentRepository = enrollmentRepository;
-        this.teachingAssignmentRepository = teachingAssignmentRepository;
-        this.departmentService = departmentService;
-    }
-    public Course saveCourse(Course c ){
+        this.departmentRepository = departmentRepository;
+        this.roomRepository = roomRepository;
 
-        return courseRepository.save(c);
+    }
+    public void saveCourse(Course c ){
+        if (c.getDepartment() == null || c.getDepartment().getId() == null || !departmentRepository.existsById(c.getDepartment().getId())) {
+            throw new IllegalArgumentException("Nu se poate salva cursul: Departamentul asociat nu există.");
+        }
+        // Business Logic: Verifică dacă Sala există
+        if (c.getRoom() == null || c.getRoom().getId() == null || !roomRepository.existsById(c.getRoom().getId())) {
+            throw new IllegalArgumentException("Nu se poate salva cursul: Sala asociată nu există.");
+        }
+        courseRepository.save(c);
     }
 
     public List<Course> findAllCourses(){
@@ -40,6 +41,12 @@ public class CourseService {
     }
 
     public void updateCourse(Course c){
+        if (c.getDepartment() == null || c.getDepartment().getId() == null || !departmentRepository.existsById(c.getDepartment().getId())) {
+            throw new IllegalArgumentException("Nu se poate actualiza cursul: Departamentul asociat nu există.");
+        }
+        if (c.getRoom() == null || c.getRoom().getId() == null || !roomRepository.existsById(c.getRoom().getId())) {
+            throw new IllegalArgumentException("Nu se poate actualiza cursul: Sala asociată nu există.");
+        }
         courseRepository.save(c);
     }
 }

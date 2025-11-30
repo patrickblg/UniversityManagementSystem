@@ -1,11 +1,8 @@
 package com.example.UniversityManagementSystem.service;
 
-import com.example.UniversityManagementSystem.model.Course;
 import com.example.UniversityManagementSystem.model.Department;
-import com.example.UniversityManagementSystem.model.Teacher;
-import com.example.UniversityManagementSystem.repository.CourseRepository;
 import com.example.UniversityManagementSystem.repository.DepartmentRepository;
-import com.example.UniversityManagementSystem.repository.TeacherRepository;
+import com.example.UniversityManagementSystem.repository.UniversityRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,16 +10,17 @@ import java.util.List;
 public class DepartmentService {
 
     private final DepartmentRepository departmentRepository;
-    private final CourseRepository courseRepository;
-    private final TeacherRepository teacherRepository;
+    private final UniversityRepository universityRepository;
 
-    public DepartmentService(DepartmentRepository departmentRepository, CourseRepository courseRepository, TeacherRepository teacherRepository) {
+    public DepartmentService(DepartmentRepository departmentRepository, UniversityRepository universityRepository) {
         this.departmentRepository = departmentRepository;
-        this.courseRepository = courseRepository;
-        this.teacherRepository = teacherRepository;
+        this.universityRepository = universityRepository;
     }
 
     public Department save(Department department) {
+        if (department.getUniversity() == null || department.getUniversity().getId() == null || !universityRepository.existsById(department.getUniversity().getId())) {
+            throw new IllegalArgumentException("Nu se poate salva departamentul: Universitatea asociată nu există.");
+        }
         return departmentRepository.save(department);
     }
     public List<Department> findAllDepartments() {
@@ -40,6 +38,9 @@ public class DepartmentService {
     }
 
     public void updateDepartment(Department department){
+        if (department.getUniversity() == null || department.getUniversity().getId() == null || !universityRepository.existsById(department.getUniversity().getId())) {
+            throw new IllegalArgumentException("Nu se poate actualiza departamentul: Universitatea asociată nu există.");
+        }
         departmentRepository.save(department);
     }
 

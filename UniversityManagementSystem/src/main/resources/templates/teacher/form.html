@@ -8,7 +8,7 @@
 <body>
 <h1>Add New Teacher</h1>
 <div class="main">
-<form th:action="@{/staff/add-teacher}" method="post" th:object="${teacher}">
+<form th:action="@{/templates/teacher/add-teacher}" method="post" th:object="${teacher}">
     <label>ID:</label>
     <input type="text" th:field="*{id}" required><br><br>
 
@@ -25,7 +25,7 @@
 </form>
 
 <br>
-<a th:href="@{/staff}">Back to Staff List</a>
+<a th:href="@{/templates/teacher}">Back to Staff List</a>
 </div>
 </body>
 </html>
