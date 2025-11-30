@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/formStyle.css}">
 <head>
     <title>Edit Department</title>
 </head>
@@ -7,23 +8,40 @@
 
 <h1>Edit Department</h1>
 
-<form th:action="@{'/department/' + ${department.id} + '/update-department'}" method="post">
+<div class="main">
+    <div th:if="${errorMessage}" style="color: red; margin-bottom: 10px;">
+        <p th:text="${errorMessage}"></p>
+    </div>
 
-    <label>ID:</label>
-    <input name="id" type="text" th:value="${department.id}" readonly/>
+    <form th:action="@{'/department/' + ${department.id} + '/update-department'}" method="post" th:object="${department}">
 
-    <br/>
+        <label>ID:</label>
+        <input name="id" type="text" th:value="${department.id}" readonly/>
+        <br/>
 
-    <label>Name:</label>
-    <input name="name" type="text" th:value="${department.name}" required/>
+        <label>Name:</label>
+        <input name="name" type="text" th:field="*{name}" required/>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></span>
+        <br/>
 
-    <br/>
+        <label>University:</label>
+        <select th:field="*{university}" required>
+            <option value="">-- Selectează Universitatea --</option>
+            <option th:each="univ : ${allUniversities}"
+                    th:value="${univ.id}"
+                    th:text="${univ.name}"
+                    th:selected="${department.university != null AND univ.id == department.university.id}">
+            </option>
+        </select>
+        <span th:if="${#fields.hasErrors('university')}" th:errors="*{university}" style="color: red;"></span>
+        <br/>
 
+        <button type="submit">Save Changes</button>
+    </form>
 
-    <button type="submit">Save Changes</button>
-</form>
-
-<a th:href="@{/department}">Back</a>
+    <br>
+    <a th:href="@{/department}">Back</a>
+</div>
 
 </body>
 </html>

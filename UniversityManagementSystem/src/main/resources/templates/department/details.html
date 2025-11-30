@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/indexStyle.css}">
+<head>
+    <title>Detalii Departament</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Detalii Departament: <span th:text="${department.name}"></span></h1>
+
+<div class="main">
+    <p><strong>ID:</strong> <span th:text="${department.id}"></span></p>
+    <p><strong>Universitate:</strong> <span th:text="${department.university.name}"></span></p>
+
+    <hr>
+
+    <h2>Cursuri Oferite (<span th:text="${department.courses.size()}"></span>)</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID Curs</th>
+            <th>Titlu</th>
+            <th>Credite</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="course : ${department.courses}">
+            <td th:text="${course.id}"></td>
+            <td th:text="${course.title}"></td>
+            <td th:text="${course.credits}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>Profesori Afiliați (<span th:text="${department.teachers.size()}"></span>)</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID Profesor</th>
+            <th>Nume</th>
+            <th>Titlu</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="teacher : ${department.teachers}">
+            <td th:text="${teacher.id}"></td>
+            <td th:text="${teacher.name}"></td>
+            <td th:text="${teacher.title}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <a th:href="@{/department}">Înapoi la Departamente</a>
+</div>
+</body>
+</html>

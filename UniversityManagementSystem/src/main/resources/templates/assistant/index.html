@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/indexStyle.css}">
+
 <head>
+    <title>Assistants List</title>
     <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
+<h1>Assistants</h1>
 
+<div class="main">
+    <h2>Assistants</h2>
+    <a th:href="@{/assistant/new}">Add New Assistant</a>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="a : ${assistants}">
+            <td th:text="${a.id}">Id</td>
+            <td th:text="${a.name}">Name</td>
+            <td th:text="${a.role}">Role</td>
+            <td>
+                <form th:action="@{'/assistant/' + ${a.id} + '/delete'}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+                <a th:href="@{'/assistant/' + ${a.id} + '/edit-assistant'}">
+                    <button type="button">Edit</button>
+                </a>
+                <a th:href="@{'/assistant/' + ${a.id} + '/details'}">
+                    <button type="button">Details</button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

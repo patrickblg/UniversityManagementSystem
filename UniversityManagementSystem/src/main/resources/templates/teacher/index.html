@@ -1,74 +1,47 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/indexStyle.css}">
 
 <head>
-    <title>Staff List</title>
+    <title>Teachers List</title>
     <meta charset="UTF-8">
 </head>
 <body>
-<h1>Staff Members</h1>
+<h1>Teachers</h1>
 
-<!-- Teachers -->
 <div class="main">
-<h2>Teachers</h2>
-<a th:href="@{/templates/teacher/new-teacher}">Add New Teacher</a>
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Title</th>
-        <th>Department</th>
-        <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="t : ${teachers}">
-        <td th:text="${t.id}">Id</td>
-        <td th:text="${t.name}">Name</td>
-        <td th:text="${t.title}">Title</td>
-        <td th:text="${t.departmentId}">Dept</td>
-        <td>
-            <form th:action="@{'/staff/teacher/' + ${t.id} + '/delete'}" method="post">
-                <button type="submit">Delete</button>
-            </form>
-            <a th:href="@{'/staff/teacher/' + ${t.id} + '/edit-teacher'}">
-                <button type="button">Edit</button>
-            </a>
-        </td>
-    </tr>
-    </tbody>
-</table>
-
-<!-- Assistants -->
-<h2>Assistants</h2>
-<a th:href="@{/templates/teacher/new-assistant}">Add New Assistant</a>
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Role</th>
-        <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="a : ${assistants}">
-        <td th:text="${a.id}">Id</td>
-        <td th:text="${a.name}">Name</td>
-        <td th:text="${a.role}">Role</td>
-        <td>
-            <form th:action="@{'/staff/assistant/' + ${a.id} + '/delete'}" method="post">
-                <button type="submit">Delete</button>
-            </form>
-            <a th:href="@{'/staff/assistant/' + ${a.id} + '/edit-assistant'}">
-                <button type="button">Edit</button>
-            </a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+    <h2>Teachers</h2>
+    <a th:href="@{/teacher/new}">Add New Teacher</a>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Department</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="t : ${teachers}">
+            <td th:text="${t.id}">Id</td>
+            <td th:text="${t.name}">Name</td>
+            <td th:text="${t.title}">Title</td>
+            <td th:text="${t.department.name}">Dept</td>
+            <td>
+                <form th:action="@{'/teacher/' + ${t.id} + '/delete'}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+                <a th:href="@{'/teacher/' + ${t.id} + '/edit-teacher'}">
+                    <button type="button">Edit</button>
+                </a>
+                <a th:href="@{'/teacher/' + ${t.id} + '/details'}">
+                    <button type="button">Details</button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

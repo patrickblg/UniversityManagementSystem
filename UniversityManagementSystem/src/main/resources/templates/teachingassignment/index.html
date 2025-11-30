@@ -1,10 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/indexStyle.css}">
+
 <head>
+    <title>Teaching Assignments List</title>
     <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
+<h1>Teaching Assignments</h1>
 
+<div class="main">
+    <h2>Teaching Assignments</h2>
+    <a th:href="@{/teachingassignment/new}">Add New Teaching Assignment</a>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Course</th>
+            <th>Staff</th>
+            <th>Managing Role</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ta : ${teachingassignments}">
+            <td th:text="${ta.id}">Id</td>
+            <td th:text="${ta.course.title}">CourseTitle</td>
+            <td th:text="${ta.staff.name}">StaffName</td>
+            <td th:text="${ta.managing}">ManagingRole</td>
+            <td>
+                <form th:action="@{'/teachingassignment/' + ${ta.id} + '/delete'}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+                <a th:href="@{'/teachingassignment/' + ${ta.id} + '/edit-teachingassignment'}">
+                    <button type="button">Edit</button>
+                </a>
+                <a th:href="@{'/teachingassignment/' + ${ta.id} + '/details'}">
+                    <button type="button">Details</button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

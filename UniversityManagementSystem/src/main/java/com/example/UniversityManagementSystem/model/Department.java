@@ -3,15 +3,20 @@ package com.example.UniversityManagementSystem.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 @Entity
 public class Department implements Identifiable {
     @Id
+    @NotBlank(message = "id is required")//validare
     private String id;
+    @NotBlank(message = "name is required")//validare
     private String name;
 
+    @NotNull(message = "university must not be null")//validare
     @ManyToOne
     @JoinColumn(name="university_id")
     @JsonBackReference
