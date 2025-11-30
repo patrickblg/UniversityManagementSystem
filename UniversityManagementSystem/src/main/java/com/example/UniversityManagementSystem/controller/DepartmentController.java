@@ -1,5 +1,6 @@
 package com.example.UniversityManagementSystem.controller;
 import com.example.UniversityManagementSystem.model.Department;
+import com.example.UniversityManagementSystem.model.Room;
 import com.example.UniversityManagementSystem.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,9 +31,25 @@ public class DepartmentController {
         return "department/form";
     }
 
-    @PostMapping("add-department")
+    @PostMapping("/add-department")
     public String addDepartment(@ModelAttribute Department department) {
         departmentService.save(department);
+        return "redirect:/department";
+    }
+    @GetMapping("/{id}/edit-department")
+    public String showEditDepartmentForm(@PathVariable String id, Model model) {
+        Department department = departmentService.findDepartmentById(id);
+        if (department == null) return "redirect:/department";
+
+        model.addAttribute("department", department);
+        return "department/department-edit-form";
+    }
+
+    @PostMapping("/{id}/update-department")
+    public String updateDepartment(@PathVariable String id, @ModelAttribute Department updatedDepartment) {
+
+        updatedDepartment.setId(id);
+        departmentService.updateDepartment(updatedDepartment);
         return "redirect:/department";
     }
     @PostMapping("/{id}/delete")

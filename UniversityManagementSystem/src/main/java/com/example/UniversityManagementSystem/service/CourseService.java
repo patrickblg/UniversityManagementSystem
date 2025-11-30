@@ -13,13 +13,19 @@ public class CourseService {
     private final CourseRepository courseRepository;
     private final EnrollmentRepository enrollmentRepository;
     private final TeachingAssignmentRepository teachingAssignmentRepository;
+    private final DepartmentService departmentService;
 
-    public CourseService(CourseRepository courseRepository,EnrollmentRepository enrollmentRepository,TeachingAssignmentRepository teachingAssignmentRepository) {
+    public CourseService(CourseRepository courseRepository,EnrollmentRepository enrollmentRepository,TeachingAssignmentRepository teachingAssignmentRepository, DepartmentService departmentService) {
         this.courseRepository= courseRepository;
         this.enrollmentRepository = enrollmentRepository;
         this.teachingAssignmentRepository = teachingAssignmentRepository;
+        this.departmentService = departmentService;
     }
     public Course saveCourse(Course c ){
+
+        if(departmentService.findDepartmentById(c.getDepartmentId())==null){
+            throw new IllegalArgumentException("Department not found");
+        }
         return courseRepository.save(c);
     }
 
@@ -48,8 +54,9 @@ public class CourseService {
     }
 
 
-
-
+    public void updateCourse(Course c){
+        courseRepository.update(c);
+    }
 }
 
 

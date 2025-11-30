@@ -1,6 +1,7 @@
 package com.example.UniversityManagementSystem.controller;
 
 import com.example.UniversityManagementSystem.model.Assistant;
+import com.example.UniversityManagementSystem.model.Student;
 import com.example.UniversityManagementSystem.model.Teacher;
 import com.example.UniversityManagementSystem.service.TeacherService;
 import com.example.UniversityManagementSystem.service.AssistantService;
@@ -41,6 +42,22 @@ public class StaffController {
         teacherService.save(teacher);
         return "redirect:/staff";
     }
+    @GetMapping("/teacher/{id}/edit-teacher")
+    public String showEditTeacherForm(@PathVariable String id, Model model) {
+        Teacher teacher = teacherService.findById(id);
+        if (teacher == null) return "redirect:/staff";
+
+        model.addAttribute("teacher", teacher);
+        return "staff/teacher-edit-form";
+    }
+
+    @PostMapping("/teacher/{id}/update-teacher")
+    public String updateTeacher(@PathVariable String id, @ModelAttribute Teacher updatedTeacher) {
+
+        updatedTeacher.setId(id);
+        teacherService.updateTeacher(updatedTeacher);
+        return "redirect:/staff";
+    }
 
     @GetMapping("/new-assistant")
     public String showAssistantForm(Model model){
@@ -51,6 +68,22 @@ public class StaffController {
     @PostMapping("/add-assistant")
     public String addAssistant(@ModelAttribute Assistant assistant){
         assistantService.saveAssistant(assistant);
+        return "redirect:/staff";
+    }
+    @GetMapping("/assistant/{id}/edit-assistant")
+    public String showEditAssistantForm(@PathVariable String id, Model model) {
+        Assistant assistant = assistantService.findAssistantById(id);
+        if (assistant == null) return "redirect:/staff";
+
+        model.addAttribute("assistant", assistant);
+        return "staff/assistant-edit-form";
+    }
+
+    @PostMapping("/assistant/{id}/update-assistant")
+    public String updateAssistant(@PathVariable String id, @ModelAttribute Assistant updatedAssistant) {
+
+        updatedAssistant.setId(id);
+        assistantService.updateAssistant(updatedAssistant);
         return "redirect:/staff";
     }
     @PostMapping("/teacher/{id}/delete")

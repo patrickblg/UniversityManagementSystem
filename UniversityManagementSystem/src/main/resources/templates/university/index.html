@@ -31,6 +31,9 @@
                 <form th:action="@{'/university/' + ${u.id} + '/delete'}" method="post">
                     <button type="submit">Delete</button>
                 </form>
+                <a th:href="@{'/university/' + ${u.id} + '/edit-univetsity'}">
+                    <button type="button">Edit</button>
+                </a>
             </td>
         </tr>
         </tbody>

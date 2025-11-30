@@ -1,7 +1,5 @@
 package com.example.UniversityManagementSystem.model;
 
-import java.io.Serializable;
-
 public class TeachingAssignment implements Identifiable{
     private String id;
     private String courseId;

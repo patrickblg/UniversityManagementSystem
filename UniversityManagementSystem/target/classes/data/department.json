@@ -1,1 +1,31 @@
-[ ]
+[ {
+  "id" : "d1",
+  "name" : "fizica",
+  "courses" : null,
+  "teachers" : null
+}, {
+  "id" : "d3",
+  "name" : "chimie",
+  "courses" : null,
+  "teachers" : null
+}, {
+  "id" : "d4",
+  "name" : "inginerie mecanica",
+  "courses" : null,
+  "teachers" : null
+}, {
+  "id" : "d5",
+  "name" : "inginerie electrica",
+  "courses" : null,
+  "teachers" : null
+}, {
+  "id" : "d6",
+  "name" : "informatica",
+  "courses" : null,
+  "teachers" : null
+}, {
+  "id" : "d2",
+  "name" : "matematica",
+  "courses" : null,
+  "teachers" : null
+} ]

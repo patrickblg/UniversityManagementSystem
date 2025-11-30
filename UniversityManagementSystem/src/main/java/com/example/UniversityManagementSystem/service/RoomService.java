@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public class RoomService {
-    private RoomRepository roomRepository;
+    private final RoomRepository roomRepository;
 
     public RoomService(RoomRepository roomRepository) {
         this.roomRepository= roomRepository;
     }
 
-    public Room saveRoom (Room r){
-        return roomRepository.save(r);
+    public void saveRoom (Room r){
+        roomRepository.save(r);
     }
 
     public List<Room> findAllRooms(){
@@ -28,5 +28,14 @@ public class RoomService {
     public void deleteRoom(String id){
         roomRepository.delete(id);
     }
+
+    public void updateRoom(Room r){
+        roomRepository.update(r);
+    }
+
+    //public Room save(Room r){
+    //   return roomRepository.save(r);
+    //}
+
 
 }

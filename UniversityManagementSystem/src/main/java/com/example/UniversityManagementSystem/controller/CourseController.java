@@ -4,6 +4,7 @@ package com.example.UniversityManagementSystem.controller;
 //+teachingAssignement
 
 import com.example.UniversityManagementSystem.model.Course;
+import com.example.UniversityManagementSystem.model.Department;
 import com.example.UniversityManagementSystem.model.TeachingAssignment;
 import com.example.UniversityManagementSystem.service.CourseService;
 import com.example.UniversityManagementSystem.service.TeacherService;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/course")
 public class CourseController {
 
-    @Autowired
+
     private final CourseService courseService;
     private final TeachingAssignmentService teachingAssignmentService;
 
@@ -46,6 +47,22 @@ public class CourseController {
         courseService.saveCourse(course);
         return "redirect:/course";
     }
+    @GetMapping("/{id}/edit-course")
+    public String showEditCourseForm(@PathVariable String id, Model model) {
+        Course course = courseService.findCourseById(id);
+        if (course == null) return "redirect:/course";
+
+        model.addAttribute("course", course);
+        return "course/course-edit-form";
+    }
+
+    @PostMapping("/{id}/update-course")
+    public String updateCourse(@PathVariable String id, @ModelAttribute Course updateCourse) {
+
+        updateCourse.setId(id);
+        courseService.updateCourse(updateCourse);
+        return "redirect:/course";
+    }
 
     @GetMapping("/new-teachingassignment")
     public String showTeachingAssignmentForm(Model model) {
@@ -56,6 +73,22 @@ public class CourseController {
     @PostMapping("/add-teachingassignment")
     public String addTeachingAssignment(@ModelAttribute TeachingAssignment teachingAssignment) {
         teachingAssignmentService.saveTeachingAssignment(teachingAssignment);
+        return "redirect:/course";
+    }
+    @GetMapping("/teachingassignment/{id}/edit-teachingassignment")
+    public String showEditTeachingassignmentForm(@PathVariable String id, Model model) {
+        TeachingAssignment teachingassignment = teachingAssignmentService.findTeachingAssignmentById(id);
+        if (teachingassignment == null) return "redirect:/course";
+
+        model.addAttribute("teachingassignment", teachingassignment);
+        return "course/teachingassignment-edit-form";
+    }
+
+    @PostMapping("/teachingassignment/{id}/update-teachingassignment")
+    public String updateTeachingAssignment(@PathVariable String id, @ModelAttribute TeachingAssignment updatedTeachingAssignment) {
+
+        updatedTeachingAssignment.setId(id);
+        teachingAssignmentService.updateTeachingAssignment(updatedTeachingAssignment);
         return "redirect:/course";
     }
 

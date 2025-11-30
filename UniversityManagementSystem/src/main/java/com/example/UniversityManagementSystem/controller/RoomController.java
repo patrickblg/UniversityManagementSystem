@@ -1,6 +1,7 @@
 package com.example.UniversityManagementSystem.controller;
 
 import com.example.UniversityManagementSystem.model.Room;
+import com.example.UniversityManagementSystem.model.University;
 import com.example.UniversityManagementSystem.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,9 +35,29 @@ public class RoomController {
         roomService.saveRoom(room);
         return "redirect:/room";
     }
+    @GetMapping("/{id}/edit-room")
+    public String showEditRoomForm(@PathVariable String id, Model model) {
+        Room room = roomService.findRoomById(id);
+        if (room == null) return "redirect:/room";
+
+        model.addAttribute("room", room);
+        return "room/room-edit-form";
+    }
+
+    @PostMapping("/{id}/update-room")
+    public String updateRoom(@PathVariable String id, @ModelAttribute Room updatedRoom) {
+
+        updatedRoom.setId(id);
+        roomService.updateRoom(updatedRoom);
+        return "redirect:/room";
+    }
     @PostMapping("/{id}/delete")
     public String deleteRoom(@PathVariable String id) {
         roomService.deleteRoom(id);
         return "redirect:/room";
     }
+
+    //@PostMapping
+    //public Room addRoom(@RequestBody Room room){
+        //return roomService.saveRoom(r);
 }

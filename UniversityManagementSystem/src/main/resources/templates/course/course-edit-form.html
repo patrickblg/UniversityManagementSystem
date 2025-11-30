@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Course</title>
+</head>
+<body>
+
+<h1>Edit Course</h1>
+
+<form th:action="@{'/course/' + ${course.id} + '/update-course'}" method="post">
+
+    <label>ID:</label>
+    <input name="id" type="text" th:value="${course.id}" readonly/>
+
+    <br/>
+
+    <label>DepartmentId:</label>
+    <input name="departmentId" type="text" th:value="${course.departmentId}" readonly/>
+
+    <br/>
+
+    <label>RoomId:</label>
+    <input name="roomId" type="text" th:value="${course.roomId}" required/>
+
+    <br/>
+
+
+    <label>Title:</label>
+    <input name="title" type="text" th:value="${course.title}" required/>
+
+    <br/>
+
+    <label>Credits:</label>
+    <input name="credits" type="text" th:value="${course.credits}" required/>
+
+    <br/>
+
+
+    <label>Duration:</label>
+    <input name="duration" type="text" th:value="${course.duration}" required/>
+
+    <br/>
+
+
+
+
+    <button type="submit">Save Changes</button>
+</form>
+
+<a th:href="@{/course}">Back</a>
+
+</body>
+</html>

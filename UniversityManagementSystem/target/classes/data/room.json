@@ -1,1 +1,61 @@
-[ ]
+[ {
+  "id" : "r1",
+  "capacity" : 200.0,
+  "number" : "123",
+  "name" : "pi",
+  "courses" : null
+}, {
+  "id" : "r2",
+  "capacity" : 30.0,
+  "number" : "124",
+  "name" : "platon",
+  "courses" : null
+}, {
+  "id" : "r3",
+  "capacity" : 200.0,
+  "number" : "125",
+  "name" : "omega",
+  "courses" : null
+}, {
+  "id" : "r4",
+  "capacity" : 30.0,
+  "number" : "126",
+  "name" : "alfa",
+  "courses" : null
+}, {
+  "id" : "r5",
+  "capacity" : 200.0,
+  "number" : "127",
+  "name" : "beta",
+  "courses" : null
+}, {
+  "id" : "r6",
+  "capacity" : 30.0,
+  "number" : "324",
+  "name" : "saturn",
+  "courses" : null
+}, {
+  "id" : "r7",
+  "capacity" : 200.0,
+  "number" : "432",
+  "name" : "socrate",
+  "courses" : null
+}, {
+  "id" : "r8",
+  "capacity" : 200.0,
+  "number" : "213",
+  "name" : "pitagora",
+  "courses" : null
+}, {
+  "id" : "r9",
+  "capacity" : 100.0,
+  "number" : "333",
+  "name" : "h2o",
+  "courses" : null
+}, {
+  "id" : "r10",
+  "capacity" : 100.0,
+  "number" : "434",
+  "name" : "so4",
+  "courses" : null
+} ]

@@ -1,0 +1,2 @@
+-formuri de edit la course teachingassig department room assistant teacher enrollment student university
+-controllere de post si get la update la coursecontroller depcontroller roomcontroller staffcontroller universitycontroller

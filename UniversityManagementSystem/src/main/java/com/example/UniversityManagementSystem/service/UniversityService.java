@@ -3,18 +3,17 @@ import com.example.UniversityManagementSystem.model.University;
 import com.example.UniversityManagementSystem.repository.UniversityRepository;
 import org.springframework.stereotype.Service;
 
-
 import java.util.List;
 @Service
 public class UniversityService {
-    private UniversityRepository universityRepository;
+    private final UniversityRepository universityRepository;
 
     public UniversityService(UniversityRepository universityRepository) {
         this.universityRepository= universityRepository;
     }
 
-    public University saveUniversity(University u){
-        return universityRepository.save(u);
+    public void saveUniversity(University u){
+        universityRepository.save(u);
     }
 
     public List<University> findAllUniversities(){
@@ -27,5 +26,9 @@ public class UniversityService {
 
     public void deleteUniversity(String id){
         universityRepository.delete(id);
+    }
+
+    public void updateUniversity(University u){
+        universityRepository.update(u);
     }
 }

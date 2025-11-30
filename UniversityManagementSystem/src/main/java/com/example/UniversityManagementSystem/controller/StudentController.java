@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 //student+enrollment
 @Controller
@@ -52,6 +49,22 @@ public class StudentController {
         studentService.saveStudent(student);
         return "redirect:/student";
     }
+    @GetMapping("/{id}/edit-student")
+    public String showEditStudentForm(@PathVariable String id, Model model) {
+        Student student = studentService.findStudent(id);
+        if (student == null) return "redirect:/student";
+
+        model.addAttribute("student", student);
+        return "student/student-edit-form";
+    }
+
+    @PostMapping("/{id}/update-student")
+    public String updateStudent(@PathVariable String id, @ModelAttribute Student updatedStudent) {
+
+        updatedStudent.setId(id);
+        studentService.updateStudent(updatedStudent);
+        return "redirect:/student";
+    }
 
     @GetMapping("/new-enrollment")
     public String showEnrollmentForm(Model model){
@@ -61,7 +74,27 @@ public class StudentController {
 
     @PostMapping("/add-enrollment")
     public String addEnrollment(@ModelAttribute Enrollment enrollment){
-        enrollmentService.saveEnrollment(enrollment);
+        try {
+            enrollmentService.saveEnrollment(enrollment);
+        }catch (IllegalArgumentException e){
+            return  "redirect:/student";
+        }
+        return "redirect:/student";
+    }
+    @GetMapping("/enrollment/{id}/edit-enrollment")
+    public String showEditEnrollmentForm(@PathVariable String id, Model model) {
+        Enrollment enrollment = enrollmentService.getEnrollmentById(id);
+        if (enrollment == null) return "redirect:/student";
+
+        model.addAttribute("enrollment", enrollment);
+        return "student/enrollment-edit-form";
+    }
+
+    @PostMapping("/enrollment/{id}/update-enrollment")
+    public String updateEnrollment(@PathVariable String id, @ModelAttribute Enrollment updatedEnrollment) {
+
+        updatedEnrollment.setId(id);
+        enrollmentService.updateEnrollment(updatedEnrollment);
         return "redirect:/student";
     }
 

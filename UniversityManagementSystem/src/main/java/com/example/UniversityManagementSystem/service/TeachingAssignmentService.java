@@ -7,14 +7,17 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public class TeachingAssignmentService {
-    private TeachingAssignmentRepository teachingAssignmentRepository;
+    private final TeachingAssignmentRepository teachingAssignmentRepository;
+
 
     public TeachingAssignmentService(TeachingAssignmentRepository teachingAssignmentRepository) {
         this.teachingAssignmentRepository= teachingAssignmentRepository;
     }
 
-    public TeachingAssignment saveTeachingAssignment(TeachingAssignment t){
-        return teachingAssignmentRepository.save(t);
+    public void saveTeachingAssignment(TeachingAssignment t){
+
+
+        teachingAssignmentRepository.save(t);
     }
 
     public List<TeachingAssignment> findAllTeachingAssignments(){
@@ -27,6 +30,10 @@ public class TeachingAssignmentService {
 
     public void deleteteachingAssignment(String id){
         teachingAssignmentRepository.delete(id);
+    }
+
+    public void updateTeachingAssignment(TeachingAssignment t){
+        teachingAssignmentRepository.update(t);
     }
 
 }

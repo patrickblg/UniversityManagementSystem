@@ -30,6 +30,10 @@ public class AssistantService {
         assistantRepository.delete(id);
     }
 
+    public void  updateAssistant(Assistant assistant){
+        assistantRepository.update(assistant);
+    }
+
 
 
 

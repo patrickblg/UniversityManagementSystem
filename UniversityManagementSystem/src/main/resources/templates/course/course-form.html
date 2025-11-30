@@ -2,11 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/formStyle.css}">
 <head>
-    <title>Add Assistant</title>
+    <title>Add Course</title>
     <meta charset="UTF-8">
 </head>
 <body>
-<h1>Add New Assistant</h1>
+<h1>Add New Course</h1>
 <div class="main">
     <form th:action="@{/course/add-course}" method="post" th:object="${course}">
         <label>ID:</label>
@@ -29,7 +29,7 @@
     </form>
 
     <br>
-    <a th:href="@{/staff}">Back to Courses</a>
+    <a th:href="@{/course}">Back to Courses</a>
 </div>
 </body>
 
