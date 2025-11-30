@@ -1,12 +1,11 @@
 package com.example.UniversityManagementSystem.repository;
 
 import com.example.UniversityManagementSystem.model.Assistant;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class AssistantRepository extends InFileRepo<Assistant> {
+public interface AssistantRepository extends JpaRepository<Assistant,String> {
 
-    public AssistantRepository() {
-        super("UniversityManagementSystem/src/main/resources/data/assistant.json",Assistant.class);
-    }
+
 }

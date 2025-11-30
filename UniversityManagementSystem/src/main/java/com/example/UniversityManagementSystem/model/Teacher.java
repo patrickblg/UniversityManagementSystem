@@ -2,18 +2,20 @@ package com.example.UniversityManagementSystem.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import jakarta.persistence.*;
 
+@Entity
 public class Teacher extends Staff{
 
     private String title;
     private String departmentId;
 
     //Constructor
-    public Teacher(String id, String name,String title, String departmentId){
+    public Teacher(String id, String name,String title){
         super(id,name);
         this.title=title;
         this.departmentId=departmentId;
-        List<TeachingAssignment> teachingAssignments=new ArrayList<TeachingAssignment>();
+
     }
 
     //EmptyConstructor for Thymeleaf

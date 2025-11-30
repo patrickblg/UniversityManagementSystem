@@ -1,18 +1,16 @@
 package com.example.UniversityManagementSystem.repository;
 import com.example.UniversityManagementSystem.model.Room;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
 // public class RoomRepository  extends JpaRepository<Room>{
 
-public class RoomRepository  extends InFileRepo<Room>{
-    public RoomRepository() {
-        super("UniversityManagementSystem/src/main/resources/data/room.json",Room.class);
-    }
+public interface RoomRepository  extends JpaRepository<Room,String> {
+
+
 }
-
-
 //rel m:m -> se creeaza un tabel nou
 //@ManyToMany(mappedBy = "course")
 //private List<Room> rooms;

@@ -1,28 +1,43 @@
 package com.example.UniversityManagementSystem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
 public class Course implements Identifiable {
+    @Id
     private String id;
     private String title;
     private int credits;
     private double duration;
-    private String departmentId;
-    private String roomId;
-    private List<Enrollment> enrollments;
-    private List<TeachingAssignment> assignments;
+
+    @ManyToOne
+    @JoinColumn(name="room_id")
+    @JsonBackReference
+    private Room room;
+
+    @ManyToOne
+    @JoinColumn(name="department_id")
+    @JsonBackReference
+    private Department department;
+
+    @OneToMany(mappedBy = "course",cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Enrollment> enrollments = new ArrayList<>();
+    @OneToMany(mappedBy = "course",cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<TeachingAssignment> assignments = new ArrayList<>();
 
 
-    public Course(String id, String title, int credits, double duration, String departmentId, String roomId) {
+    public Course(String id, String title, int credits, double duration) {
         this.id = id;
         this.title = title;
         this.credits = credits;
         this.duration = duration;
-        this.departmentId = departmentId;
-        this.roomId = roomId;
-        this.enrollments = new ArrayList<>();
-        this.assignments = new ArrayList<>();
+
     }
     public Course() {
 
@@ -31,8 +46,6 @@ public class Course implements Identifiable {
     public String getId() {
         return id;
     }
-
-
     @Override
     public void setId(String id) {
         this.id=id;
@@ -41,7 +54,6 @@ public class Course implements Identifiable {
     public String getTitle() {
         return title;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
@@ -52,18 +64,18 @@ public class Course implements Identifiable {
     public void setCredits(int credits) {
         this.credits = credits;
     }
+
     public List<Enrollment> getEnrollments() {
         return enrollments;
     }
-    public void addEnrollments( Enrollment enrollment ) {
-        enrollments.add(enrollment);
+    public void setEnrollments( List<Enrollment> enrollments ) {
+       this.enrollments = enrollments;
     }
     public List<TeachingAssignment> getAssignments() {
         return assignments;
     }
-
-    public void addteachingAssignments(  TeachingAssignment assignment ) {
-        assignments.add(assignment) ;
+    public void setAssignments(List<TeachingAssignment> assignments) {
+        this.assignments = assignments ;
     }
 
     public double getDuration() {
@@ -74,19 +86,19 @@ public class Course implements Identifiable {
         this.duration = duration;
     }
 
-    public String getDepartmentId() {
-        return departmentId;
+    public Room getRoom() {
+        return room;
+    }
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+    public Department getDepartment() {
+        return department;
+    }
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
-    public void setDepartmentId(String departmentId) {
-        this.departmentId = departmentId;
-    }
 
-    public String getRoomId() {
-        return roomId;
-    }
 
-    public void setRoomId(String roomId) {
-        this.roomId = roomId;
-    }
 }

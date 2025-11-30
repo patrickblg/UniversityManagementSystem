@@ -22,20 +22,14 @@ public class StudentService {
         return studentRepository.findAll();
     }
     public Student findStudent(String id){
-        return studentRepository.findById(id);
+        return studentRepository.findById(id).orElse(null);
     }
 
     public void deleteStudentById(String studentId){
-
-        studentRepository.delete(studentId);
-        for(Enrollment e:enrollmentRepository.findAll()){
-            if(e.getStudentId().equals(studentId)){
-                enrollmentRepository.delete(e.getId());
-            }
-        }
+        studentRepository.deleteById(studentId);
     }
 
     public void updateStudent(Student student){
-        studentRepository.update(student);
+        studentRepository.save(student);
     }
 }

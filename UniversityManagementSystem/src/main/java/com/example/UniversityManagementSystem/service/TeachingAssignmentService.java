@@ -25,15 +25,15 @@ public class TeachingAssignmentService {
     }
 
     public TeachingAssignment findTeachingAssignmentById(String id){
-        return teachingAssignmentRepository.findById(id);
+        return teachingAssignmentRepository.findById(id).orElse(null);
     }
 
     public void deleteteachingAssignment(String id){
-        teachingAssignmentRepository.delete(id);
+        teachingAssignmentRepository.deleteById(id);
     }
 
     public void updateTeachingAssignment(TeachingAssignment t){
-        teachingAssignmentRepository.update(t);
+        teachingAssignmentRepository.save(t);
     }
 
 }

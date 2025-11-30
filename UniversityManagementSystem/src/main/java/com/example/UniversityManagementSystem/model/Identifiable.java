@@ -1,6 +1,8 @@
 package com.example.UniversityManagementSystem.model;
 
-public interface Identifiable {
+import java.io.Serializable;
+
+public interface Identifiable extends Serializable {
     String getId();
     void setId(String id);
 }

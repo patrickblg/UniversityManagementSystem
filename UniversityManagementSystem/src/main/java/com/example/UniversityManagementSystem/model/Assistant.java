@@ -2,7 +2,9 @@ package com.example.UniversityManagementSystem.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import jakarta.persistence.*;
 
+@Entity
 public class Assistant extends Staff {
     private AssistantRole role;//LAB/TA/GRADER
 
@@ -10,7 +12,6 @@ public class Assistant extends Staff {
     public Assistant(String id, String name, AssistantRole role){
         super(id,name);
         this.role=role;
-        List<TeachingAssignment> teachingAssignments=new ArrayList<>();
     }
     //EmptyConstructor for Thymeleaf
     public Assistant(){

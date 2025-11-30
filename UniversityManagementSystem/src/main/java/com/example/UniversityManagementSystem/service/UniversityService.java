@@ -21,14 +21,14 @@ public class UniversityService {
     }
 
     public University findUniversityById(String id){
-        return universityRepository.findById(id);
+        return universityRepository.findById(id).orElse(null);
     }
 
     public void deleteUniversity(String id){
-        universityRepository.delete(id);
+        universityRepository.deleteById(id);
     }
 
     public void updateUniversity(University u){
-        universityRepository.update(u);
+        universityRepository.save(u);
     }
 }

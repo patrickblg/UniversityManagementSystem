@@ -20,12 +20,12 @@ public class TeacherService {
         return teacherRepository.findAll();
     }
     public Teacher findById(String id){
-        return teacherRepository.findById(id);
+        return teacherRepository.findById(id).orElse(null);
     }
     public void delete(String id){
-        teacherRepository.delete(id);
+        teacherRepository.deleteById(id);
     }
     public void updateTeacher(Teacher teacher){
-        teacherRepository.update(teacher);
+        teacherRepository.save(teacher);
     }
 }

@@ -23,15 +23,15 @@ public class AssistantService {
     }
 
     public Assistant findAssistantById(String id){
-        return assistantRepository.findById(id);
+        return assistantRepository.findById(id).orElse(null);
     }
 
     public void deleteAssistant(String id){
-        assistantRepository.delete(id);
+        assistantRepository.deleteById(id);
     }
 
     public void  updateAssistant(Assistant assistant){
-        assistantRepository.update(assistant);
+        assistantRepository.save(assistant);
     }
 
 

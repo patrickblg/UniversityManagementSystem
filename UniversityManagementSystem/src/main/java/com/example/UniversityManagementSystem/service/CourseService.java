@@ -23,9 +23,6 @@ public class CourseService {
     }
     public Course saveCourse(Course c ){
 
-        if(departmentService.findDepartmentById(c.getDepartmentId())==null){
-            throw new IllegalArgumentException("Department not found");
-        }
         return courseRepository.save(c);
     }
 
@@ -34,28 +31,16 @@ public class CourseService {
     }
 
     public Course findCourseById(String id){
-        return courseRepository.findById(id);
+        return courseRepository.findById(id).orElse(null);
     }
 
     public void deleteCourse(String courseId){
 
-        courseRepository.delete(courseId);
-
-        for(Enrollment e:enrollmentRepository.findAll()){
-            if (e.getCourseId().equals(courseId)){
-                enrollmentRepository.delete(e.getId());
-            }
-        }
-        for(TeachingAssignment t:teachingAssignmentRepository.findAll()){
-            if(t.getCourseId().equals(courseId)){
-                teachingAssignmentRepository.delete(t.getId());
-            }
-        }
+        courseRepository.deleteById(courseId);
     }
 
-
     public void updateCourse(Course c){
-        courseRepository.update(c);
+        courseRepository.save(c);
     }
 }
 

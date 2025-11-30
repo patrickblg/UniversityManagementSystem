@@ -1,26 +1,6 @@
 [ {
-  "id" : "s1",
-  "name" : "ana",
-  "enrollments" : null,
-  "enrollmentCount" : 0
-}, {
-  "id" : "s4",
-  "name" : "marian",
-  "enrollments" : null,
-  "enrollmentCount" : 0
-}, {
-  "id" : "s5",
-  "name" : "mihai",
-  "enrollments" : null,
-  "enrollmentCount" : 0
-}, {
-  "id" : "s2",
-  "name" : "alexandra",
-  "enrollments" : null,
-  "enrollmentCount" : 0
-}, {
-  "id" : "s3",
-  "name" : "aLexandra",
+  "id" : "a",
+  "name" : "aa",
   "enrollments" : null,
   "enrollmentCount" : 0
 } ]

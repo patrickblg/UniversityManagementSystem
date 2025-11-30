@@ -22,15 +22,15 @@ public class RoomService {
     }
 
     public Room findRoomById(String id){
-        return roomRepository.findById(id);
+        return roomRepository.findById(id).orElse(null);
     }
 
     public void deleteRoom(String id){
-        roomRepository.delete(id);
+        roomRepository.deleteById(id);
     }
 
     public void updateRoom(Room r){
-        roomRepository.update(r);
+        roomRepository.save(r);
     }
 
     //public Room save(Room r){

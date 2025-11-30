@@ -30,27 +30,17 @@ public class DepartmentService {
 
     }
     public Department findDepartmentById(String id) {
-        return departmentRepository.findById(id);
+        return departmentRepository.findById(id).orElse(null);
     }
 
     public void deleteDepartment(String departmentId){
 
-        departmentRepository.delete(departmentId);
+        departmentRepository.deleteById(departmentId);
 
-        for(Course course : courseRepository.findAll()){
-            if(course.getDepartmentId().equals(departmentId)){
-                courseRepository.delete(course.getId());
-            }
-        }
-        for(Teacher teacher : teacherRepository.findAll()){
-            if(teacher.getDepartmentId().equals(departmentId)){
-                teacherRepository.delete(teacher.getId());
-            }
-        }
     }
 
     public void updateDepartment(Department department){
-        departmentRepository.update(department);
+        departmentRepository.save(department);
     }
 
 

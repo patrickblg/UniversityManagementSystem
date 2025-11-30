@@ -1,10 +1,9 @@
     package com.example.UniversityManagementSystem.repository;
     import com.example.UniversityManagementSystem.model.Enrollment;
+    import org.springframework.data.jpa.repository.JpaRepository;
     import org.springframework.stereotype.Repository;
 
     @Repository
-    public class EnrollmentRepository extends InFileRepo<Enrollment> {
-        public EnrollmentRepository() {
-            super("UniversityManagementSystem/src/main/resources/data/enrollment.json",Enrollment.class);
-        }
+    public interface EnrollmentRepository extends JpaRepository<Enrollment,String> {
+
     }

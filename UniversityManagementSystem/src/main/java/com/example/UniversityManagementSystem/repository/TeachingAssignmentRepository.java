@@ -1,11 +1,11 @@
 package com.example.UniversityManagementSystem.repository;
 import com.example.UniversityManagementSystem.model.TeachingAssignment;
+import org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class TeachingAssignmentRepository extends InFileRepo<TeachingAssignment> {
-    public TeachingAssignmentRepository() {
-        super("UniversityManagementSystem/src/main/resources/data/teachingassignment.json", TeachingAssignment.class);
-    }
+public interface TeachingAssignmentRepository extends JpaRepository<TeachingAssignment,String> {
+
 }

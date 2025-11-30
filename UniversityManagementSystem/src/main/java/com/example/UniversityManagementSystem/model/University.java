@@ -1,21 +1,32 @@
 package com.example.UniversityManagementSystem.model;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.util.List;
 import java.util.ArrayList;
-
+@Entity
 public class University implements Identifiable{
+    @Id
     private String id;
     private String name;
     private String city;
-    private List<Department> departments;
-    private List<Room> rooms;
+    @OneToMany(mappedBy = "university",cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Department> departments = new ArrayList<>();
+    @OneToMany(mappedBy = "univeristy",cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Room> rooms = new ArrayList<>();
 
     //Constructor
     public University(String id, String name, String city) {
         this.id = id;
         this.name = name;
         this.city = city;
-        this.departments = new ArrayList<>();
-        this.rooms = new ArrayList<>();
+
     }
     //Empty constructor for Thymeleaf
     public University(){
@@ -34,8 +45,10 @@ public class University implements Identifiable{
     public List<Department> getDepartments() { return departments;}
 
 
-    public void addDepartment(Department t){this.departments.add(t);}
-    public void addRoom(Room t){this.rooms.add(t);}
-
+    public void setDepartments(List<Department> departments) { this.departments = departments;}
+    public List<Room> getRooms() {
+        return rooms;
+    }
+    public void setRooms(List<Room> rooms) { this.rooms = rooms;}
 
 }
