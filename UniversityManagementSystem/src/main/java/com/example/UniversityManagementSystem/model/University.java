@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import java.util.List;
 import java.util.ArrayList;
 @Entity
+
 public class University implements Identifiable{
     @Id
     private String id;
@@ -15,7 +16,7 @@ public class University implements Identifiable{
     @OneToMany(mappedBy = "university",cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Department> departments = new ArrayList<>();
-    @OneToMany(mappedBy = "univeristy",cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "university",cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Room> rooms = new ArrayList<>();
 

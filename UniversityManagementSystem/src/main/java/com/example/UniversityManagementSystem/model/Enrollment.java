@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
+
 public class Enrollment implements Identifiable{
     @Id
     private String id;
@@ -18,6 +19,7 @@ public class Enrollment implements Identifiable{
     @JsonBackReference
     private Course course;
 
+    @Enumerated(EnumType.STRING)
     private Grades grade;
 
     public Enrollment(String id, Grades grade, Student student, Course course) {

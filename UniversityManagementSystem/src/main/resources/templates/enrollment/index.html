@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/indexStyle.css}">
 
 <head>
@@ -16,8 +16,8 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>StudentId</th>
-            <th>CourseId</th>
+            <th>Student</th>
+            <th>Course</th>
             <th>Grade</th>
             <th>Action</th>
         </tr>
@@ -29,7 +29,7 @@
             <td th:text="${e.course.title}">CourseTitle</td>
             <td th:text="${e.grade}">Grade</td>
             <td>
-                <form th:action="@{'/enrollment/' + ${e.id} + '/delete'}" method="post">
+                <form th:action="@{'/enrollment/' + ${e.id} + '/delete'}" method="post" style="display:inline;">
                     <button type="submit">Delete</button>
                 </form>
                 <a th:href="@{'/enrollment/' + ${e.id} + '/edit-enrollment'}">
@@ -44,4 +44,4 @@
     </table>
 </div>
 </body>
-</html>l>
+</html>

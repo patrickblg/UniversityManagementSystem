@@ -1,10 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/indexStyle.css}">
 <head>
+    <title>Detalii Curs</title>
     <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
+<h1>Detalii Curs: <span th:text="${course.title}"></span></h1>
 
+<div class="main">
+    <p><strong>ID:</strong> <span th:text="${course.id}"></span></p>
+    <p><strong>Titlu:</strong> <span th:text="${course.title}"></span></p>
+    <p><strong>Credite:</strong> <span th:text="${course.credits}"></span></p>
+    <p><strong>Durată (ore):</strong> <span th:text="${course.duration}"></span></p>
+    <p><strong>Departament:</strong> <span th:text="${course.department.name}"></span></p>
+    <p><strong>Sală:</strong> <span th:text="${course.room.name} + ' (' + ${course.room.number} + ')'"></span></p>
+
+    <hr>
+
+    <h2>Asignări de Predare (<span th:text="${course.assignments.size()}"></span>)</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID Asignare</th>
+            <th>Membru Staff</th>
+            <th>Rol</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="assignment : ${course.assignments}">
+            <td th:text="${assignment.id}"></td>
+            <td th:text="${assignment.staff.name}"></td>
+            <td th:text="${assignment.managing}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>Studenți Înscriși (<span th:text="${course.enrollments.size()}"></span>)</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID Înscriere</th>
+            <th>Student</th>
+            <th>Nota</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="enrollment : ${course.enrollments}">
+            <td th:text="${enrollment.id}"></td>
+            <td th:text="${enrollment.student.name}"></td>
+            <td th:text="${enrollment.grade}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <a th:href="@{/course}">Înapoi la Cursuri</a>
+</div>
 </body>
-</html>
+</html>>

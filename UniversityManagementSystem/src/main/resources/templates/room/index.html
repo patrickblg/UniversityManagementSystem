@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" th:href="@{css/indexStyle.css}">
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/indexStyle.css}">
 
 <head>
-    <title>Rooms</title>
+    <title>Rooms List</title>
     <meta charset="UTF-8">
 </head>
 <body>
@@ -20,6 +20,7 @@
             <th>Number</th>
             <th>Capacity</th>
             <th>Name</th>
+            <th>University</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -28,9 +29,10 @@
             <td th:text="${r.id}">Id</td>
             <td th:text="${r.number}">Number</td>
             <td th:text="${r.capacity}">Capacity</td>
-            <td th:text="${r.name}">Capacity</td>
+            <td th:text="${r.name}">Name</td>
+            <td th:text="${r.university.name}">UniversityName</td>
             <td>
-                <form th:action="@{'/room/' + ${r.id} + '/delete'}" method="post">
+                <form th:action="@{'/room/' + ${r.id} + '/delete'}" method="post" style="display:inline;">
                     <button type="submit">Delete</button>
                 </form>
                 <a th:href="@{'/room/' + ${r.id} + '/edit-room'}">
