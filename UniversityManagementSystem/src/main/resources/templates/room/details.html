@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/indexStyle.css}">
 <head>
+    <title>Detalii Sală</title>
     <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
+<h1>Detalii Sală: <span th:text="${room.name}"></span></h1>
 
+<div class="main">
+    <p><strong>ID:</strong> <span th:text="${room.id}"></span></p>
+    <p><strong>Număr:</strong> <span th:text="${room.number}"></span></p>
+    <p><strong>Nume:</strong> <span th:text="${room.name}"></span></p>
+    <p><strong>Capacitate:</strong> <span th:text="${room.capacity}"></span></p>
+    <p><strong>Universitate:</strong> <span th:text="${room.university.name}"></span></p>
+
+    <hr>
+
+    <h2>Cursuri Programate (<span th:text="${room.courses.size()}"></span>)</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID Curs</th>
+            <th>Titlu</th>
+            <th>Credite</th>
+            <th>Departament</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="course : ${room.courses}">
+            <td th:text="${course.id}"></td>
+            <td th:text="${course.title}"></td>
+            <td th:text="${course.credits}"></td>
+            <td th:text="${course.department.name}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <a th:href="@{/room}">Înapoi la Săli</a>
+</div>
 </body>
-</html>
+</html>/html>
