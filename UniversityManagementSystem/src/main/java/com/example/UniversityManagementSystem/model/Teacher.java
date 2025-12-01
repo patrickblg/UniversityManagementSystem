@@ -2,11 +2,15 @@ package com.example.UniversityManagementSystem.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 
 public class Teacher extends Staff{
 
+    @NotBlank
+    @Size(min = 3)
     private String title;
 
     @ManyToOne

@@ -3,15 +3,15 @@
 <link rel="stylesheet" th:href="@{/css/indexStyle.css}">
 
 <head>
-    <title>Courses & TeachingAssignments</title>
+    <title>Courses List</title>
     <meta charset="UTF-8">
 </head>
 <body>
-<h1>Courses & TeachingAssignments</h1>
+<h1>Courses</h1>
 
 <div class="main">
     <h2>Courses</h2>
-    <a th:href="@{/course/new-course}">Add New Course</a>
+    <a th:href="@{/course/new}">Add New Course</a>
     <table>
         <thead>
         <tr>
@@ -19,8 +19,8 @@
             <th>Title</th>
             <th>Credits</th>
             <th>Duration</th>
-            <th>DepartmentId</th>
-            <th>RoomId</th>
+            <th>Department</th>
+            <th>Room</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -29,44 +29,18 @@
             <td th:text="${c.id}">Id</td>
             <td th:text="${c.title}">Title</td>
             <td th:text="${c.credits}">Credits</td>
-            <td th:text="${c.duration}">Credits</td>
-            <td th:text="${c.departmentId}">Credits</td>
-            <td th:text="${c.roomId}">Credits</td>
+            <td th:text="${c.duration}">Duration</td>
+            <td th:text="${c.department.name}">DepartmentName</td>
+            <td th:text="${c.room.name}">RoomName</td>
             <td>
-                <form th:action="@{'/course/' + ${c.id} + '/delete'}" method="post">
+                <form th:action="@{'/course/' + ${c.id} + '/delete'}" method="post" style="display:inline;">
                     <button type="submit">Delete</button>
                 </form>
                 <a th:href="@{'/course/' + ${c.id} + '/edit-course'}">
                     <button type="button">Edit</button>
                 </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <h2>TeachingAssignments</h2>
-    <a th:href="@{/course/new-teachingassignment}">Add New TeachingAssignment</a>
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>CourseID</th>
-            <th>StaffID</th>
-            <th>Managing</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="ta : ${teachingassignments}">
-            <td th:text="${ta.id}">Id</td>
-            <td th:text="${ta.id}">CourseID</td>
-            <td th:text="${ta.id}">StaffID</td>
-            <td th:text="${ta.managing}">StaffID</td>
-            <td>
-                <form th:action="@{'/course/teachingassignment/' + ${ta.id} + '/delete'}" method="post">
-                    <button type="submit">Delete</button>
-                </form>
-                <a th:href="@{'/course/teachingassignment' + ${ta.id} + '/edit-teachingassignment'}">
-                    <button type="button">Edit</button>
+                <a th:href="@{'/course/' + ${c.id} + '/details'}">
+                    <button type="button">Details</button>
                 </a>
             </td>
         </tr>

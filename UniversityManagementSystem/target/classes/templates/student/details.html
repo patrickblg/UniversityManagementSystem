@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/indexStyle.css}">
 <head>
+    <title>Detalii Student</title>
     <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
+<h1>Detalii Student: <span th:text="${student.name}"></span></h1>
 
+<div class="main">
+    <p><strong>ID:</strong> <span th:text="${student.id}"></span></p>
+    <p><strong>Nume:</strong> <span th:text="${student.name}"></span></p>
+
+    <hr>
+
+    <h2>Înscrieri la Cursuri (<span th:text="${student.enrollments.size()}"></span>)</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID Înscriere</th>
+            <th>Curs</th>
+            <th>Nota</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="enrollment : ${student.enrollments}">
+            <td th:text="${enrollment.id}"></td>
+            <td th:text="${enrollment.course.title}"></td>
+            <td th:text="${enrollment.grade}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <a th:href="@{/student}">Înapoi la Studenți</a>
+</div>
 </body>
 </html>

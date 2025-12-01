@@ -2,6 +2,8 @@ package com.example.UniversityManagementSystem.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -13,7 +15,10 @@ import java.util.ArrayList;
 
 public abstract class Staff implements Identifiable {
     @Id
+    @NotBlank
     protected String id;
+    @NotBlank
+    @Size(min = 3)
     protected String name;
     @OneToMany(mappedBy = "staff",cascade = CascadeType.ALL,orphanRemoval = true)
     @JsonManagedReference

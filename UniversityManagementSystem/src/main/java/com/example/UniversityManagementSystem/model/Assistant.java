@@ -2,12 +2,14 @@ package com.example.UniversityManagementSystem.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 
 public class Assistant extends Staff {
 
     @Enumerated(EnumType.STRING)
+    @NotNull
     private AssistantRole role;//LAB/TA/GRADER
 
     //Constructor
