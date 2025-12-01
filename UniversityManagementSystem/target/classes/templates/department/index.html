@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{css/indexStyle.css}">
 
 <head>
@@ -17,7 +17,7 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>Number</th>
+            <th>Name</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -32,6 +32,9 @@
                 </form>
                 <a th:href="@{'/department/' + ${d.id} + '/edit-department'}">
                     <button type="button">Edit</button>
+                </a>
+                <a th:href="@{'/department/' + ${d.id} + '/details'}">
+                    <button type="button">Details</button>
                 </a>
             </td>
         </tr>

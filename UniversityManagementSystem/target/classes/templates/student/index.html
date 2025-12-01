@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/indexStyle.css}">
 
 <head>
-    <title>Student List</title>
+    <title>Students List</title>
     <meta charset="UTF-8">
 </head>
 <body>
-<h1>Students & Enrollments</h1>
+<h1>Students</h1>
 
-<!-- Students -->
 <div class="main">
     <h2>Students</h2>
-    <a th:href="@{/student/new-student}">Add New Student</a>
+    <a th:href="@{/student/new}">Add New Student</a>
     <table>
         <thead>
         <tr>
@@ -32,36 +31,8 @@
                 <a th:href="@{'/student/' + ${s.id} + '/edit-student'}">
                     <button type="button">Edit</button>
                 </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
-    <!-- Enrollments -->
-    <h2>Enrollments</h2>
-    <a th:href="@{/student/new-enrollment}">Add New Enrollment</a>
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>StudentId</th>
-            <th>CourseId</th>
-            <th>Grade</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="e : ${enrollments}">
-            <td th:text="${e.id}">Id</td>
-            <td th:text="${e.studentId}">Name</td>
-            <td th:text="${e.id}">Role</td>
-            <td th:text="${e.grade}">Dept</td>
-            <td>
-                <form th:action="@{'/student/enrollment/' + ${e.id} + '/delete'}" method="post">
-                    <button type="submit">Delete</button>
-                </form>
-                <a th:href="@{'/student/enrollment/' + ${e.id} + '/edit-enrollment'}">
-                    <button type="button">Edit</button>
+                <a th:href="@{'/student/' + ${s.id} + '/details'}">
+                    <button type="button">Details</button>
                 </a>
             </td>
         </tr>

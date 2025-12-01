@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/indexStyle.css}">
 <head>
+    <title>Detalii Asistent</title>
     <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
+<h1>Detalii Asistent: <span th:text="${assistant.name}"></span></h1>
+<div class="main">
+    <p><strong>ID:</strong> <span th:text="${assistant.id}"></span></p>
+    <p><strong>Role:</strong> <span th:text="${assistant.role}"></span></p>
+    <hr>
 
+
+
+
+    <h2>Cursuri Afiliate (<span th:text="${assistant.courses.size()}"></span>)</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID Curs</th>
+            <th>Titlu</th>
+            <th>DepartamentId</th>
+            <th>RoomId</th>
+            <th>Credite</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="course : ${assistant.courses}">
+            <td th:text="${course.id}"></td>
+            <td th:text="${course.title}"></td>
+            <td th:text="${course.departmentId}"></td>
+            <td th:text="${course.roomId}"></td>
+            <td th:text="${course.credits}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <a th:href="@{/assistant}">Înapoi la Asistenti</a>
+</div>
 </body>
 </html>

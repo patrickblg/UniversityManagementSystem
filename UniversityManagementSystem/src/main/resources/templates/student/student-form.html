@@ -8,18 +8,25 @@
 <body>
 <h1>Add New Student</h1>
 <div class="main">
-<form th:action="@{/student/add-student}" method="post" th:object="${student}">
-    <label>ID:</label>
-    <input type="text" th:field="*{id}" required><br><br>
+    <div th:if="${errorMessage}" style="color: red; margin-bottom: 10px;">
+        <p th:text="${errorMessage}"></p>
+    </div>
+    <form th:action="@{/student/add-student}" method="post" th:object="${student}">
+        <label>ID:</label>
+        <input type="text" th:field="*{id}" required>
+        <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}" style="color: red;"></span>
+        <br><br>
 
-    <label>Name:</label>
-    <input type="text" th:field="*{name}" required><br><br>
+        <label>Name:</label>
+        <input type="text" th:field="*{name}" required>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></span>
+        <br><br>
 
-    <button type="submit">Save Student</button>
-</form>
+        <button type="submit">Save Student</button>
+    </form>
 
-<br>
-<a th:href="@{/student}">Back to Student</a>
+    <br>
+    <a th:href="@{/student}">Back to Student</a>
 </div>
 </body>
 </html>

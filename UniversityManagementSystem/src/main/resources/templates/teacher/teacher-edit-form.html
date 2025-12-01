@@ -6,27 +6,36 @@
 <body>
 
 <h1>Edit Teacher</h1>
+<div class="main">
+    <div th:if="${errorMessage}" style="color: red; margin-bottom: 10px;">
+        <p th:text="${errorMessage}"></p>
+    </div>
 
-<form th:action="@{'/staff/teacher/' + ${teacher.id} + '/update-teacher'}" method="post">
+<form th:action="@{'/teacher/' + ${teacher.id} + '/update-teacher'}" method="post">
 
     <label>ID:</label>
     <input name="id" type="text" th:value="${teacher.id}" readonly/>
 
     <br/>
 
-    <label>DepartmentID:</label>
-    <input name="departmentId" type="text" th:value="${teacher.departmentId}" readonly/>
+    <label>Department:</label>
+    <select th:field="*{department}" required>
+        <option value="">-- Selectează Departamentul --</option>
+        <option th:each="dept : ${allDepartments}" th:value="${dept.id}" th:text="${dept.name}" th:selected="${teacher.department != null AND dept.id == teacher.department.id}">
 
+        </option>
+    </select>
+    <span th:if="${#fields.hasErrors('department')}" th:errors="*{department}" style="color: red;"></span>
     <br/>
 
     <label>Name:</label>
     <input name="name" type="text" th:value="${teacher.name}" required/>
-
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></span>
     <br/>
 
     <label>Title:</label>
     <input name="title" type="text" th:value="${teacher.title}" required/>
-
+    <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color: red;"></span>
     <br/>
 
 
@@ -35,7 +44,8 @@
     <button type="submit">Save Changes</button>
 </form>
 
-<a th:href="@{/templates/teacher}">Back</a>
+<a th:href="@{/teacher}">Back</a>
 
+</div>
 </body>
 </html>
