@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
+@Table(name="departments")
 public class Department implements Identifiable {
     @Id
     @NotBlank(message = "id is required")//validare

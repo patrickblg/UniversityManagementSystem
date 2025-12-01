@@ -10,6 +10,7 @@ import java.util.ArrayList;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name="dtype",discriminatorType = DiscriminatorType.STRING)
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, property = "@class")
+@Table(name="staff")
 public abstract class Staff implements Identifiable {
     @Id
     protected String id;

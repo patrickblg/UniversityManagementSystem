@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name="enrollments")
 public class Enrollment implements Identifiable{
     @Id
     private String id;

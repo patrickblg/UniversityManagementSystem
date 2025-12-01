@@ -4,6 +4,7 @@ package com.example.UniversityManagementSystem.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name="assistant")
 public class Assistant extends Staff {
     private AssistantRole role;//LAB/TA/GRADER
 

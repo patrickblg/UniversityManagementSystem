@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 
 @Entity
+@Table(name = "teaching_assignments")
 public class TeachingAssignment implements Identifiable{
     @Id
     private String id;
