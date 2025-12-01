@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/indexStyle.css}">
+
+<head>
+    <title>Enrollments List</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Enrollments</h1>
+
+<div class="main">
+    <h2>Enrollments</h2>
+    <a th:href="@{/enrollment/new}">Add New Enrollment</a>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>StudentId</th>
+            <th>CourseId</th>
+            <th>Grade</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="e : ${enrollments}">
+            <td th:text="${e.id}">Id</td>
+            <td th:text="${e.student.name}">StudentName</td>
+            <td th:text="${e.course.title}">CourseTitle</td>
+            <td th:text="${e.grade}">Grade</td>
+            <td>
+                <form th:action="@{'/enrollment/' + ${e.id} + '/delete'}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+                <a th:href="@{'/enrollment/' + ${e.id} + '/edit-enrollment'}">
+                    <button type="button">Edit</button>
+                </a>
+                <a th:href="@{'/enrollment/' + ${e.id} + '/details'}">
+                    <button type="button">Details</button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>l>
