@@ -1,6 +1,7 @@
 package com.example.UniversityManagementSystem.controller;
 
 import com.example.UniversityManagementSystem.model.Teacher;
+import com.example.UniversityManagementSystem.service.DepartmentService;
 import com.example.UniversityManagementSystem.service.TeacherService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.*;
 public class TeacherController {
 
     private final TeacherService teacherService;
+    private final DepartmentService departmentService;
 
-    public TeacherController(TeacherService teacherService) {
+    public TeacherController(TeacherService teacherService, DepartmentService departmentService) {
         this.teacherService = teacherService;
+        this.departmentService = departmentService;
     }
 
     @GetMapping
@@ -28,18 +31,21 @@ public class TeacherController {
     public String showAddTeacherForm(Model model){
         model.addAttribute("teacher",new Teacher());
         // Aici adaugi listele necesare pentru formulare (Department)
+        model.addAttribute("allDepartments", departmentService.findAllDepartments());
         return "teacher/form";
     }
 
     @PostMapping("/add-teacher")
     public String addTeacher(@Valid @ModelAttribute Teacher teacher, BindingResult result, Model model){
         if (result.hasErrors()) {
+            model.addAttribute("allDepartments", departmentService.findAllDepartments());
             return "teacher/form";
         }
         try {
             teacherService.save(teacher);
         } catch (IllegalArgumentException e) {
             model.addAttribute("errorMessage", e.getMessage());
+            model.addAttribute("allDepartments", departmentService.findAllDepartments());
             return "teacher/form";
         }
         return "redirect:/teacher";
@@ -60,12 +66,14 @@ public class TeacherController {
 
         model.addAttribute("teacher", teacher);
         // Aici adaugi listele necesare pentru formulare (Department)
+        model.addAttribute("allDepartments", departmentService.findAllDepartments());
         return "teacher/teacher-edit-form";
     }
 
     @PostMapping("/{id}/update-teacher")
     public String updateTeacher(@PathVariable String id, @Valid @ModelAttribute Teacher updatedTeacher, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            model.addAttribute("allDepartments", departmentService.findAllDepartments());
             return "teacher/teacher-edit-form";
         }
         try {
@@ -73,6 +81,7 @@ public class TeacherController {
             teacherService.updateTeacher(updatedTeacher);
         } catch (IllegalArgumentException e) {
             model.addAttribute("errorMessage", e.getMessage());
+            model.addAttribute("allDepartments", departmentService.findAllDepartments());
             return "teacher/teacher-edit-form";
         }
         return "redirect:/teacher";

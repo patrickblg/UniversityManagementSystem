@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "teaching_assignments")
+
 public class TeachingAssignment implements Identifiable{
     @Id
     private String id;
@@ -20,6 +20,7 @@ public class TeachingAssignment implements Identifiable{
     @JsonBackReference
     private Staff staff;
 
+    @Enumerated(EnumType.STRING)
     private ManagingRole managing;
 
     public TeachingAssignment(String id, Course course, Staff staff, ManagingRole managing) {
