@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" th:href="@{css/indexStyle.css}">
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/indexStyle.css}">
 
 <head>
-    <title>Universities</title>
+    <title>Universities List</title>
     <meta charset="UTF-8">
 </head>
 <body>
@@ -27,7 +27,7 @@
             <td th:text="${u.name}">Name</td>
             <td th:text="${u.city}">City</td>
             <td>
-                <form th:action="@{'/university/' + ${u.id} + '/delete'}" method="post">
+                <form th:action="@{'/university/' + ${u.id} + '/delete'}" method="post" style="display:inline;">
                     <button type="submit">Delete</button>
                 </form>
                 <a th:href="@{'/university/' + ${u.id} + '/edit-university'}">
