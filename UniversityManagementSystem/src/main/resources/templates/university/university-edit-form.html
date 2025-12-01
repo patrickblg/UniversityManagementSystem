@@ -6,7 +6,10 @@
 <body>
 
 <h1>Edit University</h1>
-
+<div class="main">
+    <div th:if="${errorMessage}" style="color: red; margin-bottom: 10px;">
+        <p th:text="${errorMessage}"></p>
+    </div>
 <form th:action="@{'/university/' + ${university.id} + '/update-university'}" method="post">
 
     <label>ID:</label>
@@ -16,12 +19,12 @@
 
     <label>Name:</label>
     <input name="name" type="text" th:value="${university.name}" required/>
-
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></span>
     <br/>
 
     <label>City:</label>
     <input name="city" type="text" th:value="${university.city}" required/>
-
+    <span th:if="${#fields.hasErrors('city')}" th:errors="*{city}" style="color: red;"></span>
     <br/>
 
 
@@ -31,6 +34,6 @@
 </form>
 
 <a th:href="@{/university}">Back</a>
-
+</div>
 </body>
 </html>

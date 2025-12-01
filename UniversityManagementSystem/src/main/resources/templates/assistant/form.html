@@ -8,22 +8,37 @@
 <body>
 <h1>Add New Assistant</h1>
 <div class="main">
-    <form th:action="@{/templates/teacher/add-assistant}" method="post" th:object="${assistant}">
+    <div th:if="${errorMessage}" style="color: red; margin-bottom: 10px;">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
+    <form th:action="@{/assistant/add-assistant}" method="post" th:object="${assistant}">
+
         <label>ID:</label>
-        <input type="text" th:field="*{id}" required><br><br>
+        <input type="text" th:field="*{id}" required>
+        <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}" style="color: red;"></span>
+        <br><br>
 
         <label>Name:</label>
-        <input type="text" th:field="*{name}" required><br><br>
+        <input type="text" th:field="*{name}" required>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></span>
+        <br><br>
 
         <label>Role:</label>
-        <input type="text" th:field="*{role}" required><br><br>
+        <select th:field="*{role}" required>
+            <option value="">-- Selectează Rolul --</option>
+            <option th:each="role : ${T(com.example.UniversityManagementSystem.model.AssistantRole).values()}" th:value="${role}" th:text="${role}">
+            </option>
+        </select>
+        <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}" style="color: red;"></span>
+        <br><br>
 
 
         <button type="submit">Save Assistant</button>
     </form>
 
     <br>
-    <a th:href="@{/templates/teacher}">Back to Staff List</a>
+    <a th:href="@{/assistant}">Back to Assistant List</a>
 </div>
 </body>
 

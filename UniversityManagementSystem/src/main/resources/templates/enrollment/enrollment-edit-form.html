@@ -6,27 +6,33 @@
 <body>
 
 <h1>Edit Enrollment</h1>
+<div class="main">
+    <div th:if="${errorMessage}" style="color: red; margin-bottom: 10px;">
+        <p th:text="${errorMessage}"></p>
+    </div>
 
-<form th:action="@{'/student/enrollment/' + ${enrollment.id} + '/update-enrollment'}" method="post">
+<form th:action="@{'/enrollment/' + ${enrollment.id} + '/update-enrollment'}" method="post">
 
     <label>ID:</label>
     <input name="id" type="text" th:value="${enrollment.id}" readonly/>
 
     <br/>
 
-    <label>StudentID:</label>
-    <input name="studentId" type="text" th:value="${enrollment.studentId}" readonly/>
-
+    <label>Student:</label>
+    <input type="text" th:value="${enrollment.student.name}" readonly/>
     <br/>
 
-    <label>CourseID:</label>
-    <input name="courseId" type="text" th:value="${enrollment.courseId}" readonly/>
-
+    <label>Course:</label>
+    <input type="text" th:value="${enrollment.course.title}" readonly/>
     <br/>
 
     <label>Grade:</label>
-    <input type="text" name="grade" th:value="${enrollment.grade}" required/>
-
+    <select th:field="*{grade}" required>
+        <option value="">-- Selectează Nota --</option>
+        <option th:each="grade : ${T(com.example.UniversityManagementSystem.model.Grades).values()}" th:value="${grade}" th:text="${grade}" th:selected="${grade == enrollment.grade}">
+        </option>
+    </select>
+    <span th:if="${#fields.hasErrors('grade')}" th:errors="*{grade}" style="color: red;"></span>
     <br/><br/>
 
 
@@ -34,7 +40,7 @@
     <button type="submit">Save Changes</button>
 </form>
 
-<a th:href="@{/student}">Back</a>
-
+<a th:href="@{/enrollment}">Back</a>
+</div>
 </body>
 </html>

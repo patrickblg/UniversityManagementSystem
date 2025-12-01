@@ -6,6 +6,10 @@
 <body>
 
 <h1>Edit Student</h1>
+<div class="main">
+    <div th:if="${errorMessage}" style="color: red; margin-bottom: 10px;">
+        <p th:text="${errorMessage}"></p>
+    </div>
 
 <form th:action="@{'/student/' + ${student.id} + '/update-student'}" method="post">
 
@@ -16,7 +20,7 @@
 
     <label>Name:</label>
     <input type="text" name="name" th:value="${student.name}" required/>
-
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></span>
     <br/><br/>
 
     <button type="submit">Save Changes</button>
@@ -24,5 +28,6 @@
 
 <a th:href="@{/student}">Back</a>
 
+</div>
 </body>
 </html>
