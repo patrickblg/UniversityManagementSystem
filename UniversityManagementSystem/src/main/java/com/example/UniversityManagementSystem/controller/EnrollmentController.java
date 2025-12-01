@@ -1,7 +1,9 @@
 package com.example.UniversityManagementSystem.controller;
 
 import com.example.UniversityManagementSystem.model.Enrollment;
+import com.example.UniversityManagementSystem.service.CourseService;
 import com.example.UniversityManagementSystem.service.EnrollmentService;
+import com.example.UniversityManagementSystem.service.StudentService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +16,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class EnrollmentController {
 
     private final EnrollmentService enrollmentService;
+    private final StudentService studentService;
+    private final CourseService courseService;
 
-    public EnrollmentController(EnrollmentService enrollmentService) {
+    public EnrollmentController(EnrollmentService enrollmentService, StudentService studentService, CourseService courseService) {
         this.enrollmentService = enrollmentService;
+        this.studentService = studentService;
+        this.courseService = courseService;
     }
 
     @GetMapping
@@ -29,12 +35,16 @@ public class EnrollmentController {
     public String showEnrollmentForm(Model model){
         model.addAttribute("enrollment", new Enrollment());
         // Aici adaugi listele necesare pentru formulare (Student, Course)
+        model.addAttribute("allStudents", studentService.findAllStudents());
+        model.addAttribute("allCourses", courseService.findAllCourses());
         return "enrollment/form";
     }
 
     @PostMapping("/add-enrollment")
-    public String addEnrollment(@Valid @ModelAttribute Enrollment enrollment, BindingResult result, RedirectAttributes redirectAttributes){
+    public String addEnrollment(@Valid @ModelAttribute Enrollment enrollment, BindingResult result, RedirectAttributes redirectAttributes, Model model) {
         if (result.hasErrors()) {
+            model.addAttribute("allStudents", studentService.findAllStudents());
+            model.addAttribute("allCourses", courseService.findAllCourses());
             return "enrollment/form";
         }
 
@@ -42,6 +52,8 @@ public class EnrollmentController {
             enrollmentService.saveEnrollment(enrollment);
         } catch (IllegalArgumentException e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+            model.addAttribute("allStudents", studentService.findAllStudents());
+            model.addAttribute("allCourses", courseService.findAllCourses());
             return "redirect:/enrollment/new";
         }
         return "redirect:/enrollment";
@@ -61,12 +73,16 @@ public class EnrollmentController {
         if (enrollment == null) return "redirect:/enrollment";
         model.addAttribute("enrollment", enrollment);
         // Aici adaugi listele necesare pentru formulare
+        model.addAttribute("allStudents", studentService.findAllStudents());
+        model.addAttribute("allCourses", courseService.findAllCourses());
         return "enrollment/enrollment-edit-form";
     }
 
     @PostMapping("/{id}/update-enrollment")
     public String updateEnrollment(@PathVariable String id, @Valid @ModelAttribute Enrollment updatedEnrollment, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            model.addAttribute("allStudents", studentService.findAllStudents());
+            model.addAttribute("allCourses", courseService.findAllCourses());
             return "enrollment/enrollment-edit-form";
         }
         try {
@@ -74,6 +90,8 @@ public class EnrollmentController {
             enrollmentService.updateEnrollment(updatedEnrollment);
         } catch (IllegalArgumentException e) {
             model.addAttribute("errorMessage", e.getMessage());
+            model.addAttribute("allStudents", studentService.findAllStudents());
+            model.addAttribute("allCourses", courseService.findAllCourses());
             return "enrollment/enrollment-edit-form";
         }
         return "redirect:/enrollment";

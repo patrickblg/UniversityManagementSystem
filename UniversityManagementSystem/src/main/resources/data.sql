@@ -1,14 +1,21 @@
 -- SCRIPT DE INIȚIALIZARE A BAZEI DE DATE (data.sql)
--- ATENTIE: Au fost eliminate toate comenzile DELETE/TRUNCATE.
--- Spring Boot rulează acest script după ce tabelele sunt create de Hibernate.
+-- Respectă strategia de moștenire JOINED pentru Staff, Teacher, Assistant
 
--- Dezactivarea verificărilor FK pentru a permite inserarea relațiilor
+-- ATENȚIE: Coloana 'dtype' (discriminator) este generată automat de JPA în tabela 'staff'
+-- și este folosită pentru a identifica tipul de entitate (Teacher sau Assistant).
+
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- Curățarea tabelelor (necesară pentru rulări multiple)
+
+
+SET FOREIGN_KEY_CHECKS = 1;
+
 
 -----------------------------------------------------------
 -- 1. UNIVERSITIES (10 records)
 -----------------------------------------------------------
-INSERT INTO universities (id, name, city) VALUES
+INSERT INTO university (id, name, city) VALUES
                                               ('U1', 'Politehnica Timisoara', 'Timisoara'),
                                               ('U2', 'Universitatea Bucuresti', 'Bucuresti'),
                                               ('U3', 'Universitatea Babes', 'Cluj'),
@@ -24,10 +31,10 @@ INSERT INTO universities (id, name, city) VALUES
 -----------------------------------------------------------
 -- 2. DEPARTMENTS (10 records - FK la Universities)
 -----------------------------------------------------------
-INSERT INTO departments (id, name, university_id) VALUES
-                                                      ('D1', 'Informatica si Calculatoare', 'U1'),
-                                                      ('D2', 'Automatica si Sisteme', 'U1'),
-                                                      ('D3', 'Constructii Civile', 'U1'),
+INSERT INTO department (id, name, university_id) VALUES
+                                                      ('D1', 'Informatica', 'U1'),
+                                                      ('D2', 'Automatica', 'U1'),
+                                                      ('D3', 'Constructii', 'U1'),
                                                       ('D4', 'Inginerie Electrica', 'U2'),
                                                       ('D5', 'Matematica', 'U2'),
                                                       ('D6', 'Fizica', 'U3'),
@@ -40,7 +47,7 @@ INSERT INTO departments (id, name, university_id) VALUES
 -----------------------------------------------------------
 -- 3. ROOMS (10 records - FK la Universities)
 -----------------------------------------------------------
-INSERT INTO rooms (id, capacity, number, name, university_id) VALUES
+INSERT INTO room (id, capacity, number, name, university_id) VALUES
                                                                   ('R1', 200.0, 'A101', 'Amfiteatru Principal', 'U1'),
                                                                   ('R2', 40.0, 'C203', 'Laborator Retele', 'U1'),
                                                                   ('R3', 30.0, 'C204', 'Seminar 1', 'U1'),
@@ -56,7 +63,7 @@ INSERT INTO rooms (id, capacity, number, name, university_id) VALUES
 -----------------------------------------------------------
 -- 4. STUDENTS (10 records)
 -----------------------------------------------------------
-INSERT INTO students (id, name) VALUES
+INSERT INTO student (id, name) VALUES
                                     ('S1', 'Popescu Andrei'),
                                     ('S2', 'Ionescu Maria'),
                                     ('S3', 'Georgescu Mihai'),
@@ -70,11 +77,12 @@ INSERT INTO students (id, name) VALUES
 
 
 -----------------------------------------------------------
--- 5. STAFF (10 records: 5 Teachers + 5 Assistants)
--- Inserăm în tabela de bază 'staff' și în tabelele subclase 'teacher'/'assistant' (JOINED strategy)
+-- 5. STAFF (10 records in total, 5 Teachers + 5 Assistants)
+-- Tabela de baza 'staff' si tabelele subclasa 'teacher'/'assistant'
 -----------------------------------------------------------
 
--- 5a. Tabela de bază STAFF
+-- 5a. Baza STAFF (Inserare în tabela comună 'staff')
+-- Folosim 'Teacher'/'Assistant' ca valori implicite pentru 'dtype'
 INSERT INTO staff (id, name, dtype) VALUES
                                         ('T1', 'Ionescu Cristian', 'Teacher'),
                                         ('T2', 'Popa Maria', 'Teacher'),
@@ -87,7 +95,7 @@ INSERT INTO staff (id, name, dtype) VALUES
                                         ('A4', 'Ene Filip', 'Assistant'),
                                         ('A5', 'Zamfir Ana', 'Assistant');
 
--- 5b. Subclasa TEACHER (FK la staff și departments)
+-- 5b. Subclasa TEACHER (Inserați în tabela 'teacher' cu FK la 'staff' și 'departments')
 INSERT INTO teacher (id, title, department_id) VALUES
                                                    ('T1', 'Prof. Dr.', 'D1'),
                                                    ('T2', 'Lector Dr.', 'D2'),
@@ -95,7 +103,8 @@ INSERT INTO teacher (id, title, department_id) VALUES
                                                    ('T4', 'Prof. Emerit', 'D5'),
                                                    ('T5', 'Lector', 'D4');
 
--- 5c. Subclasa ASSISTANT (FK la staff)
+-- 5c. Subclasa ASSISTANT (Inserați în tabela 'assistant' cu FK la 'staff')
+-- Valorile pentru 'role' sunt din enumul AssistantRole (LAB, TA, GRADER)
 INSERT INTO assistant (id, role) VALUES
                                      ('A1', 'TA'),
                                      ('A2', 'LAB'),
@@ -107,7 +116,7 @@ INSERT INTO assistant (id, role) VALUES
 -----------------------------------------------------------
 -- 6. COURSES (10 records - FK la Department, Room)
 -----------------------------------------------------------
-INSERT INTO courses (id, title, credits, duration, department_id, room_id) VALUES
+INSERT INTO course (id, title, credits, duration, department_id, room_id) VALUES
                                                                                ('C1', 'Programare Orientata Obiect', 6, 2.5, 'D1', 'R2'),
                                                                                ('C2', 'Algoritmi si Structuri', 6, 2.5, 'D1', 'R1'),
                                                                                ('C3', 'Baze de Date', 5, 2.0, 'D2', 'R3'),
@@ -124,7 +133,7 @@ INSERT INTO courses (id, title, credits, duration, department_id, room_id) VALUE
 -- 7. ENROLLMENTS (10 records - FK la Student, Course)
 -----------------------------------------------------------
 -- Grades (A, B, C, D, F, NA)
-INSERT INTO enrollments (id, student_id, course_id, grade) VALUES
+INSERT INTO enrollment (id, student_id, course_id, grade) VALUES
                                                                ('E1', 'S1', 'C1', 'A'),
                                                                ('E2', 'S2', 'C2', 'B'),
                                                                ('E3', 'S3', 'C3', 'C'),
@@ -140,19 +149,15 @@ INSERT INTO enrollments (id, student_id, course_id, grade) VALUES
 -----------------------------------------------------------
 -- 8. TEACHING_ASSIGNMENTS (10 records - FK la Course, Staff)
 -----------------------------------------------------------
--- Staff (T1-T5 sunt Teachers, A1-A5 sunt Assistants)
 -- ManagingRole (LAB, SEMINARY, COURSE)
-INSERT INTO teaching_assignments (id, course_id, staff_id, managing) VALUES
+INSERT INTO teaching_assignment (id, course_id, staff_id, managing) VALUES
                                                                          ('TA1', 'C1', 'T1', 'COURSE'),
                                                                          ('TA2', 'C2', 'T2', 'COURSE'),
                                                                          ('TA3', 'C3', 'A1', 'LAB'),
                                                                          ('TA4', 'C4', 'T4', 'SEMINARY'),
-                                                                         ('TA5', 'C5', 'A3', 'GRADER'),
+                                                                         ('TA5', 'C5', 'A3', 'LAB'),
                                                                          ('TA6', 'C6', 'T5', 'COURSE'),
                                                                          ('TA7', 'C7', 'A4', 'LAB'),
                                                                          ('TA8', 'C8', 'T3', 'SEMINARY'),
                                                                          ('TA9', 'C9', 'A5', 'LAB'),
                                                                          ('TA10', 'C10', 'T4', 'COURSE');
-
--- Reactivarea verificărilor FK
-SET FOREIGN_KEY_CHECKS = 1;

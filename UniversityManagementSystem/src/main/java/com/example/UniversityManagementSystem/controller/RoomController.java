@@ -2,6 +2,7 @@ package com.example.UniversityManagementSystem.controller;
 
 import com.example.UniversityManagementSystem.model.Room;
 import com.example.UniversityManagementSystem.service.RoomService;
+import com.example.UniversityManagementSystem.service.UniversityService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,10 +14,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/room")
 public class RoomController {
     private final RoomService roomService;
+    private final UniversityService universityService;
 
     @Autowired
-    public RoomController(RoomService roomService) {
+    public RoomController(RoomService roomService, UniversityService universityService) {
         this.roomService = roomService;
+        this.universityService = universityService;
     }
 
     @GetMapping
@@ -28,6 +31,7 @@ public class RoomController {
     @GetMapping("/new")
     public String showAddForm(Model model) {
         model.addAttribute("room", new Room());
+        model.addAttribute("allUniversities", universityService.findAllUniversities());
         return "room/form";
     }
 
@@ -35,12 +39,14 @@ public class RoomController {
     @PostMapping("/add-room")
     public String addRoom(@Valid @ModelAttribute Room room, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            model.addAttribute("allUniversities", universityService.findAllUniversities());
             return "room/form";
         }
         try {
             roomService.saveRoom(room);
         } catch (IllegalArgumentException e) {
             model.addAttribute("errorMessage", e.getMessage());
+            model.addAttribute("allUniversities", universityService.findAllUniversities());
             return "room/form";
         }
         return "redirect:/room";
@@ -61,6 +67,7 @@ public class RoomController {
         if (room == null) return "redirect:/room";
 
         model.addAttribute("room", room);
+        model.addAttribute("allUniversities", universityService.findAllUniversities());
         return "room/room-edit-form";
     }
 
@@ -68,6 +75,7 @@ public class RoomController {
     @PostMapping("/{id}/update-room")
     public String updateRoom(@PathVariable String id, @Valid @ModelAttribute Room updatedRoom, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            model.addAttribute("allUniversities", universityService.findAllUniversities());
             return "room/room-edit-form";
         }
         try {
@@ -75,6 +83,7 @@ public class RoomController {
             roomService.updateRoom(updatedRoom);
         } catch (IllegalArgumentException e) {
             model.addAttribute("errorMessage", e.getMessage());
+            model.addAttribute("allUniversities", universityService.findAllUniversities());
             return "room/room-edit-form";
         }
         return "redirect:/room";

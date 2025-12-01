@@ -4,8 +4,8 @@ package com.example.UniversityManagementSystem.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="assistant")
 public class Assistant extends Staff {
+    @Enumerated(EnumType.STRING)
     private AssistantRole role;//LAB/TA/GRADER
 
     //Constructor

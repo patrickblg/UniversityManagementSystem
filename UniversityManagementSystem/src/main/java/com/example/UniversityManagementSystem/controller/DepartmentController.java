@@ -1,6 +1,7 @@
 package com.example.UniversityManagementSystem.controller;
 import com.example.UniversityManagementSystem.model.Department;
 import com.example.UniversityManagementSystem.service.DepartmentService;
+import com.example.UniversityManagementSystem.service.UniversityService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,10 +15,12 @@ import org.springframework.web.bind.annotation.*;
 public class DepartmentController {
 
     private final DepartmentService departmentService;
+    private final UniversityService universityService;
 
     @Autowired
-    public DepartmentController(DepartmentService departmentService) {
+    public DepartmentController(DepartmentService departmentService, UniversityService universityService) {
         this.departmentService = departmentService;
+        this.universityService = universityService;
     }
 
     @GetMapping
@@ -29,6 +32,7 @@ public class DepartmentController {
     @GetMapping("/new")
     public String showAddForm(Model model) {
         model.addAttribute("department", new Department());
+        model.addAttribute("allUniversities", universityService.findAllUniversities());
         return "department/form";
     }
 
@@ -62,6 +66,7 @@ public class DepartmentController {
         if (department == null) return "redirect:/department";
 
         model.addAttribute("department", department);
+        model.addAttribute("allUniversities", universityService.findAllUniversities());
         return "department/department-edit-form";
     }
 

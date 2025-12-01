@@ -2,6 +2,8 @@ package com.example.UniversityManagementSystem.controller;
 
 import com.example.UniversityManagementSystem.model.Course;
 import com.example.UniversityManagementSystem.service.CourseService;
+import com.example.UniversityManagementSystem.service.DepartmentService;
+import com.example.UniversityManagementSystem.service.RoomService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +15,13 @@ import org.springframework.web.bind.annotation.*;
 public class CourseController {
 
     private final CourseService courseService;
+    private final DepartmentService departmentService;
+    private final RoomService roomService;
 
-    public CourseController(CourseService courseService) {
+    public CourseController(CourseService courseService, DepartmentService departmentService, RoomService roomService) {
         this.courseService = courseService;
+        this.departmentService = departmentService;
+        this.roomService = roomService;
     }
 
     @GetMapping
@@ -27,19 +33,24 @@ public class CourseController {
     @GetMapping("/new")
     public String showCourseForm(Model model) {
         model.addAttribute("course",new Course());
-        // Aici Controllerul ar trebui să adauge Department și Room disponibile
+        model.addAttribute("allDepartments", departmentService.findAllDepartments());
+        model.addAttribute("allRooms", roomService.findAllRooms());
         return "course/course-form";
     }
 
     @PostMapping("/add-course")
     public String addCourse(@Valid @ModelAttribute Course course, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            model.addAttribute("allDepartments", departmentService.findAllDepartments());
+            model.addAttribute("allRooms", roomService.findAllRooms());
             return "course/course-form";
         }
         try {
             courseService.saveCourse(course);
         } catch (IllegalArgumentException e) {
             model.addAttribute("errorMessage", e.getMessage());
+            model.addAttribute("allDepartments", departmentService.findAllDepartments());
+            model.addAttribute("allRooms", roomService.findAllRooms());
             return "course/course-form";
         }
         return "redirect:/course";
@@ -59,13 +70,16 @@ public class CourseController {
         if (course == null) return "redirect:/course";
 
         model.addAttribute("course", course);
-        // Aici Controllerul ar trebui să adauge Department și Room disponibile
+        model.addAttribute("allDepartments", departmentService.findAllDepartments());
+        model.addAttribute("allRooms", roomService.findAllRooms());
         return "course/course-edit-form";
     }
 
     @PostMapping("/{id}/update-course")
     public String updateCourse(@PathVariable String id, @Valid @ModelAttribute Course updateCourse, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            model.addAttribute("allDepartments", departmentService.findAllDepartments());
+            model.addAttribute("allRooms", roomService.findAllRooms());
             return "course/course-edit-form";
         }
         try {
@@ -73,6 +87,8 @@ public class CourseController {
             courseService.updateCourse(updateCourse);
         } catch (IllegalArgumentException e) {
             model.addAttribute("errorMessage", e.getMessage());
+            model.addAttribute("allDepartments", departmentService.findAllDepartments());
+            model.addAttribute("allRooms", roomService.findAllRooms());
             return "course/course-edit-form";
         }
         return "redirect:/course";

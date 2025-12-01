@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
-@Table(name="courses")
+
 public class Course implements Identifiable {
     @Id
     private String id;
