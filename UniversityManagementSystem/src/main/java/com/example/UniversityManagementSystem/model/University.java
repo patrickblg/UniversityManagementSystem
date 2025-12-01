@@ -15,7 +15,7 @@ public class University implements Identifiable{
     @OneToMany(mappedBy = "university",cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Department> departments = new ArrayList<>();
-    @OneToMany(mappedBy = "univeristy",cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "university",cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Room> rooms = new ArrayList<>();
 

@@ -3,35 +3,37 @@
 <link rel="stylesheet" th:href="@{/css/indexStyle.css}">
 
 <head>
-    <title>Students List</title>
+    <title>Assistants List</title>
     <meta charset="UTF-8">
 </head>
 <body>
-<h1>Students</h1>
+<h1>Assistants</h1>
 
 <div class="main">
-    <h2>Students</h2>
-    <a th:href="@{/student/new}">Add New Student</a>
+    <h2>Assistants</h2>
+    <a th:href="@{/assistant/new}">Add New Assistant</a>
     <table>
         <thead>
         <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Role</th>
             <th>Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="s : ${students}">
-            <td th:text="${s.id}">Id</td>
-            <td th:text="${s.name}">Name</td>
+        <tr th:each="a : ${assistants}">
+            <td th:text="${a.id}">Id</td>
+            <td th:text="${a.name}">Name</td>
+            <td th:text="${a.role}">Role</td>
             <td>
-                <form th:action="@{'/student/' + ${s.id} + '/delete'}" method="post">
+                <form th:action="@{'/assistant/' + ${a.id} + '/delete'}" method="post">
                     <button type="submit">Delete</button>
                 </form>
-                <a th:href="@{'/student/' + ${s.id} + '/edit-student'}">
+                <a th:href="@{'/assistant/' + ${a.id} + '/edit-assistant'}">
                     <button type="button">Edit</button>
                 </a>
-                <a th:href="@{'/student/' + ${s.id} + '/details'}">
+                <a th:href="@{'/assistant/' + ${a.id} + '/details'}">
                     <button type="button">Details</button>
                 </a>
             </td>

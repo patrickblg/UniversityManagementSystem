@@ -8,12 +8,32 @@
 <body>
 <h1>Add New Department</h1>
 <div class="main">
+    <div th:if="${errorMessage}" style="color: red; margin-bottom: 10px;">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
     <form th:action="@{/department/add-department}" method="post" th:object="${department}">
+
         <label>ID:</label>
-        <input type="text" th:field="*{id}" required><br><br>
+        <input type="text" th:field="*{id}" required>
+        <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}" style="color: red;"></span>
+        <br><br>
 
         <label>Name:</label>
-        <input type="text" th:field="*{name}" required><br><br>
+        <input type="text" th:field="*{name}" required>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></span>
+        <br><br>
+
+        <label>University:</label>
+        <select th:field="*{university}" required>
+            <option value="">-- Selectează Universitatea --</option>
+            <option th:each="univ : ${allUniversities}"
+                    th:value="${univ.id}"
+                    th:text="${univ.name}">
+            </option>
+        </select>
+        <span th:if="${#fields.hasErrors('university')}" th:errors="*{university}" style="color: red;"></span>
+        <br><br>
 
         <button type="submit">Save Department</button>
     </form>
