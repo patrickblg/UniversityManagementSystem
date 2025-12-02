@@ -3,6 +3,7 @@ package com.example.UniversityManagementSystem.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 
@@ -22,7 +23,6 @@ public class Enrollment implements Identifiable{
     private Course course;
 
     @Enumerated(EnumType.STRING)
-    @NotBlank
     private Grades grade;
 
     public Enrollment(String id, Grades grade, Student student, Course course) {

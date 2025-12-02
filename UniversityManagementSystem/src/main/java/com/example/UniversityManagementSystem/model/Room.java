@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -14,7 +15,7 @@ public class Room  implements Identifiable{
     @Id
     @NotBlank
     private String id;
-    @NotBlank
+    @NotNull
     private double capacity;
     @NotBlank
     @Size(min = 1, max = 100)

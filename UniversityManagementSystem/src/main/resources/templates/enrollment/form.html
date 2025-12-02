@@ -30,10 +30,10 @@
         <label>Course ID:</label>
         <select th:field="*{course}" required>
             <option value="">-- Selectează Cursul --</option>
-            <option th:each="course : ${allCourses}" th:value="${course.id}" th:text="${course.name}">
+            <option th:each="course : ${allCourses}" th:value="${course.id}" th:text="${course.title}">
             </option>
         </select>
-        <span th:if="${#fields.hasErrors('courseId')}" th:errors="*{courseId}" style="color: red;"></span>
+        <span th:if="${#fields.hasErrors('course')}" th:errors="*{course}" style="color: red;"></span>
         <br><br>
 
         <label>Grade:</label>
