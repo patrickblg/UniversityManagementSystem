@@ -1,3 +1,4 @@
+// File: patrickblg/universitymanagementsystem/UniversityManagementSystem-f3e6f069d20a75bbc8e06c414ba4e121c92faedb/UniversityManagementSystem/src/main/resources/templates/course/course-edit-form.html
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -6,48 +7,60 @@
 <body>
 
 <h1>Edit Course</h1>
+<div class="main">
+    <div th:if="${errorMessage}" style="color: red; margin-bottom: 10px;">
+        <p th:text="${errorMessage}"></p>
+    </div>
+    <form th:action="@{'/course/' + ${course.id} + '/update-course'}" method="post" th:object="${course}">
 
-<form th:action="@{'/course/' + ${course.id} + '/update-course'}" method="post">
+        <label>ID:</label>
+        <input type="text" th:field="*{id}" readonly/>
 
-    <label>ID:</label>
-    <input name="id" type="text" th:value="${course.id}" readonly/>
+        <br/>
 
-    <br/>
+        <label>DepartmentId:</label>
+        <select th:field="*{department}" required>
+            <option value="">-- Selectează Departamentul --</option>
+            <option th:each="dept : ${allDepartments}" th:value="${dept.id}" th:text="${dept.name}" th:selected="${course.department != null AND dept.id == course.department.id}">
 
-    <label>DepartmentId:</label>
-    <input name="departmentId" type="text" th:value="${course.departmentId}" readonly/>
+            </option>
+        </select>
+        <span th:if="${#fields.hasErrors('department')}" th:errors="*{department}" style="color: red;"></span>
+        <br/>
 
-    <br/>
-
-    <label>RoomId:</label>
-    <input name="roomId" type="text" th:value="${course.roomId}" required/>
-
-    <br/>
-
-
-    <label>Title:</label>
-    <input name="title" type="text" th:value="${course.title}" required/>
-
-    <br/>
-
-    <label>Credits:</label>
-    <input name="credits" type="text" th:value="${course.credits}" required/>
-
-    <br/>
-
-
-    <label>Duration:</label>
-    <input name="duration" type="text" th:value="${course.duration}" required/>
-
-    <br/>
+        <label>RoomId:</label>
+        <select th:field="*{room}" required>
+            <option value="">-- Selectează Sala --</option>
+            <option th:each="room : ${allRooms}" th:value="${room.id}" th:text="${room.name}" th:selected="${course.room != null AND room.id == course.room.id}">
+            </option>
+        </select>
+        <span th:if="${#fields.hasErrors('room')}" th:errors="*{room}" style="color: red;"></span>
+        <br/>
 
 
+        <label>Title:</label>
+        <input type="text" th:field="*{title}" required/>
+        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color: red;"></span>
+        <br/>
+
+        <label>Credits:</label>
+        <input type="text" th:field="*{credits}" required/>
+        <span th:if="${#fields.hasErrors('credits')}" th:errors="*{credits}" style="color: red;"></span>
+        <br/>
 
 
-    <button type="submit">Save Changes</button>
-</form>
+        <label>Duration:</label>
+        <input type="text" th:field="*{duration}" required/>
+        <span th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}" style="color: red;"></span>
+        <br/>
 
-<a th:href="@{/course}">Back</a>
 
+
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <a th:href="@{/course}">Back</a>
+</div>
 </body>
 </html>

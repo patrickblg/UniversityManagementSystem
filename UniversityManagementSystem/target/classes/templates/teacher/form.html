@@ -8,24 +8,39 @@
 <body>
 <h1>Add New Teacher</h1>
 <div class="main">
-<form th:action="@{/templates/teacher/add-teacher}" method="post" th:object="${teacher}">
-    <label>ID:</label>
-    <input type="text" th:field="*{id}" required><br><br>
+    <div th:if="${errorMessage}" style="color: red; margin-bottom: 10px;">
+        <p th:text="${errorMessage}"></p>
+    </div>
+    <form th:action="@{/teacher/add-teacher}" method="post" th:object="${teacher}">
+        <label>ID:</label>
+        <input type="text" th:field="*{id}" required>
+        <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}" style="color: red;"></span>
+        <br><br>
 
-    <label>Name:</label>
-    <input type="text" th:field="*{name}" required><br><br>
+        <label>Name:</label>
+        <input type="text" th:field="*{name}" required>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></span>
+        <br><br>
 
-    <label>Title:</label>
-    <input type="text" th:field="*{title}" required><br><br>
+        <label>Title:</label>
+        <input type="text" th:field="*{title}" required>
+        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color: red;"></span>
+        <br><br>
 
-    <label>Department:</label>
-    <input type="text" th:field="*{departmentId}" required><br><br>
+        <label>Department:</label>
+        <select th:field="*{department}" required>
+            <option value="">-- Selectează Departamentul --</option>
+            <option th:each="dept : ${allDepartments}" th:value="${dept.id}" th:text="${dept.name}">
+            </option>
+        </select>
+        <span th:if="${#fields.hasErrors('department')}" th:errors="*{department}" style="color: red;"></span>
+        <br><br>
 
-    <button type="submit">Save Teacher</button>
-</form>
+        <button type="submit">Save Teacher</button>
+    </form>
 
-<br>
-<a th:href="@{/templates/teacher}">Back to Staff List</a>
+    <br>
+    <a th:href="@{/teacher}">Back to Teacher List</a>
 </div>
 </body>
 </html>

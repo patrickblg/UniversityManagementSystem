@@ -1,3 +1,4 @@
+// File: patrickblg/universitymanagementsystem/UniversityManagementSystem-f3e6f069d20a75bbc8e06c414ba4e121c92faedb/UniversityManagementSystem/src/main/resources/templates/university/form.html
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/formStyle.css}">
@@ -8,20 +9,30 @@
 <body>
 <h1>Add New University</h1>
 <div class="main">
-<form th:action="@{/university/add-university}" method="post" th:object="${university}">
-    <label>ID:</label>
-    <input type="text" th:field="*{id}" required><br><br>
+    <div th:if="${errorMessage}" style="color: red; margin-bottom: 10px;">
+        <p th:text="${errorMessage}"></p>
+    </div>
+    <form th:action="@{/university/add-university}" method="post" th:object="${university}">
+        <label>ID:</label>
+        <input type="text" th:field="*{id}" required>
+        <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}" style="color: red;"></span>
+        <br><br>
 
-    <label>Name:</label>
-    <input type="text" th:field="*{name}" required><br><br>
-    <label>City:</label>
-    <input type="text" th:field="*{city}" required><br><br>
+        <label>Name:</label>
+        <input type="text" th:field="*{name}" required>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></span>
+        <br><br>
 
-    <button type="submit">Save University</button>
-</form>
+        <label>City:</label>
+        <input type="text" th:field="*{city}" required>
+        <span th:if="${#fields.hasErrors('city')}" th:errors="*{city}" style="color: red;"></span>
+        <br><br>
 
-<br>
-<a th:href="@{/university}">Back to Universities</a>
+        <button type="submit">Save University</button>
+    </form>
+
+    <br>
+    <a th:href="@{/university}">Back to Universities</a>
 </div>
 </body>
 </html>

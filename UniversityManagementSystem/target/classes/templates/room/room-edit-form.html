@@ -1,3 +1,4 @@
+// File: patrickblg/universitymanagementsystem/UniversityManagementSystem-f3e6f069d20a75bbc8e06c414ba4e121c92faedb/UniversityManagementSystem/src/main/resources/templates/room/room-edit-form.html
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -6,35 +7,46 @@
 <body>
 
 <h1>Edit Room</h1>
+<div class="main">
+    <div th:if="${errorMessage}" style="color: red; margin-bottom: 10px;">
+        <p th:text="${errorMessage}"></p>
+    </div>
 
-<form th:action="@{'/room/' + ${room.id} + '/update-room'}" method="post">
+    <form th:action="@{'/room/' + ${room.id} + '/update-room'}" method="post" th:object="${room}">
 
-    <label>ID:</label>
-    <input name="id" type="text" th:value="${room.id}" readonly/>
+        <label>ID:</label>
+        <input type="text" th:field="*{id}" readonly/>
 
-    <br/>
+        <br/>
 
-    <label>Number:</label>
-    <input name="number" type="text" th:value="${room.number}" required/>
+        <label>Number:</label>
+        <input type="text" th:field="*{number}" required/>
+        <span th:if="${#fields.hasErrors('number')}" th:errors="*{number}" style="color: red;"></span>
+        <br/>
 
-    <br/>
+        <label>Capacity:</label>
+        <input type="text" th:field="*{capacity}" required/>
+        <span th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}" style="color: red;"></span>
+        <br/>
 
-    <label>Capacity:</label>
-    <input name="capacity" type="text" th:value="${room.capacity}" required/>
+        <label>Name:</label>
+        <input type="text" th:field="*{name}" required/>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></span>
+        <br/>
 
-    <br/>
+        <label>University:</label>
+        <select th:field="*{university}" required>
+            <option value="">-- Selectează Universitatea --</option>
+            <option th:each="univ : ${allUniversities}" th:value="${univ.id}" th:text="${univ.name}" th:selected="${room.university != null AND univ.id == room.university.id}">
+            </option>
+        </select>
+        <span th:if="${#fields.hasErrors('university')}" th:errors="*{university}" style="color: red;"></span>
+        <br/>
 
-    <label>Name:</label>
-    <input name="name" type="text" th:value="${room.name}" required/>
+        <button type="submit">Save Changes</button>
+    </form>
 
-    <br/>
-
-
-
-    <button type="submit">Save Changes</button>
-</form>
-
-<a th:href="@{/room}">Back</a>
-
+    <a th:href="@{/room}">Back</a>
+</div>
 </body>
 </html>

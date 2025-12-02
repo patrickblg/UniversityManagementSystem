@@ -8,21 +8,50 @@
 <body>
 <h1>Add New Course</h1>
 <div class="main">
+    <div th:if="${errorMessage}" style="color: red; margin-bottom: 10px;">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
     <form th:action="@{/course/add-course}" method="post" th:object="${course}">
         <label>ID:</label>
-        <input type="text" th:field="*{id}" required><br><br>
+        <input type="text" th:field="*{id}" required>
+        <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}" style="color: red;"></span>
+        <br><br>
 
         <label>Title:</label>
-        <input type="text" th:field="*{title}" required><br><br>
+        <input type="text" th:field="*{title}" required>
+        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color: red;"></span>
+        <br><br>
 
         <label>Credits:</label>
-        <input type="text" th:field="*{credits}" required><br><br>
+        <input type="text" th:field="*{credits}" required>
+        <span th:if="${#fields.hasErrors('credits')}" th:errors="*{credits}" style="color: red;"></span>
+        <br><br>
+
         <label>Duration:</label>
-        <input type="text" th:field="*{duration}" required><br><br>
+        <input type="text" th:field="*{duration}" required>
+        <span th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}" style="color: red;"></span>
+        <br><br>
+
         <label>DepartmentId:</label>
-        <input type="text" th:field="*{departmentId}" required><br><br>
+        <select th:field="*{department}" required>
+            <option value="">-- Selectează Departamentul --</option>
+            <option th:each="dept : ${allDepartments}" th:value="${dept.id}" th:text="${dept.name}">
+
+            </option>
+        </select>
+        <span th:if="${#fields.hasErrors('department')}" th:errors="*{department}" style="color: red;"></span>
+        <br><br>
+
         <label>RoomId:</label>
-        <input type="text" th:field="*{roomId}" required><br><br>
+        <select th:field="*{room}" required>
+            <option value="">-- Selectează Sala --</option>
+            <option th:each="room : ${allRooms}" th:value="${room.id}" th:text="${room.name}">
+
+            </option>
+        </select>
+        <span th:if="${#fields.hasErrors('room')}" th:errors="*{room}" style="color: red;"></span>
+        <br><br>
 
 
         <button type="submit">Save</button>

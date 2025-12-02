@@ -1,3 +1,4 @@
+// File: patrickblg/universitymanagementsystem/UniversityManagementSystem-f3e6f069d20a75bbc8e06c414ba4e121c92faedb/UniversityManagementSystem/src/main/resources/templates/assistant/assistant-edit-form.html
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -10,35 +11,35 @@
     <div th:if="${errorMessage}" style="color: red; margin-bottom: 10px;">
         <p th:text="${errorMessage}"></p>
     </div>
-<form th:action="@{'/assistant/' + ${assistant.id} + '/update-assistant'}" method="post">
+    <form th:action="@{'/assistant/' + ${assistant.id} + '/update-assistant'}" method="post" th:object="${assistant}">
 
-    <label>ID:</label>
-    <input name="id" type="text" th:value="${assistant.id}" readonly/>
+        <label>ID:</label>
+        <input name="id" type="text" th:value="${assistant.id}" readonly/>
 
-    <br/>
+        <br/>
 
-    <label>Name:</label>
-    <input name="name" type="text" th:value="${assistant.name}" required/>
-    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></span>
-    <br/>
+        <label>Name:</label>
+        <input type="text" th:field="*{name}" required/>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></span>
+        <br/>
 
-    <label>Role:</label>
-    <select th:field="*{role}" required>
-        <option value="">-- Selectează Rolul --</option>
-        <option th:each="role : ${T(com.example.UniversityManagementSystem.model.AssistantRole).values()}" th:value="${role}" th:text="${role}" th:selected="${role == assistant.role}">
+        <label>Role:</label>
+        <select th:field="*{role}" required>
+            <option value="">-- Selectează Rolul --</option>
+            <option th:each="role : ${T(com.example.UniversityManagementSystem.model.AssistantRole).values()}" th:value="${role}" th:text="${role}" th:selected="${role == assistant.role}">
 
-        </option>
-    </select>
-    <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}" style="color: red;"></span> <br/>
-    <br/>
-
-
+            </option>
+        </select>
+        <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}" style="color: red;"></span> <br/>
+        <br/>
 
 
-    <button type="submit">Save Changes</button>
-</form>
 
-<a th:href="@{/assistant}">Back</a>
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <a th:href="@{/assistant}">Back</a>
 
 </div>
 
