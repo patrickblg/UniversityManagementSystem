@@ -3,6 +3,7 @@
 -- Spring Boot rulează acest script după ce tabelele sunt create de Hibernate.
 
 -- Dezactivarea verificărilor FK pentru a permite inserarea relațiilor
+
 SET FOREIGN_KEY_CHECKS = 0;
 
 -----------------------------------------------------------

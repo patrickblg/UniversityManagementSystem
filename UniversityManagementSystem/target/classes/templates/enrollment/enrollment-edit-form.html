@@ -14,23 +14,26 @@
 
     <form th:action="@{'/enrollment/' + ${enrollment.id} + '/update-enrollment'}" method="post" th:object="${enrollment}">
 
+
         <label>ID:</label>
         <input name="id" type="text" th:value="${enrollment.id}" readonly/>
 
         <br/>
 
         <label>Student:</label>
-        <input type="text" th:value="${enrollment.student.name}" readonly/>
+        <input type="text" th:value="${enrollment.student?.name ?: 'Student Inexistent'}" readonly/>
+        <input type="hidden" th:field="*{student}" th:value="${enrollment.student?.id}" />
         <br/>
 
         <label>Course:</label>
-        <input type="text" th:value="${enrollment.course.title}" readonly/>
+        <input type="text" th:value="${enrollment.course?.title ?: 'Curs Inexistent'}" readonly/>
+        <input type="hidden" th:field="*{course}" th:value="${enrollment.course?.id}" />
         <br/>
 
         <label>Grade:</label>
         <select th:field="*{grade}" required>
             <option value="">-- Selectează Nota --</option>
-            <option th:each="grade : ${T(com.example.UniversityManagementSystem.model.Grades).values()}" th:value="${grade}" th:text="${grade}" th:selected="${grade == enrollment.grade}">
+            <option th:each="grade : ${T(com.example.UniversityManagementSystem.model.Grades).values()}" th:value="${grade}" th:text="${grade}" >
             </option>
         </select>
         <span th:if="${#fields.hasErrors('grade')}" th:errors="*{grade}" style="color: red;"></span>
