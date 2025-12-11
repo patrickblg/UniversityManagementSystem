@@ -7,10 +7,17 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<h1>Enrollments</h1>
+<div class="mainn">
+    <a class="home" th:href="@{/mainIndex}">
+        <img src="https://icon-library.com/images/home-button-icon/home-button-icon-7.jpg">
+    </a>
+    <h2>
+        Enrollments
+    </h2>
+</div>
+
 
 <div class="main">
-    <h2>Enrollments</h2>
     <a th:href="@{/enrollment/new}">Add New Enrollment</a>
     <table>
         <thead>

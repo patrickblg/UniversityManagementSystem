@@ -7,11 +7,18 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<h1> Departments</h1>
+<div class="mainn">
+    <a class="home" th:href="@{/mainIndex}">
+        <img src="https://icon-library.com/images/home-button-icon/home-button-icon-7.jpg">
+    </a>
+    <h2>
+        Departments
+    </h2>
+</div>
+
 
 
 <div class="main">
-    <h2>Departments</h2>
     <a th:href="@{/department/new}">Add New Department</a>
     <table>
         <thead>

@@ -71,4 +71,7 @@ public class AssistantController {
         assistantService.deleteAssistant(id);
         return "redirect:/assistant";
     }
+
+
+
 }
