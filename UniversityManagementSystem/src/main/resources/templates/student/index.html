@@ -22,8 +22,17 @@
     <table>
         <thead>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
+            <th>
+                <a th:href="@{'/student'(sortField='id', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                    ID <span th:if="${sortField == 'id'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
+                </a>
+            </th>
+
+            <th>
+                <a th:href="@{'/student'(sortField='name', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                    Name <span th:if="${sortField == 'name'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
+                </a>
+            </th>
             <th>Action</th>
         </tr>
         </thead>

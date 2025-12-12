@@ -29,7 +29,7 @@ h2{
     align-items: center;
     justify-content: center;
     display: flex;
-    position:fixed;
+    position: absolute;
 }
 
 .main{
