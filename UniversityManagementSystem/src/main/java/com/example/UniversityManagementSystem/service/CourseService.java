@@ -32,7 +32,7 @@ public class CourseService {
     public List<Course> findAllCourses(){
         return courseRepository.findAll();
     }
-    public List<Course> findAllCourses(String sortField, String sortDirection){
+    public List<Course> findAllCourses(String title,Integer credits,String sortField, String sortDirection){
         Sort sort;
 
         if("asc".equals(sortDirection)){
@@ -40,8 +40,15 @@ public class CourseService {
         }else{
             sort=Sort.by(sortField).descending();
         }
-
-        return  courseRepository.findAll(sort);
+        if(title!=null&&!title.isEmpty()&&credits!=null){
+            return courseRepository.findByTitleContainingIgnoreCaseAndCreditsLessThanEqual(title,credits,sort);
+        }else if(title!=null&&!title.isEmpty()){
+            return courseRepository.findByTitleContainingIgnoreCase(title,sort);
+        }else if(credits!=null){
+            return courseRepository.findByCreditsLessThanEqual(credits,sort);
+        }else{
+            return courseRepository.findAll(sort);
+        }
     }
 
     public Course findCourseById(String id){

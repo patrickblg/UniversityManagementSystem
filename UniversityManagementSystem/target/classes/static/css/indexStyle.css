@@ -98,14 +98,12 @@ a:nth-child(1):hover{
     border:2px solid whitesmoke;
 
 }
-
-
+a:hover{
+    text-decoration: underline;
+}
 button{
     all:unset;
     color:whitesmoke;
-
-
-
 }
 
 button:hover{
@@ -115,5 +113,35 @@ button:hover{
 tr:last-child td:nth-child(n+2):nth-last-child(n+2) {
     border-bottom: none;
 }
-
+.filter-container {
+    margin: 20px auto;
+    width: 40%;
+    text-align: center;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+}
+.filter-container form {
+    display: inline-block;
+}
+.filter-container input, .filter-container select {
+    padding: 5px;
+    border-radius: 30px;
+    border: 1px solid #ccc;
+}
+.filter-container button {
+    padding: 5px 15px;
+    cursor: pointer;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 30px;
+}
+.filter-container a button:hover {
+    background-color: #555;
+    text-decoration: none;
+}
+.filter-container a button {
+    background-color: #777;
+}
 

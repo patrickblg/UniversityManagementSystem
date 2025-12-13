@@ -22,7 +22,7 @@ public class UniversityService {
     public List<University> findAllUniversities(){
         return universityRepository.findAll();
     }
-    public List<University> findAllUniversities(String sortField, String sortDirection){
+    public List<University> findAllUniversities(String name, String city,String sortField, String sortDirection){
         Sort sort;
 
         if("asc".equals(sortDirection)){
@@ -31,7 +31,15 @@ public class UniversityService {
             sort=Sort.by(sortField).descending();
         }
 
-        return  universityRepository.findAll(sort);
+        if(name!=null&&!name.isEmpty()&&city!=null&&!city.isEmpty()){
+            return universityRepository.findByNameContainingIgnoreCaseAndCityIsContainingIgnoreCase(name,city,sort);
+        }else if(name!=null&&!name.isEmpty()){
+            return universityRepository.findByNameContainingIgnoreCase(name,sort);
+        }else if(city!=null&&!city.isEmpty()){
+            return universityRepository.findByNameContainingIgnoreCase(city,sort);
+        }else {
+            return universityRepository.findAll(sort);
+        }
     }
 
 

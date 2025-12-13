@@ -1,6 +1,7 @@
 package com.example.UniversityManagementSystem.controller;
 
 import com.example.UniversityManagementSystem.model.Assistant;
+import com.example.UniversityManagementSystem.model.AssistantRole;
 import com.example.UniversityManagementSystem.service.AssistantService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -20,11 +21,17 @@ public class AssistantController {
 
     @GetMapping
     public String getAllAssistants(Model model,
+                                   @RequestParam(value = "name", required = false) String name,
+                                   @RequestParam(value = "role", required = false) AssistantRole role,
                                    @RequestParam(value = "sortField", defaultValue = "name")String sortField,
                                    @RequestParam(value = "sortDir", defaultValue = "asc")String sortDir ) {
-        model.addAttribute("assistants", assistantService.findAllAssistants(sortField, sortDir));
+        model.addAttribute("assistants", assistantService.findAllAssistants(name,role,sortField, sortDir));
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);
+        model.addAttribute("name", name);
+        model.addAttribute("roleParam", role);
+        model.addAttribute("allRoles", AssistantRole.values());
+
         return "assistant/index";
     }
 

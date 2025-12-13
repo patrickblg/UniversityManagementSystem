@@ -26,18 +26,21 @@ public class CourseController {
 
     @GetMapping
     public String getALlCourses(Model model,
+                                @RequestParam(value = "title",required = false) String title,
+                                @RequestParam(value = "credits",required = false) Integer credits,
                                 @RequestParam(value = "sortField",defaultValue = "id")String sortField,
-                                @RequestParam(value = "sortDir",defaultValue = "asc")String sortDir) {
-        model.addAttribute("courses",courseService.findAllCourses(sortField, sortDir));
+                                @RequestParam(value = "sortDir",defaultValue = "asc")String sortDir){
+        model.addAttribute("courses",courseService.findAllCourses(title,credits,sortField, sortDir));
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);
+        model.addAttribute("title", title);
+        model.addAttribute("credits", credits);
         return "course/index";
     }
 
     @GetMapping("/new")
     public String showCourseForm(Model model) {
         model.addAttribute("course",new Course());
-        // Aici Controllerul ar trebui să adauge Department și Room disponibile
         model.addAttribute("allDepartments", departmentService.findAllDepartments());
         model.addAttribute("allRooms", roomService.findAllRooms());
         return "course/course-form";

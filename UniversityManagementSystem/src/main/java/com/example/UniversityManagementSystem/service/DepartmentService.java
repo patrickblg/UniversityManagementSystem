@@ -30,7 +30,7 @@ public class DepartmentService {
         return departmentRepository.findAll();
 
     }
-    public List<Department> findAllDepartments(String sortField, String sortDirection){
+    public List<Department> findAllDepartments(String name,String sortField, String sortDirection){
         Sort sort;
 
         if("asc".equals(sortDirection)){
@@ -38,8 +38,11 @@ public class DepartmentService {
         }else{
             sort=Sort.by(sortField).descending();
         }
-
-        return  departmentRepository.findAll(sort);
+        if(name!=null && !name.isEmpty()){
+            return departmentRepository.findByNameContainingIgnoreCase(name,sort);
+        }else{
+            return departmentRepository.findAll(sort);
+        }
     }
     public Department findDepartmentById(String id) {
         return departmentRepository.findById(id).orElse(null);

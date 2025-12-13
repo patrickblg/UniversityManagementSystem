@@ -23,11 +23,15 @@ public class UniversityController {
 
     @GetMapping
     public String getAllUniversity(Model model,
+                                   @RequestParam(value = "name", required = false) String name,
+                                   @RequestParam(value = "city", required = false) String city,
                                    @RequestParam(value = "sortField",defaultValue = "name")String sortField,
                                    @RequestParam(value = "sortDir",defaultValue = "asc")String sortDir){
-        model.addAttribute("universities",universityService.findAllUniversities(sortField, sortDir));
+        model.addAttribute("universities",universityService.findAllUniversities(name,city,sortField, sortDir));
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);
+        model.addAttribute("name", name);
+        model.addAttribute("city", city);
         return "university/index";
     }
 

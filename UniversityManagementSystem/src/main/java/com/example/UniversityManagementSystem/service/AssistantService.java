@@ -1,6 +1,7 @@
 package com.example.UniversityManagementSystem.service;
 
 import com.example.UniversityManagementSystem.model.Assistant;
+import com.example.UniversityManagementSystem.model.AssistantRole;
 import com.example.UniversityManagementSystem.model.Student;
 import com.example.UniversityManagementSystem.repository.AssistantRepository;
 import jakarta.transaction.Transactional;
@@ -25,7 +26,7 @@ public class AssistantService {
         return assistantRepository.findAll();
     }
 
-    public List<Assistant> findAllAssistants(String sortField, String sortDirection){
+    public List<Assistant> findAllAssistants(String name, AssistantRole role, String sortField, String sortDirection){
         Sort sort;
 
         if("asc".equals(sortDirection)){
@@ -33,8 +34,15 @@ public class AssistantService {
         }else{
             sort=Sort.by(sortField).descending();
         }
-
-        return  assistantRepository.findAll(sort);
+        if(name!=null&&!name.isEmpty()&&role!=null){
+            return assistantRepository.findByNameContainingIgnoreCaseAndRole(name,role,sort);
+        }else if(name!=null&&!name.isEmpty()){
+            return assistantRepository.findByNameContainingIgnoreCase(name,sort);
+        }else if(role!=null){
+            return assistantRepository.findByRole(role,sort);
+        }else{
+            return assistantRepository.findAll(sort);
+        }
     }
 
     @Transactional

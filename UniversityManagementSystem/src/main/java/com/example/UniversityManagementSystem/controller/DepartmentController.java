@@ -25,11 +25,13 @@ public class DepartmentController {
 
     @GetMapping
     public String listDepartments(Model model,
+                                  @RequestParam(value = "name", required = false) String name,
                                   @RequestParam(value = "sortField",defaultValue = "name")String sortField,
                                   @RequestParam(value = "sortDir",defaultValue = "asc")String sortDir) {
-        model.addAttribute("departments", departmentService.findAllDepartments(sortField, sortDir));
+        model.addAttribute("departments", departmentService.findAllDepartments(name,sortField, sortDir));
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);
+        model.addAttribute("name", name);
         return "department/index";
     }
 

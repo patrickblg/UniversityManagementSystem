@@ -20,18 +20,33 @@
 
 
 <div class="main">
+    <div class="filter-container">
+        <form th:action="@{/university}" method="get">
+            <input type="hidden" name="sortField" th:value="${sortField}" />
+            <input type="hidden" name="sortDir" th:value="${sortDir}" />
+
+            <label>Name:</label>
+            <input type="text" name="name" th:value="${name}" placeholder="Filter by Name" />
+
+            <label>City:</label>
+            <input type="text" name="city" th:value="${city}" placeholder="Filter by City" />
+
+            <button type="submit">Filter</button>
+            <a th:href="@{/university}"><button type="button">Clear</button></a>
+        </form>
+    </div>
 
     <a th:href="@{/university/new}">Add New University</a>
     <table>
         <thead>
         <tr>
             <th>
-                <a th:href="@{'/university'(sortField='id', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                <a th:href="@{'/university'(sortField='id', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'},name=${name},city=${city})}">
                     ID <span th:if="${sortField == 'id'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
                 </a>
             </th>
             <th>
-                <a th:href="@{'/university'(sortField='name', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                <a th:href="@{'/university'(sortField='name', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'},name=${name},city=${city})}">
                     Name <span th:if="${sortField == 'name'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
                 </a>
             </th>
