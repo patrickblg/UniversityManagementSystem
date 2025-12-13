@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/indexStyle.css}">
 <head>
+    <title>Detalii Asignare de Predare</title>
     <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
+<h1>Detalii Asignare de Predare: <span th:text="${teachingassignment.id}"></span></h1>
 
+<div class="main">
+    <p><strong>ID Asignare:</strong> <span th:text="${teachingassignment.id}"></span></p>
+    <p><strong>Curs:</strong> <span th:text="${teachingassignment.course.title} + ' (' + ${teachingassignment.course.id} + ')'"></span></p>
+    <p><strong>Membru Staff:</strong> <span th:text="${teachingassignment.staff.name} + ' (' + ${teachingassignment.staff.id} + ')'"></span></p>
+    <p><strong>Rol de Management:</strong> <span th:text="${teachingassignment.managing}"></span></p>
+
+    <br>
+    <a th:href="@{/teachingassignment}">Înapoi la Asignări</a>
+</div>
 </body>
 </html>

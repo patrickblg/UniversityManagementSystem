@@ -2,12 +2,14 @@ package com.example.UniversityManagementSystem.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 
 @Entity
 
 public class TeachingAssignment implements Identifiable{
     @Id
+    @NotBlank
     private String id;
 
     @ManyToOne
@@ -19,6 +21,7 @@ public class TeachingAssignment implements Identifiable{
     @JoinColumn(name="staff_id")
     @JsonBackReference
     private Staff staff;
+
     @Enumerated(EnumType.STRING)
     private ManagingRole managing;
 

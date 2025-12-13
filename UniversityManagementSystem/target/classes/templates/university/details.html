@@ -1,10 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/indexStyle.css}">
 <head>
+    <title>Detalii Universitate</title>
     <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
+<h1>Detalii Universitate: <span th:text="${university.name}"></span></h1>
 
+<div class="main">
+    <p><strong>ID:</strong> <span th:text="${university.id}"></span></p>
+    <p><strong>Nume:</strong> <span th:text="${university.name}"></span></p>
+    <p><strong>Oraș:</strong> <span th:text="${university.city}"></span></p>
+
+    <hr>
+
+    <h2>Departamente (<span th:text="${university.departments.size()}"></span>)</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID Departament</th>
+            <th>Nume</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="department : ${university.departments}">
+            <td th:text="${department.id}"></td>
+            <td th:text="${department.name}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>Săli de Curs/Laborator (<span th:text="${university.rooms.size()}"></span>)</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID Sală</th>
+            <th>Număr</th>
+            <th>Nume</th>
+            <th>Capacitate</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="room : ${university.rooms}">
+            <td th:text="${room.id}"></td>
+            <td th:text="${room.number}"></td>
+            <td th:text="${room.name}"></td>
+            <td th:text="${room.capacity}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <a th:href="@{/university}">Înapoi la Universități</a>
+</div>
 </body>
 </html>

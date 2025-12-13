@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/indexStyle.css}">
 <head>
+    <title>Detalii Profesor</title>
     <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
+<h1>Detalii Profesor: <span th:text="${teacher.name}"></span></h1>
 
+<div class="main">
+    <p><strong>ID:</strong> <span th:text="${teacher.id}"></span></p>
+    <p><strong>Nume:</strong> <span th:text="${teacher.name}"></span></p>
+    <p><strong>Titlu:</strong> <span th:text="${teacher.title}"></span></p>
+    <p><strong>Departament:</strong> <span th:text="${teacher.department.name}"></span></p>
+
+    <hr>
+
+    <h2>Asignări de Predare (<span th:text="${teacher.assignments.size()}"></span>)</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID Asignare</th>
+            <th>Curs</th>
+            <th>Rol</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="assignment : ${teacher.assignments}">
+            <td th:text="${assignment.id}"></td>
+            <td th:text="${assignment.course.title}"></td>
+            <td th:text="${assignment.managing}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <a th:href="@{/teacher}">Înapoi la Profesori</a>
+</div>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.example.UniversityManagementSystem.controller;
 
+import com.example.UniversityManagementSystem.model.Assistant;
 import com.example.UniversityManagementSystem.model.Student;
 import com.example.UniversityManagementSystem.service.StudentService;
 import jakarta.validation.Valid;
@@ -20,8 +21,13 @@ public class StudentController {
     }
 
     @GetMapping
-    public String getStudents(Model model) {
-        model.addAttribute("students", studentService.findAllStudents());
+    public String getStudents(Model model,
+                              @RequestParam(value = "sortField", defaultValue = "name")String sortField,
+                              @RequestParam(value = "sortDir",defaultValue = "asc") String sortDir) {
+
+        model.addAttribute("students",studentService.findAllStudents(sortField,sortDir));
+        model.addAttribute("sortField",sortField);
+        model.addAttribute("sortDir",sortDir);
         return "student/index";
     }
 
@@ -32,13 +38,15 @@ public class StudentController {
     }
 
     @PostMapping("/add-student")
-    public String addStudent(@Valid @ModelAttribute Student student, BindingResult result){
+    public String addStudent(@Valid @ModelAttribute("student") Student student,
+                             BindingResult result) {
         if (result.hasErrors()) {
             return "student/student-form";
         }
         studentService.saveStudent(student);
         return "redirect:/student";
     }
+
 
     @GetMapping("/{id}/details")
     public String showStudentDetails(@PathVariable String id, Model model) {
@@ -57,14 +65,15 @@ public class StudentController {
     }
 
     @PostMapping("/{id}/update-student")
-    public String updateStudent(@PathVariable String id, @Valid @ModelAttribute Student updatedStudent, BindingResult result) {
+    public String updateStudent(@PathVariable String id, @Valid @ModelAttribute Student student, BindingResult result) {
         if (result.hasErrors()) {
             return "student/student-edit-form";
         }
-        updatedStudent.setId(id);
-        studentService.updateStudent(updatedStudent);
+        student.setId(id);
+        studentService.updateStudent(student);
         return "redirect:/student";
     }
+
 
     @PostMapping("/{id}/delete")
     public String deleteStudent(@PathVariable String id){

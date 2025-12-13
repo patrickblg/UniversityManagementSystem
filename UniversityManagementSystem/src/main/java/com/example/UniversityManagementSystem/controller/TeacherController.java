@@ -30,6 +30,7 @@ public class TeacherController {
     @GetMapping("/new")
     public String showAddTeacherForm(Model model){
         model.addAttribute("teacher",new Teacher());
+        // Aici adaugi listele necesare pentru formulare (Department)
         model.addAttribute("allDepartments", departmentService.findAllDepartments());
         return "teacher/form";
     }
@@ -55,7 +56,6 @@ public class TeacherController {
         Teacher teacher = teacherService.findById(id);
         if (teacher == null) return "redirect:/teacher";
         model.addAttribute("teacher", teacher);
-
         return "teacher/details";
     }
 
@@ -65,8 +65,8 @@ public class TeacherController {
         if (teacher == null) return "redirect:/teacher";
 
         model.addAttribute("teacher", teacher);
-        model.addAttribute("allDepartments", departmentService.findAllDepartments());
         // Aici adaugi listele necesare pentru formulare (Department)
+        model.addAttribute("allDepartments", departmentService.findAllDepartments());
         return "teacher/teacher-edit-form";
     }
 

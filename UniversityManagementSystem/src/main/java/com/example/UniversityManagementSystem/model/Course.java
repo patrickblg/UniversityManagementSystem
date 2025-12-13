@@ -3,6 +3,9 @@ package com.example.UniversityManagementSystem.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +14,12 @@ import java.util.List;
 public class Course implements Identifiable {
     @Id
     private String id;
+    @NotBlank
+    @Size(min = 3)
     private String title;
+    @NotNull
     private int credits;
+    @NotNull
     private double duration;
 
     @ManyToOne

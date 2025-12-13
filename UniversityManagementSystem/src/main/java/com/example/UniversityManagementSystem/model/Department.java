@@ -5,15 +5,18 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.List;
 @Entity
+
 public class Department implements Identifiable {
     @Id
     @NotBlank(message = "id is required")//validare
     private String id;
-    @NotBlank(message = "name is required")//validare
+    @NotBlank(message = "name is required")
+    @Size(min = 3)
     private String name;
 
     @NotNull(message = "university must not be null")//validare

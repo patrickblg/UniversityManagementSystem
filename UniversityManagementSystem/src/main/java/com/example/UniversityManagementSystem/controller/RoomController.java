@@ -17,7 +17,7 @@ public class RoomController {
     private final UniversityService universityService;
 
     @Autowired
-    public RoomController(RoomService roomService, UniversityService universityService) {
+    public RoomController(RoomService roomService,UniversityService universityService) {
         this.roomService = roomService;
         this.universityService = universityService;
     }
@@ -82,8 +82,8 @@ public class RoomController {
             updatedRoom.setId(id);
             roomService.updateRoom(updatedRoom);
         } catch (IllegalArgumentException e) {
-            model.addAttribute("errorMessage", e.getMessage());
             model.addAttribute("allUniversities", universityService.findAllUniversities());
+            model.addAttribute("errorMessage", e.getMessage());
             return "room/room-edit-form";
         }
         return "redirect:/room";

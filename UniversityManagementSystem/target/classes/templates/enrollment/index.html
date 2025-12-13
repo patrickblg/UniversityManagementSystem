@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/indexStyle.css}">
 
 <head>
@@ -7,17 +7,24 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<h1>Enrollments</h1>
+<div class="mainn">
+    <a class="home" th:href="@{/mainIndex}">
+        <img src="https://icon-library.com/images/home-button-icon/home-button-icon-7.jpg">
+    </a>
+    <h2>
+        Enrollments
+    </h2>
+</div>
+
 
 <div class="main">
-    <h2>Enrollments</h2>
     <a th:href="@{/enrollment/new}">Add New Enrollment</a>
     <table>
         <thead>
         <tr>
             <th>ID</th>
-            <th>StudentId</th>
-            <th>CourseId</th>
+            <th>Student</th>
+            <th>Course</th>
             <th>Grade</th>
             <th>Action</th>
         </tr>
@@ -29,7 +36,7 @@
             <td th:text="${e.course.title}">CourseTitle</td>
             <td th:text="${e.grade}">Grade</td>
             <td>
-                <form th:action="@{'/enrollment/' + ${e.id} + '/delete'}" method="post">
+                <form th:action="@{'/enrollment/' + ${e.id} + '/delete'}" method="post" style="display:inline;">
                     <button type="submit">Delete</button>
                 </form>
                 <a th:href="@{'/enrollment/' + ${e.id} + '/edit-enrollment'}">
@@ -44,4 +51,4 @@
     </table>
 </div>
 </body>
-</html>l>
+</html>

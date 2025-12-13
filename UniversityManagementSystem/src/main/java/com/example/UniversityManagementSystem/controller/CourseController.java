@@ -33,6 +33,7 @@ public class CourseController {
     @GetMapping("/new")
     public String showCourseForm(Model model) {
         model.addAttribute("course",new Course());
+        // Aici Controllerul ar trebui să adauge Department și Room disponibile
         model.addAttribute("allDepartments", departmentService.findAllDepartments());
         model.addAttribute("allRooms", roomService.findAllRooms());
         return "course/course-form";
@@ -70,6 +71,7 @@ public class CourseController {
         if (course == null) return "redirect:/course";
 
         model.addAttribute("course", course);
+        // Aici Controllerul ar trebui să adauge Department și Room disponibile
         model.addAttribute("allDepartments", departmentService.findAllDepartments());
         model.addAttribute("allRooms", roomService.findAllRooms());
         return "course/course-edit-form";

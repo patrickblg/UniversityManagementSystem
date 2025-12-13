@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" th:href="@{css/indexStyle.css}">
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/indexStyle.css}">
 
 <head>
-    <title>Rooms</title>
+    <title>Rooms List</title>
     <meta charset="UTF-8">
 </head>
 <body>
-<h1> Rooms</h1>
-
+<div class="mainn">
+    <a class="home" th:href="@{/mainIndex}">
+        <img src="https://icon-library.com/images/home-button-icon/home-button-icon-7.jpg">
+    </a>
+    <h2>
+        Rooms
+    </h2>
+</div>
 
 <div class="main">
-    <h2>Rooms</h2>
     <a th:href="@{/room/new}">Add New Room</a>
     <table>
         <thead>
@@ -20,6 +25,7 @@
             <th>Number</th>
             <th>Capacity</th>
             <th>Name</th>
+            <th>University</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -28,9 +34,10 @@
             <td th:text="${r.id}">Id</td>
             <td th:text="${r.number}">Number</td>
             <td th:text="${r.capacity}">Capacity</td>
-            <td th:text="${r.name}">Capacity</td>
+            <td th:text="${r.name}">Name</td>
+            <td th:text="${r.university.name}">UniversityName</td>
             <td>
-                <form th:action="@{'/room/' + ${r.id} + '/delete'}" method="post">
+                <form th:action="@{'/room/' + ${r.id} + '/delete'}" method="post" style="display:inline;">
                     <button type="submit">Delete</button>
                 </form>
                 <a th:href="@{'/room/' + ${r.id} + '/edit-room'}">

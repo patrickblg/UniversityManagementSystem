@@ -40,12 +40,14 @@ public class DepartmentController {
     @PostMapping("/add-department")
     public String addDepartment(@Valid @ModelAttribute Department department, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            model.addAttribute("allUniversities", universityService.findAllUniversities());
             return "department/form";
         }
         try {
             departmentService.save(department);
         } catch (IllegalArgumentException e) {
             model.addAttribute("errorMessage", e.getMessage());
+            model.addAttribute("allUniversities", universityService.findAllUniversities());
             return "department/form";
         }
         return "redirect:/department";
@@ -74,6 +76,7 @@ public class DepartmentController {
     @PostMapping("/{id}/update-department")
     public String updateDepartment(@PathVariable String id, @Valid @ModelAttribute Department updatedDepartment, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            model.addAttribute("allUniversities", universityService.findAllUniversities());
             return "department/department-edit-form";
         }
         try {
@@ -81,6 +84,7 @@ public class DepartmentController {
             departmentService.updateDepartment(updatedDepartment);
         } catch (IllegalArgumentException e) {
             model.addAttribute("errorMessage", e.getMessage());
+            model.addAttribute("allUniversities", universityService.findAllUniversities());
             return "department/department-edit-form";
         }
         return "redirect:/department";

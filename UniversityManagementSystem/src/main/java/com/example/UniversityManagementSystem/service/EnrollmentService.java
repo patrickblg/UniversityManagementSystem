@@ -34,13 +34,26 @@ public class EnrollmentService {
         if (e.getCourse() == null || e.getCourse().getId() == null || !courseRepository.existsById(e.getCourse().getId())) {
             throw new IllegalArgumentException("Nu se poate crea înrolarea: Cursul cu ID-ul specificat nu există.");
         }
-         enrollmentRepository.save(e);
+        enrollmentRepository.save(e);
     }
     public void deleteEnrollmentById(String id) {
         enrollmentRepository.deleteById(id);
     }
     public void updateEnrollment(Enrollment enrollment) {
+
+        // --- START MODIFICARE PENTRU RE-ATAȘARE ---
+        // 1. Extrage înregistrarea existentă din baza de date
+        Enrollment existingEnrollment = enrollmentRepository.findById(enrollment.getId())
+                .orElseThrow(() -> new IllegalArgumentException("Înrolarea de actualizat nu a fost găsită."));
+
+        // 2. Re-atașează referințele Student și Course la obiectul Enrollment din formular.
+        // Aceasta asigură că validarea se face pe obiectele JPA complete și corecte.
+        enrollment.setStudent(existingEnrollment.getStudent());
+        enrollment.setCourse(existingEnrollment.getCourse());
+        // --- END MODIFICARE PENTRU RE-ATAȘARE ---
+
         // Business Logic: Verifică din nou existența la update (opțional, dar recomandat)
+        // Daca enrollment.getStudent() este null (date corupte), eroarea se va declanșa corect AICI.
         if (enrollment.getStudent() == null || enrollment.getStudent().getId() == null || !studentRepository.existsById(enrollment.getStudent().getId())) {
             throw new IllegalArgumentException("Nu se poate actualiza înrolarea: Studentul cu ID-ul specificat nu există.");
         }

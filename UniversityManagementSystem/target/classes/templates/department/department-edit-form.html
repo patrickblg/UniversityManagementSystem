@@ -29,8 +29,7 @@
             <option value="">-- Selectează Universitatea --</option>
             <option th:each="univ : ${allUniversities}"
                     th:value="${univ.id}"
-                    th:text="${univ.name}"
-                    th:selected="${department.university != null AND univ.id == department.university.id}">
+                    th:text="${univ.name}">
             </option>
         </select>
         <span th:if="${#fields.hasErrors('university')}" th:errors="*{university}" style="color: red;"></span>

@@ -1,23 +1,31 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" th:href="@{css/indexStyle.css}">
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/indexStyle.css}">
 
 <head>
-    <title>Departments</title>
+    <title>Departments List</title>
     <meta charset="UTF-8">
 </head>
 <body>
-<h1> Departments</h1>
+<div class="mainn">
+    <a class="home" th:href="@{/mainIndex}">
+        <img src="https://icon-library.com/images/home-button-icon/home-button-icon-7.jpg">
+    </a>
+    <h2>
+        Departments
+    </h2>
+</div>
+
 
 
 <div class="main">
-    <h2>Departments</h2>
     <a th:href="@{/department/new}">Add New Department</a>
     <table>
         <thead>
         <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>University</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -25,9 +33,10 @@
         <tr th:each="d : ${departments}">
             <td th:text="${d.id}">Id</td>
             <td th:text="${d.name}">Name</td>
+            <td th:text="${d.university.name}">UniversityName</td>
 
             <td>
-                <form th:action="@{'/department/' + ${d.id} + '/delete'}" method="post">
+                <form th:action="@{'/department/' + ${d.id} + '/delete'}" method="post" style="display:inline;">
                     <button type="submit">Delete</button>
                 </form>
                 <a th:href="@{'/department/' + ${d.id} + '/edit-department'}">

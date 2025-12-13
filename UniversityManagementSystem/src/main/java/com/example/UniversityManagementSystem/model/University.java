@@ -3,6 +3,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -10,8 +12,13 @@ import java.util.ArrayList;
 
 public class University implements Identifiable{
     @Id
+    @NotBlank
     private String id;
+    @NotBlank
+    @Size(min = 3)
     private String name;
+    @NotBlank
+    @Size(min = 3)
     private String city;
     @OneToMany(mappedBy = "university",cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference

@@ -1,40 +1,47 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/formStyle.css}">
 <head>
     <title>Edit Teachingassignment</title>
 </head>
 <body>
 
 <h1>Edit Teachingassignment</h1>
+<div class="main">
+    <div th:if="${errorMessage}" style="color: red; margin-bottom: 10px;">
+        <p th:text="${errorMessage}"></p>
+    </div>
+    <form th:action="@{'/teachingassignment/' + ${teachingassignment.id} + '/update-teachingassignment'}" method="post" th:object="${teachingassignment}">
 
-<form th:action="@{'/course/teachingassignment/' + ${teachingassignment.id} + '/update-teachingassignment'}" method="post">
+        <label>ID:</label>
+        <input name="id" type="text" th:value="${teachingassignment.id}" readonly/>
 
-    <label>ID:</label>
-    <input name="id" type="text" th:value="${teachingassignment.id}" readonly/>
+        <br/>
 
-    <br/>
+        <label>Course:</label>
+        <input type="text" th:value="${teachingassignment.course.title}" readonly/>
+        <br/>
 
-    <label>CourseId:</label>
-    <input name="courseId" type="text" th:value="${teachingassignment.courseId}" readonly/>
-
-    <br/>
-
-    <label>StaffId:</label>
-    <input name="staffId" type="text" th:value="${teachingassignment.staffId}" readonly/>
-
-    <br/>
-
-
-    <label>Managing:</label>
-    <input name="managing" type="text" th:value="${teachingassignment.managing}" required/>
-
-    <br/>
+        <label>Staff:</label>
+        <input type="text" th:value="${teachingassignment.staff.name}" readonly/>
+        <br/>
 
 
-    <button type="submit">Save Changes</button>
-</form>
+        <label>Managing:</label>
+        <select th:field="*{managing}" required>
+            <option value="">-- Selectează Rolul --</option>
+            <option th:each="role : ${T(com.example.UniversityManagementSystem.model.ManagingRole).values()}" th:value="${role}" th:text="${role}" th:selected="${role == teachingassignment.managing}">
+            </option>
+        </select>
+        <span th:if="${#fields.hasErrors('managing')}" th:errors="*{managing}" style="color: red;"></span>
+        <br/>
 
-<a th:href="@{/course}">Back</a>
 
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <a th:href="@{/teachingassignment}">Back</a>
+
+</div>
 </body>
 </html>

@@ -18,7 +18,6 @@ public class EnrollmentController {
     private final EnrollmentService enrollmentService;
     private final StudentService studentService;
     private final CourseService courseService;
-
     public EnrollmentController(EnrollmentService enrollmentService, StudentService studentService, CourseService courseService) {
         this.enrollmentService = enrollmentService;
         this.studentService = studentService;
@@ -41,7 +40,7 @@ public class EnrollmentController {
     }
 
     @PostMapping("/add-enrollment")
-    public String addEnrollment(@Valid @ModelAttribute Enrollment enrollment, BindingResult result, RedirectAttributes redirectAttributes, Model model) {
+    public String addEnrollment(@Valid @ModelAttribute Enrollment enrollment, BindingResult result, RedirectAttributes redirectAttributes,Model model){
         if (result.hasErrors()) {
             model.addAttribute("allStudents", studentService.findAllStudents());
             model.addAttribute("allCourses", courseService.findAllCourses());

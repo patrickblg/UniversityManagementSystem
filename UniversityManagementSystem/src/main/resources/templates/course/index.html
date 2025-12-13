@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/indexStyle.css}">
 
 <head>
@@ -7,10 +7,17 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<h1>Courses</h1>
+<div class="mainn">
+    <a class="home" th:href="@{/mainIndex}">
+        <img src="https://icon-library.com/images/home-button-icon/home-button-icon-7.jpg">
+    </a>
+    <h2>
+        Courses
+    </h2>
+</div>
+
 
 <div class="main">
-    <h2>Courses</h2>
     <a th:href="@{/course/new}">Add New Course</a>
     <table>
         <thead>
@@ -33,7 +40,7 @@
             <td th:text="${c.department.name}">DepartmentName</td>
             <td th:text="${c.room.name}">RoomName</td>
             <td>
-                <form th:action="@{'/course/' + ${c.id} + '/delete'}" method="post">
+                <form th:action="@{'/course/' + ${c.id} + '/delete'}" method="post" style="display:inline;">
                     <button type="submit">Delete</button>
                 </form>
                 <a th:href="@{'/course/' + ${c.id} + '/edit-course'}">

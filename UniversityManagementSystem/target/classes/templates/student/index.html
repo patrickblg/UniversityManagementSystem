@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/indexStyle.css}">
 
 <head>
@@ -7,16 +7,32 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<h1>Students</h1>
+<div class="mainn">
+    <a class="home" th:href="@{/mainIndex}">
+        <img src="https://icon-library.com/images/home-button-icon/home-button-icon-7.jpg">
+    </a>
+    <h2>
+        Students
+    </h2>
+</div>
+
 
 <div class="main">
-    <h2>Students</h2>
-    <a th:href="@{/student/new}">Add New Student</a>
+    <a th:href="@{/student/new-student}">Add New Student</a>
     <table>
         <thead>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
+            <th>
+                <a th:href="@{'/student'(sortField='id', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                    ID <span th:if="${sortField == 'id'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
+                </a>
+            </th>
+
+            <th>
+                <a th:href="@{'/student'(sortField='name', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                    Name <span th:if="${sortField == 'name'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
+                </a>
+            </th>
             <th>Action</th>
         </tr>
         </thead>
@@ -25,7 +41,7 @@
             <td th:text="${s.id}">Id</td>
             <td th:text="${s.name}">Name</td>
             <td>
-                <form th:action="@{'/student/' + ${s.id} + '/delete'}" method="post">
+                <form th:action="@{'/student/' + ${s.id} + '/delete'}" method="post" style="display:inline;">
                     <button type="submit">Delete</button>
                 </form>
                 <a th:href="@{'/student/' + ${s.id} + '/edit-student'}">
