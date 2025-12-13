@@ -36,7 +36,7 @@ public class UniversityService {
         }else if(name!=null&&!name.isEmpty()){
             return universityRepository.findByNameContainingIgnoreCase(name,sort);
         }else if(city!=null&&!city.isEmpty()){
-            return universityRepository.findByNameContainingIgnoreCase(city,sort);
+            return universityRepository.findByCityContainingIgnoreCase(city,sort);
         }else {
             return universityRepository.findAll(sort);
         }

@@ -7,6 +7,13 @@
     <link rel="icon" th:href="@{/css/images/ums.png}">
 </head>
 <body>
+<div id="welcome">
+    <div class="gotoTable">
+        <a href="#container">goto container</a>
+    </div>
+
+</div>
+<div id="container">
 <div class="main">
     <a th:href="@{/mainIndex}">
     <img src="https://www.citypng.com/public/uploads/preview/house-line-white-icon-701751695034631kz76g1oajv.png">
@@ -15,6 +22,7 @@
     University Management System
 </h2>
 </div>
+
 <div class="parent">
 <a th:href="@{/university}">Universities</a>
 <a th:href="@{/student}">Student</a>
@@ -26,7 +34,10 @@
 <a th:href="@{/teacher}">Teacher</a>
 <a th:href="@{/assistant}">Assistant</a>
 </div>
-
+    <div class="gotoPres">
+        <a href="#welcome">Goto welcome</a>
+    </div>
+</div>
 
 </body>
 </html>
