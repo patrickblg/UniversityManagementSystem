@@ -23,8 +23,13 @@ public class RoomController {
     }
 
     @GetMapping
-    public String listRooms(Model model) {
-        model.addAttribute("rooms", roomService.findAllRooms());
+    public String listRooms(Model model,
+                            @RequestParam(value = "sortField",defaultValue = "name")String sortField,
+                            @RequestParam(value = "sortDir",defaultValue = "asc")String sortDir) {
+
+        model.addAttribute("rooms", roomService.findAllRooms(sortField, sortDir));
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
         return "room/index";
     }
 
@@ -58,7 +63,7 @@ public class RoomController {
         Room room = roomService.findRoomById(id);
         if (room == null) return "redirect:/room";
         model.addAttribute("room", room);
-        return "room/details"; // Partenerul va crea room/details.html
+        return "room/details";
     }
 
     @GetMapping("/{id}/edit-room")
@@ -71,7 +76,6 @@ public class RoomController {
         return "room/room-edit-form";
     }
 
-    // Actualizează (Pregătit pentru @Valid)
     @PostMapping("/{id}/update-room")
     public String updateRoom(@PathVariable String id, @Valid @ModelAttribute Room updatedRoom, BindingResult result, Model model) {
         if (result.hasErrors()) {

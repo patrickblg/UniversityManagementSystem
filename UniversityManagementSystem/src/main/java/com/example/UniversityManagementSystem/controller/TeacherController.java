@@ -22,15 +22,18 @@ public class TeacherController {
     }
 
     @GetMapping
-    public String showAllTeachers(Model model) {
-        model.addAttribute("teachers", teacherService.findAll());
+    public String showAllTeachers(Model model,
+                                  @RequestParam(value = "sortField",defaultValue = "name")String sortField,
+                                  @RequestParam(value = "sortDir",defaultValue = "asc")String sortDir) {
+        model.addAttribute("teachers", teacherService.findAll(sortField, sortDir));
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
         return "teacher/index";
     }
 
     @GetMapping("/new")
     public String showAddTeacherForm(Model model){
         model.addAttribute("teacher",new Teacher());
-        // Aici adaugi listele necesare pentru formulare (Department)
         model.addAttribute("allDepartments", departmentService.findAllDepartments());
         return "teacher/form";
     }
@@ -65,7 +68,6 @@ public class TeacherController {
         if (teacher == null) return "redirect:/teacher";
 
         model.addAttribute("teacher", teacher);
-        // Aici adaugi listele necesare pentru formulare (Department)
         model.addAttribute("allDepartments", departmentService.findAllDepartments());
         return "teacher/teacher-edit-form";
     }

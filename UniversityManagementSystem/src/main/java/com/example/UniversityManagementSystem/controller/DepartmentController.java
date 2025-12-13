@@ -24,8 +24,12 @@ public class DepartmentController {
     }
 
     @GetMapping
-    public String listDepartments(Model model) {
-        model.addAttribute("departments", departmentService.findAllDepartments());
+    public String listDepartments(Model model,
+                                  @RequestParam(value = "sortField",defaultValue = "name")String sortField,
+                                  @RequestParam(value = "sortDir",defaultValue = "asc")String sortDir) {
+        model.addAttribute("departments", departmentService.findAllDepartments(sortField, sortDir));
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
         return "department/index";
     }
 
@@ -59,7 +63,7 @@ public class DepartmentController {
         Department department = departmentService.findDepartmentById(id);
         if (department == null) return "redirect:/department";
         model.addAttribute("department", department);
-        return "department/details"; // Partenerul va crea department/details.html
+        return "department/details";
     }
 
     @GetMapping("/{id}/edit-department")

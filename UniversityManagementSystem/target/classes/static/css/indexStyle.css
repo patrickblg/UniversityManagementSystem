@@ -1,5 +1,5 @@
 html{
-    background-color: #e8baf5;
+    background-image:radial-gradient(circle at center,rgba(0,0,0,0.7),black);
     font-family: 'Courier New', monospace;
     color: black;
 
@@ -12,8 +12,8 @@ html{
 
 
 img{
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
 
 }
 .mainn{
@@ -22,10 +22,12 @@ img{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: white;
+    color: whitesmoke;
+
+
 }
 h2{
-    font-size: 40px;
+    font-size: 60px;
     align-items: center;
     justify-content: center;
     display: flex;
@@ -45,46 +47,73 @@ h2{
 }
 
 table {
-    border: 1px solid black;
     border-collapse: collapse;
+    background-color:rgba(0, 0, 0, 0.2);
+    border-radius: 2%;
+    color:whitesmoke;
 
+}
+td a{
+    border:0;
+    margin:5px;
+    display: inline-block;
 }
 
 th, td{
     font-size: 18px;
     height: 50px;
     width: 200px;
-    border: 1px solid black;
+
+}
+td:nth-child(n+2):nth-last-child(n+2){
+    font-size: 18px;
+    height: 50px;
+    width: 200px;
+    border:1px solid black;
+
 }
 
+tr{
+    border-bottom: 1px solid black;
+}
+tbody tr:last-child{
+    border-bottom: none;
+}
 
+th:nth-child(n+2):nth-last-child(n+2){
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
 
 a{
     text-decoration: none;
-    color:black;
+    color:whitesmoke;
     font-size:20px;
-    border:2px solid black;
-    margin-bottom: 20px;
+    margin: 30px;
 }
-a:hover{
-    text-decoration:none;
-    color:grey;
+a:nth-child(1):hover{
+    text-decoration: none;
+    color:whitesmoke;
+    font-size:20px;
+    border:2px solid whitesmoke;
+
 }
 
+
 button{
-    font-size: 18px;
-    text-decoration: none;
-    border: none;
-    background: none;
-    width:200px;
-    height: 50px;
+    all:unset;
+    color:whitesmoke;
+
+
 
 }
 
 button:hover{
-    background:whitesmoke;
     cursor: pointer;
+    border:1px solid whitesmoke;
 }
-
+tr:last-child td:nth-child(n+2):nth-last-child(n+2) {
+    border-bottom: none;
+}
 
 

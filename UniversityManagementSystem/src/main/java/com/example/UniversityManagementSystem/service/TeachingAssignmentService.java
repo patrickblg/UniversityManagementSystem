@@ -1,9 +1,11 @@
 package com.example.UniversityManagementSystem.service;
+import com.example.UniversityManagementSystem.model.Student;
 import com.example.UniversityManagementSystem.model.TeachingAssignment;
 import com.example.UniversityManagementSystem.repository.AssistantRepository;
 import com.example.UniversityManagementSystem.repository.CourseRepository;
 import com.example.UniversityManagementSystem.repository.TeacherRepository;
 import com.example.UniversityManagementSystem.repository.TeachingAssignmentRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 
@@ -39,6 +41,17 @@ public class TeachingAssignmentService {
 
     public List<TeachingAssignment> findAllTeachingAssignments(){
         return teachingAssignmentRepository.findAll();
+    }
+    public List<TeachingAssignment> findAllTeachingAssignments(String sortField, String sortDirection){
+        Sort sort;
+
+        if("asc".equals(sortDirection)){
+            sort=Sort.by(sortField).ascending();
+        }else{
+            sort=Sort.by(sortField).descending();
+        }
+
+        return  teachingAssignmentRepository.findAll(sort);
     }
 
     public TeachingAssignment findTeachingAssignmentById(String id){

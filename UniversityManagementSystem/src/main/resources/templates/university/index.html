@@ -3,13 +3,15 @@
 <link rel="stylesheet" th:href="@{/css/indexStyle.css}">
 
 <head>
-    <title>Universities List</title>
+    <title>Universities</title>
     <meta charset="UTF-8">
+    <link rel="icon" th:href="@{/css/images/u.png}">
+
 </head>
 <body>
 <div class="mainn">
     <a class="home" th:href="@{/mainIndex}">
-        <img src="https://icon-library.com/images/home-button-icon/home-button-icon-7.jpg">
+        <img src="https://www.citypng.com/public/uploads/preview/house-line-white-icon-701751695034631kz76g1oajv.png">
     </a>
     <h2>
         Universities
@@ -23,8 +25,16 @@
     <table>
         <thead>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
+            <th>
+                <a th:href="@{'/university'(sortField='id', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                    ID <span th:if="${sortField == 'id'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
+                </a>
+            </th>
+            <th>
+                <a th:href="@{'/university'(sortField='name', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                    Name <span th:if="${sortField == 'name'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
+                </a>
+            </th>
             <th>City</th>
             <th>Action</th>
         </tr>

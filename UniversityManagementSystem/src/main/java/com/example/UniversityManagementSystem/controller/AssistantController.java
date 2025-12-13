@@ -19,8 +19,12 @@ public class AssistantController {
     }
 
     @GetMapping
-    public String getAllAssistants(Model model) {
-        model.addAttribute("assistants", assistantService.findAllAssistants());
+    public String getAllAssistants(Model model,
+                                   @RequestParam(value = "sortField", defaultValue = "name")String sortField,
+                                   @RequestParam(value = "sortDir", defaultValue = "asc")String sortDir ) {
+        model.addAttribute("assistants", assistantService.findAllAssistants(sortField, sortDir));
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
         return "assistant/index";
     }
 
@@ -35,7 +39,6 @@ public class AssistantController {
         if (result.hasErrors()) {
             return "assistant/form";
         }
-        // Asistentul nu are BL complexă
         assistantService.saveAssistant(assistant);
         return "redirect:/assistant";
     }

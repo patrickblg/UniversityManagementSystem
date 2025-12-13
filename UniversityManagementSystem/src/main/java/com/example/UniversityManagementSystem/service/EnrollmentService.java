@@ -1,9 +1,11 @@
 package com.example.UniversityManagementSystem.service;
 
 import com.example.UniversityManagementSystem.model.Enrollment;
+import com.example.UniversityManagementSystem.model.Student;
 import com.example.UniversityManagementSystem.repository.CourseRepository;
 import com.example.UniversityManagementSystem.repository.EnrollmentRepository;
 import com.example.UniversityManagementSystem.repository.StudentRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +29,17 @@ public class EnrollmentService {
     public List<Enrollment> getAllEnrollments() {
         return enrollmentRepository.findAll();
     }
+    public List<Enrollment> getAllEnrollments(String sortField, String sortDirection){
+        Sort sort;
+
+        if("asc".equals(sortDirection)){
+            sort=Sort.by(sortField).ascending();
+        }else{
+            sort=Sort.by(sortField).descending();
+        }
+
+        return  enrollmentRepository.findAll(sort);
+    }
     public void saveEnrollment(Enrollment e) {
         if (e.getStudent() == null || e.getStudent().getId() == null || !studentRepository.existsById(e.getStudent().getId())) {
             throw new IllegalArgumentException("Nu se poate crea înrolarea: Studentul cu ID-ul specificat nu există.");
@@ -41,19 +54,12 @@ public class EnrollmentService {
     }
     public void updateEnrollment(Enrollment enrollment) {
 
-        // --- START MODIFICARE PENTRU RE-ATAȘARE ---
-        // 1. Extrage înregistrarea existentă din baza de date
         Enrollment existingEnrollment = enrollmentRepository.findById(enrollment.getId())
                 .orElseThrow(() -> new IllegalArgumentException("Înrolarea de actualizat nu a fost găsită."));
 
-        // 2. Re-atașează referințele Student și Course la obiectul Enrollment din formular.
-        // Aceasta asigură că validarea se face pe obiectele JPA complete și corecte.
+
         enrollment.setStudent(existingEnrollment.getStudent());
         enrollment.setCourse(existingEnrollment.getCourse());
-        // --- END MODIFICARE PENTRU RE-ATAȘARE ---
-
-        // Business Logic: Verifică din nou existența la update (opțional, dar recomandat)
-        // Daca enrollment.getStudent() este null (date corupte), eroarea se va declanșa corect AICI.
         if (enrollment.getStudent() == null || enrollment.getStudent().getId() == null || !studentRepository.existsById(enrollment.getStudent().getId())) {
             throw new IllegalArgumentException("Nu se poate actualiza înrolarea: Studentul cu ID-ul specificat nu există.");
         }

@@ -25,8 +25,12 @@ public class CourseController {
     }
 
     @GetMapping
-    public String getALlCourses(Model model) {
-        model.addAttribute("courses",courseService.findAllCourses());
+    public String getALlCourses(Model model,
+                                @RequestParam(value = "sortField",defaultValue = "id")String sortField,
+                                @RequestParam(value = "sortDir",defaultValue = "asc")String sortDir) {
+        model.addAttribute("courses",courseService.findAllCourses(sortField, sortDir));
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
         return "course/index";
     }
 

@@ -5,11 +5,12 @@
 <head>
     <title>Rooms List</title>
     <meta charset="UTF-8">
+    <link rel="icon" th:href="@{/css/images/r.png}">
 </head>
 <body>
 <div class="mainn">
     <a class="home" th:href="@{/mainIndex}">
-        <img src="https://icon-library.com/images/home-button-icon/home-button-icon-7.jpg">
+        <img src="https://www.citypng.com/public/uploads/preview/house-line-white-icon-701751695034631kz76g1oajv.png">
     </a>
     <h2>
         Rooms
@@ -21,9 +22,17 @@
     <table>
         <thead>
         <tr>
-            <th>ID</th>
+            <th>
+                <a th:href="@{'/room'(sortField='id', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                    ID <span th:if="${sortField == 'id'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
+                </a>
+            </th>
             <th>Number</th>
-            <th>Capacity</th>
+            <th>
+                <a th:href="@{'/room'(sortField='capacity', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                    Capacity <span th:if="${sortField == 'capacity'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
+                </a>
+            </th>
             <th>Name</th>
             <th>University</th>
             <th>Action</th>

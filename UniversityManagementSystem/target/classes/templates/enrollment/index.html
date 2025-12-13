@@ -5,11 +5,12 @@
 <head>
     <title>Enrollments List</title>
     <meta charset="UTF-8">
+    <link rel="icon" th:href="@{/css/images/e.png}">
 </head>
 <body>
 <div class="mainn">
     <a class="home" th:href="@{/mainIndex}">
-        <img src="https://icon-library.com/images/home-button-icon/home-button-icon-7.jpg">
+        <img src="https://www.citypng.com/public/uploads/preview/house-line-white-icon-701751695034631kz76g1oajv.png">
     </a>
     <h2>
         Enrollments
@@ -22,10 +23,18 @@
     <table>
         <thead>
         <tr>
-            <th>ID</th>
+            <th>
+                <a th:href="@{'/enrollment'(sortField='id', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                    ID <span th:if="${sortField == 'id'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
+                </a>
+            </th>
             <th>Student</th>
             <th>Course</th>
-            <th>Grade</th>
+            <th>
+                <a th:href="@{'/enrollment'(sortField='grade', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                    Grade <span th:if="${sortField == 'grade'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
+                </a>
+            </th>
             <th>Action</th>
         </tr>
         </thead>

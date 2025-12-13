@@ -25,15 +25,18 @@ public class EnrollmentController {
     }
 
     @GetMapping
-    public String showAllEnrollments(Model model) {
-        model.addAttribute("enrollments",enrollmentService.getAllEnrollments());
+    public String showAllEnrollments(Model model,
+                                     @RequestParam(value = "sortField",defaultValue = "id")String sortField,
+                                     @RequestParam(value = "sortDir",defaultValue = "asc")String sortDir) {
+        model.addAttribute("enrollments",enrollmentService.getAllEnrollments(sortField, sortDir));
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
         return "enrollment/index";
     }
 
     @GetMapping("/new")
     public String showEnrollmentForm(Model model){
         model.addAttribute("enrollment", new Enrollment());
-        // Aici adaugi listele necesare pentru formulare (Student, Course)
         model.addAttribute("allStudents", studentService.findAllStudents());
         model.addAttribute("allCourses", courseService.findAllCourses());
         return "enrollment/form";
@@ -71,7 +74,6 @@ public class EnrollmentController {
         Enrollment enrollment = enrollmentService.getEnrollmentById(id);
         if (enrollment == null) return "redirect:/enrollment";
         model.addAttribute("enrollment", enrollment);
-        // Aici adaugi listele necesare pentru formulare
         model.addAttribute("allStudents", studentService.findAllStudents());
         model.addAttribute("allCourses", courseService.findAllCourses());
         return "enrollment/enrollment-edit-form";

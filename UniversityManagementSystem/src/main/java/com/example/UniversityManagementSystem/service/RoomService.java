@@ -1,8 +1,10 @@
 package com.example.UniversityManagementSystem.service;
 
 import com.example.UniversityManagementSystem.model.Room;
+import com.example.UniversityManagementSystem.model.Student;
 import com.example.UniversityManagementSystem.repository.RoomRepository;
 import com.example.UniversityManagementSystem.repository.UniversityRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +27,17 @@ public class RoomService {
 
     public List<Room> findAllRooms(){
         return roomRepository.findAll();
+    }
+    public List<Room> findAllRooms(String sortField, String sortDirection){
+        Sort sort;
+
+        if("asc".equals(sortDirection)){
+            sort=Sort.by(sortField).ascending();
+        }else{
+            sort=Sort.by(sortField).descending();
+        }
+
+        return  roomRepository.findAll(sort);
     }
 
     public Room findRoomById(String id){

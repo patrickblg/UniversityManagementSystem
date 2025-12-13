@@ -5,11 +5,12 @@
 <head>
     <title>Courses List</title>
     <meta charset="UTF-8">
+    <link rel="icon" th:href="@{/css/images/c.png}">
 </head>
 <body>
 <div class="mainn">
     <a class="home" th:href="@{/mainIndex}">
-        <img src="https://icon-library.com/images/home-button-icon/home-button-icon-7.jpg">
+        <img src="https://www.citypng.com/public/uploads/preview/house-line-white-icon-701751695034631kz76g1oajv.png">
     </a>
     <h2>
         Courses
@@ -22,10 +23,22 @@
     <table>
         <thead>
         <tr>
-            <th>ID</th>
+            <th>
+                <a th:href="@{'/course'(sortField='id', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                    ID <span th:if="${sortField == 'id'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
+                </a>
+            </th>
             <th>Title</th>
-            <th>Credits</th>
-            <th>Duration</th>
+            <th>
+                <a th:href="@{'/course'(sortField='credits', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                    Credits <span th:if="${sortField == 'credits'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
+                </a>
+            </th>
+            <th>
+                <a th:href="@{'/course'(sortField='duration', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                    Duration <span th:if="${sortField == 'duration'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
+                </a>
+            </th>
             <th>Department</th>
             <th>Room</th>
             <th>Action</th>

@@ -29,15 +29,18 @@ public class TeachingAssignmentController {
     }
 
     @GetMapping
-    public String showAllTeachingAssignments(Model model) {
-        model.addAttribute("teachingassignments",teachingAssignmentService.findAllTeachingAssignments());
+    public String showAllTeachingAssignments(Model model,
+                                             @RequestParam(value = "sortField",defaultValue = "id")String sortField,
+                                             @RequestParam(value = "sortDir",defaultValue = "asc")String sortDir) {
+        model.addAttribute("teachingassignments",teachingAssignmentService.findAllTeachingAssignments(sortField, sortDir));
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
         return "teachingassignment/index";
     }
 
     @GetMapping("/new")
     public String showTeachingAssignmentForm(Model model) {
         model.addAttribute("teachingAssignment",new TeachingAssignment());
-        // Aici adaugi listele necesare pentru formulare (Course, Staff/Teacher/Assistant)
         model.addAttribute("allCourses", courseService.findAllCourses());
         model.addAttribute("allTeachers", teacherService.findAll());
         model.addAttribute("allAssistants", assistantService.findAllAssistants());
@@ -78,7 +81,6 @@ public class TeachingAssignmentController {
         if (teachingassignment == null) return "redirect:/teachingassignment";
 
         model.addAttribute("teachingassignment", teachingassignment);
-        // Aici adaugi listele necesare pentru formulare
         model.addAttribute("allCourses", courseService.findAllCourses());
         model.addAttribute("allTeachers", teacherService.findAll());
         model.addAttribute("allAssistants", assistantService.findAllAssistants());
