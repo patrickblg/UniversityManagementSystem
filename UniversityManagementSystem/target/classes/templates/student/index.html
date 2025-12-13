@@ -19,18 +19,30 @@
 
 
 <div class="main">
+    <div class="filter-container">
+        <form th:action="@{/student}" method="get">
+            <input type="hidden" name="sortField" th:value="${sortField}" />
+            <input type="hidden" name="sortDir" th:value="${sortDir}" />
+
+            <label>Name:</label>
+            <input type="text" name="name" th:value="${name}" placeholder="Filter by Name" />
+
+            <button type="submit">Filter</button>
+            <a th:href="@{/student}"><button type="button" style="background-color: #777;">Clear</button></a>
+        </form>
+    </div>
     <a th:href="@{/student/new-student}">Add New Student</a>
     <table>
         <thead>
         <tr>
             <th>
-                <a th:href="@{'/student'(sortField='id', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                <a th:href="@{'/student'(sortField='id', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'},name=${name})}">
                     ID <span th:if="${sortField == 'id'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
                 </a>
             </th>
 
             <th>
-                <a th:href="@{'/student'(sortField='name', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                <a th:href="@{'/student'(sortField='name', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'},name=${name})}">
                     Name <span th:if="${sortField == 'name'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
                 </a>
             </th>

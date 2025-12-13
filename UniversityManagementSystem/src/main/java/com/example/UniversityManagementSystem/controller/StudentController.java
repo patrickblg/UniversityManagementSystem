@@ -22,12 +22,14 @@ public class StudentController {
 
     @GetMapping
     public String getStudents(Model model,
+                              @RequestParam(value = "name", required = false) String name,
                               @RequestParam(value = "sortField", defaultValue = "name")String sortField,
                               @RequestParam(value = "sortDir",defaultValue = "asc") String sortDir) {
 
-        model.addAttribute("students",studentService.findAllStudents(sortField,sortDir));
+        model.addAttribute("students",studentService.findAllStudents(name, sortField, sortDir));
         model.addAttribute("sortField",sortField);
         model.addAttribute("sortDir",sortDir);
+        model.addAttribute("name", name);
         return "student/index";
     }
 
