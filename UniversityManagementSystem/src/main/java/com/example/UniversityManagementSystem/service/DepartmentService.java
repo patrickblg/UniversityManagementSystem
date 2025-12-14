@@ -30,7 +30,7 @@ public class DepartmentService {
         return departmentRepository.findAll();
 
     }
-    public List<Department> findAllDepartments(String name,String sortField, String sortDirection){
+    public List<Department> findAllDepartments(String name, String universityName , String sortField, String sortDirection){
         Sort sort;
 
         if("asc".equals(sortDirection)){
@@ -38,8 +38,11 @@ public class DepartmentService {
         }else{
             sort=Sort.by(sortField).descending();
         }
-        if(name!=null && !name.isEmpty()){
-            return departmentRepository.findByNameContainingIgnoreCase(name,sort);
+
+        if(name!=null && !name.isEmpty()) {
+            return departmentRepository.findByNameContainingIgnoreCase(name, sort);
+        }else if(universityName != null && !universityName.isEmpty()) {
+            return departmentRepository.findByUniversity_NameContainingIgnoreCase(universityName, sort);
         }else{
             return departmentRepository.findAll(sort);
         }
