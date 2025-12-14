@@ -1,75 +1,117 @@
-html{
-    background-color: #e8baf5;
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: radial-gradient(circle at center, rgba(0,0,0,0.7), black);
+    background-color: #1a1a1a; /* Fallback */
     font-family: 'Courier New', monospace;
-    color: black;
-
+    color: whitesmoke;
 }
 
-.main{
-    display:flex;
+/* --- LAYOUT --- */
+.main {
+    display: flex;
     justify-content: center;
     align-items: center;
-    margin: auto;
-    text-align: center;
     flex-direction: column;
-    position: relative;
-    padding-top: 100px;
-
+    min-height: 100vh; /* Center vertically on screen */
+    padding: 20px;
+    box-sizing: border-box;
 }
 
+/* --- HEADINGS --- */
 h1 {
-    width: 100%;
-    height: 80px;
-    text-align: center;
-    line-height: 80px;
     font-size: 50px;
-    background-color: whitesmoke;
-    margin: 0;
-    position: fixed;
-    top:0;
-    left:0;
+    text-align: center;
+    margin-bottom: 40px;
+    color: whitesmoke;
+    /* Removed the fixed white background bar from the old style */
 }
 
-form{
+/* --- FORM CONTAINER --- */
+/* styled to look cohesive with the dark theme */
+form {
+    background-color: rgba(255, 255, 255, 0.05); /* Subtle transparency */
+    border: 1px solid whitesmoke;
+    border-radius: 15px; /* Rounded corners like the target design */
+    padding: 40px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+/* --- LABELS --- */
+label {
     font-size: 18px;
-    width:400px;
-    height:300px;
-    border: 1px solid black;
-    padding:20px;
+    margin-bottom: 8px;
+    margin-top: 10px;
+    display: block;
+    text-align: left;
 }
 
-input{
-    font-size: 18px;
-    width:200px;
-    height: 10px;
-    padding:8px;
-
-}
-a{
-    text-decoration: none;
-    color:black;
-    font-size:20px;
-    border:2px solid black;
-    margin-bottom: 20px;
-}
-a:hover{
-    text-decoration:none;
-    color:grey;
-
-}
-
-
-
-button{
-    padding:8px;
+/* --- INPUTS & SELECTS --- */
+/* Matching .filter-container input styles */
+input,
+select {
     font-family: 'Courier New', monospace;
-    font-size:18px;
-
-
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 30px; /* The rounded pill shape */
+    border: 1px solid #ccc;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding doesn't break width */
+    background-color: whitesmoke;
+    color: black;
+    margin-bottom: 5px;
 }
-button:hover{
-    background:whitesmoke;
+
+input:focus, select:focus {
+    border-color: #888;
+    box-shadow: 0 0 5px rgba(255,255,255,0.5);
+}
+
+/* --- BUTTONS --- */
+/* Matching the 'all: unset' button style from index */
+button {
+    all: unset; /* Resets default browser styles */
+    margin-top: 20px;
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+    border-radius: 30px;
+    font-size: 18px;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
 
+button:hover {
+    background-color: whitesmoke;
+    color: black;
+}
 
+/* --- LINKS --- */
+a {
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 18px;
+    margin-top: 20px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+}
+
+a:hover {
+    text-decoration: none;
+    border-bottom: 1px solid whitesmoke;
+}
+
+/* --- ERROR MESSAGES --- */
+.error-msg {
+    color: #ff6b6b; /* A lighter red to be visible on dark background */
+    font-size: 14px;
+    margin-bottom: 10px;
+    display: block;
 }

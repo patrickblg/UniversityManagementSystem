@@ -17,11 +17,23 @@
         <span class="m">M</span>
         <span class="s">S</span>
     </div>
-
     <div class="textField">
-        <p>some random text</p>
-    </div>
 
+        <div class="card-content text">
+            <h3>Architecture</h3>
+            This University Management System is a Spring Boot application built with Maven, designed to streamline academic administration. Its architecture features logically organized controllers to manage key entities efficiently.
+        </div>
+
+        <div class="card-content desc">
+            <h3>Management</h3>
+            A unified Staff controller handles personnel, while Courses and Teaching Assignments are paired to reflect their logical binding. Independent controllers govern Departments, Rooms, and University data to maintain modularity.
+        </div>
+
+        <div class="card-content pic">
+            <img th:src="@{/css/images/diag.png}">
+        </div>
+
+    </div>
 
 
 </div>
