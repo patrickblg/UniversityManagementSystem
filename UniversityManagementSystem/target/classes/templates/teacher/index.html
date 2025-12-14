@@ -19,22 +19,49 @@
 
 
 <div class="main">
+    <div class="filter-container">
+        <form th:action="@{/teacher}" method="get">
+            <input type="hidden" name="sortField" th:value="${sortField}" />
+            <input type="hidden" name="sortDir" th:value="${sortDir}" />
+
+            <label>Name:</label>
+            <input type="text" name="name" th:value="${name}" placeholder="Filter by Name" />
+
+            <label>Title:</label>
+            <input type="text" name="title" th:value="${title}" placeholder="Filter by Title" />
+
+            <label>Department:</label>
+            <input type="text" name="departmentName" th:value="${departmentName}" placeholder="Filter by Department" />
+
+
+            <button type="submit">Filter</button>
+            <a th:href="@{/teacher}"><button type="button" style="background-color: #777;">Clear</button></a>
+        </form>
+    </div>
     <a th:href="@{/teacher/new}">Add New Teacher</a>
     <table>
         <thead>
         <tr>
             <th>
-                <a th:href="@{'/teachet'(sortField='id', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                <a th:href="@{'/teacher'(sortField='id', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'}, name=${name}, title=${title}, departmentName=${departmentName})}">
                     ID <span th:if="${sortField == 'id'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
                 </a>
             </th>
             <th>
-                <a th:href="@{'/teacher'(sortField='name', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                <a th:href="@{'/teacher'(sortField='name', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'}, name=${name}, title=${title}, departmentName=${departmentName})}">
                     Name <span th:if="${sortField == 'name'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
                 </a>
             </th>
-            <th>Title</th>
-            <th>Department</th>
+            <th>
+                <a th:href="@{'/teacher'(sortField='title', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'}, name=${name}, title=${title}, departmentName=${departmentName})}">
+                    Title <span th:if="${sortField == 'title'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
+                </a>
+            </th>
+            <th>
+                <a th:href="@{'/teacher'(sortField='department.name', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'}, name=${name}, title=${title}, departmentName=${departmentName})}">
+                    Department <span th:if="${sortField == 'department.name'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
+                </a>
+            </th>
             <th>Action</th>
         </tr>
         </thead>

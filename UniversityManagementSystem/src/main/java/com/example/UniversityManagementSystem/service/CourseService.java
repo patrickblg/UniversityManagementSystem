@@ -32,7 +32,7 @@ public class CourseService {
     public List<Course> findAllCourses(){
         return courseRepository.findAll();
     }
-    public List<Course> findAllCourses(String title,Integer credits,String sortField, String sortDirection){
+    public List<Course> findAllCourses(String title, Double maxCredits, String departmentName, String roomName, String sortField, String sortDirection){
         Sort sort;
 
         if("asc".equals(sortDirection)){
@@ -40,13 +40,44 @@ public class CourseService {
         }else{
             sort=Sort.by(sortField).descending();
         }
-        if(title!=null&&!title.isEmpty()&&credits!=null){
-            return courseRepository.findByTitleContainingIgnoreCaseAndCreditsLessThanEqual(title,credits,sort);
-        }else if(title!=null&&!title.isEmpty()){
-            return courseRepository.findByTitleContainingIgnoreCase(title,sort);
-        }else if(credits!=null){
-            return courseRepository.findByCreditsLessThanEqual(credits,sort);
-        }else{
+        boolean filterByTitle = title != null && !title.isEmpty();
+        boolean filterByCredits = maxCredits != null;
+        boolean filterByDepartment = departmentName != null && !departmentName.isEmpty();
+        boolean filterByRoom = roomName != null && !roomName.isEmpty();
+
+        if (filterByTitle && filterByDepartment && filterByCredits) {
+        }
+        if (filterByTitle && filterByCredits) {
+            // Notă: Metoda din Repository folosește 'name' pentru titlu și 'Integer' pentru credite. Presupunem că 'name' se referă la 'title'
+            return courseRepository.findByTitleContainingIgnoreCaseAndCreditsLessThanEqual(title, maxCredits.intValue(), sort);
+        }
+        // Departament ȘI Credite Max
+        else if (filterByDepartment && filterByCredits) {
+            // Notă: Metoda din Repository folosește 'double' pentru credite, dar creditul este stocat ca 'Integer' sau 'double'. Folosim valoarea 'Double'.
+            return courseRepository.findByDepartment_NameContainingIgnoreCaseAndCreditsLessThanEqual(departmentName, maxCredits, sort);
+        }
+        // Titlu ȘI Departament
+        else if (filterByTitle && filterByDepartment) {
+            return courseRepository.findByTitleContainingIgnoreCaseAndDepartment_NameContainingIgnoreCase(title, departmentName, sort);
+        }
+        // Titlu ȘI Sală
+        else if (filterByTitle && filterByRoom) {
+            return courseRepository.findByTitleContainingIgnoreCaseAndRoom_NameContainingIgnoreCase(title, roomName, sort);
+        }
+
+        else if (filterByTitle) {
+            return courseRepository.findByTitleContainingIgnoreCase(title, sort);
+        }
+        else if (filterByCredits) {
+            return courseRepository.findByCreditsLessThanEqual(maxCredits.intValue(), sort);
+        }
+        else if (filterByDepartment) {
+            return courseRepository.findByDepartment_NameContainingIgnoreCase(departmentName, sort);
+        }
+        else if (filterByRoom) {
+            return courseRepository.findByRoom_NameContainingIgnoreCase(roomName, sort);
+        }
+        else {
             return courseRepository.findAll(sort);
         }
     }
