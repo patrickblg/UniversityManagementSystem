@@ -5,8 +5,6 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-// public class RoomRepository  extends JpaRepository<Room>{
-
 public interface RoomRepository  extends JpaRepository<Room,String> {
 
 }

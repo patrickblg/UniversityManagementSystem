@@ -34,7 +34,7 @@
         <span th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}" style="color: red;"></span>
         <br><br>
 
-        <label>DepartmentId:</label>
+        <label>Department:</label>
         <select th:field="*{department}" required>
             <option value="">-- Selectează Departamentul --</option>
             <option th:each="dept : ${allDepartments}" th:value="${dept.id}" th:text="${dept.name}">
@@ -44,7 +44,7 @@
         <span th:if="${#fields.hasErrors('department')}" th:errors="*{department}" style="color: red;"></span>
         <br><br>
 
-        <label>RoomId:</label>
+        <label>Room:</label>
         <select th:field="*{room}" required>
             <option value="">-- Selectează Sala --</option>
             <option th:each="room : ${allRooms}" th:value="${room.id}" th:text="${room.name}">
