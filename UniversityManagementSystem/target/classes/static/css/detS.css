@@ -1,0 +1,127 @@
+html {
+    min-height: 100%;
+    background-image: radial-gradient(circle at center, rgba(0,0,0,0.7), black);
+    font-family: 'Courier New', monospace;
+    color: whitesmoke; /* Changed from black to be visible on dark bg */
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header styling */
+h1 {
+    font-size: 40px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    border-bottom: 1px solid whitesmoke;
+    padding-bottom: 10px;
+}
+
+h2 {
+    font-size: 30px; /* Adjusted size for sub-headers */
+    margin: 30px 0 15px 0;
+    text-align: center;
+    display: block; /* Removed absolute positioning to allow flow */
+}
+
+/* Main container layout */
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 80%;
+    max-width: 900px;
+    background-color: rgba(0, 0, 0, 0.3); /* Slight contrast for content area */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #fff,
+    0 0 10px #fff,
+    0 0 10px whitesmoke;
+}
+
+.main p {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.main strong {
+    color: #ccc;
+    margin-right: 10px;
+}
+
+hr {
+    width: 100%;
+    border: 0;
+    border-top: 1px solid whitesmoke;
+    margin: 20px 0;
+}
+
+/* Table styling matching indexStyle */
+table {
+    border-collapse: collapse;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 2%;
+    color: whitesmoke;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px #fff,
+                0 0 10px #fff,
+                0 0 10px whitesmoke;
+}
+
+th, td {
+    font-size: 18px;
+    height: 50px;
+    width: 200px;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Borders for table rows */
+tr {
+    border-bottom: 1px solid whitesmoke; /* Changed to white for visibility */
+}
+
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+/* Vertical borders for middle columns */
+th:nth-child(n+2):nth-last-child(n+2),
+td:nth-child(n+2):nth-last-child(n+2) {
+    border-left: 1px solid whitesmoke;
+    border-right: 1px solid whitesmoke;
+}
+
+/* Link styling */
+a {
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 20px;
+    margin: 20px;
+    padding: 10px 20px;
+    border: 1px solid whitesmoke;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+a:hover {
+    text-decoration: none;
+    color: whitesmoke;
+    transform:scale(1.2);
+}
+
+/* Icon styling if used */
+img {
+    height: 40px;
+    width: 40px;
+    vertical-align: middle;
+}

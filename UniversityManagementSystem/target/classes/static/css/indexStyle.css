@@ -115,7 +115,7 @@ tr:last-child td:nth-child(n+2):nth-last-child(n+2) {
 }
 .filter-container {
     margin: 20px auto;
-    width: 40%;
+    width: 100%;
     text-align: center;
     padding: 10px;
     background-color: #f4f4f4;
