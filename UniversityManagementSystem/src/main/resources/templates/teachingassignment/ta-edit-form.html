@@ -12,26 +12,35 @@
     <div th:if="${errorMessage}" style="color: red; margin-bottom: 10px;">
         <p th:text="${errorMessage}"></p>
     </div>
-    <form th:action="@{'/teachingassignment/' + ${teachingassignment.id} + '/update-teachingassignment'}" method="post" th:object="${teachingassignment}">
+    <form th:action="@{'/teachingassignment/' + ${teachingAssignment.id} + '/update-teachingassignment'}" method="post" th:object="${teachingAssignment}">
 
         <label>ID:</label>
-        <input name="id" type="text" th:value="${teachingassignment.id}" readonly/>
+        <input name="id" type="text" th:value="${teachingAssignment.id}" readonly/>
 
         <br/>
 
         <label>Course:</label>
-        <input type="text" th:value="${teachingassignment.course.title}" readonly/>
+        <select th:field="*{course}" required>
+            <option value="">-- Select Course --</option>
+            <option th:each="c : ${allCourses}" th:value="${c.id}" th:text="${c.title}"></option>
+        </select>
         <br/>
 
         <label>Staff:</label>
-        <input type="text" th:value="${teachingassignment.staff.name}" readonly/>
+        <select th:field="*{staff}" required>
+            <option value="">-- Select Staff --</option>
+            <option th:each="s : ${allTeachers}" th:value="${s.id}" th:text="${s.name}"></option>
+            <option th:each="a : ${allAssistants}" th:value="${a.id}" th:text="${a.name}"></option>
+        </select>
         <br/>
 
 
         <label>Managing:</label>
         <select th:field="*{managing}" required>
             <option value="">-- Selectează Rolul --</option>
-            <option th:each="role : ${T(com.example.UniversityManagementSystem.model.ManagingRole).values()}" th:value="${role}" th:text="${role}" th:selected="${role == teachingassignment.managing}">
+            <option th:each="role : ${T(com.example.UniversityManagementSystem.model.ManagingRole).values()}"
+                    th:value="${role}"
+                    th:text="${role}">
             </option>
         </select>
         <span th:if="${#fields.hasErrors('managing')}" th:errors="*{managing}" style="color: red;"></span>

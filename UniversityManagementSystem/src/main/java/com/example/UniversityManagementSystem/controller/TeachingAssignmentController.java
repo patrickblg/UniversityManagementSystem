@@ -80,7 +80,7 @@ public class TeachingAssignmentController {
         TeachingAssignment teachingassignment = teachingAssignmentService.findTeachingAssignmentById(id);
         if (teachingassignment == null) return "redirect:/teachingassignment";
 
-        model.addAttribute("teachingassignment", teachingassignment);
+        model.addAttribute("teachingAssignment", teachingassignment);
         model.addAttribute("allCourses", courseService.findAllCourses());
         model.addAttribute("allTeachers", teacherService.findAll());
         model.addAttribute("allAssistants", assistantService.findAllAssistants());
@@ -88,17 +88,38 @@ public class TeachingAssignmentController {
     }
 
     @PostMapping("/{id}/update-teachingassignment")
-    public String updateTeachingAssignment(@PathVariable String id, @Valid @ModelAttribute TeachingAssignment updatedTeachingAssignment, BindingResult result, Model model) {
+    public String updateTeachingAssignment(@PathVariable String id,
+                                           @Valid @ModelAttribute TeachingAssignment teachingAssignment,
+                                           BindingResult result,
+                                           Model model) {
+
+        // --- HELPER TO RELOAD DATA IF ERROR OCCURS ---
         if (result.hasErrors()) {
+            // 1. Reload the original data to get the missing Course and Staff
+            TeachingAssignment original = teachingAssignmentService.findTeachingAssignmentById(id);
+            if (original != null) {
+                teachingAssignment.setCourse(original.getCourse());
+                teachingAssignment.setStaff(original.getStaff());
+            }
+
+            // 2. Add attributes and return form
             model.addAttribute("allCourses", courseService.findAllCourses());
             model.addAttribute("allTeachers", teacherService.findAll());
             model.addAttribute("allAssistants", assistantService.findAllAssistants());
             return "teachingassignment/ta-edit-form";
         }
+
         try {
-            updatedTeachingAssignment.setId(id);
-            teachingAssignmentService.updateTeachingAssignment(updatedTeachingAssignment);
+            teachingAssignment.setId(id);
+            teachingAssignmentService.updateTeachingAssignment(teachingAssignment);
         } catch (IllegalArgumentException e) {
+            // --- REPEAT RELOAD LOGIC FOR EXCEPTION BLOCK ---
+            TeachingAssignment original = teachingAssignmentService.findTeachingAssignmentById(id);
+            if (original != null) {
+                teachingAssignment.setCourse(original.getCourse());
+                teachingAssignment.setStaff(original.getStaff());
+            }
+
             model.addAttribute("errorMessage", e.getMessage());
             model.addAttribute("allCourses", courseService.findAllCourses());
             model.addAttribute("allTeachers", teacherService.findAll());

@@ -1,11 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/detS.css}">
 <head>
+    <title>Detalii Asistent</title>
     <meta charset="UTF-8">
-    <title>Title</title>
     <link rel="icon" th:href="@{/css/images/a.png}">
 </head>
 <body>
+<h1>Detalii Asistent: <span th:text="${assistant.name}"></span></h1>
 
+<div class="main">
+    <p><strong>ID:</strong> <span th:text="${assistant.id}"></span></p>
+    <p><strong>Nume:</strong> <span th:text="${assistant.name}"></span></p>
+    <p><strong>Rol:</strong> <span th:text="${assistant.role}"></span></p>
+
+    <hr>
+
+    <h2>Cursuri Asignate (<span th:text="${assistant.assignments.size()}"></span>)</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID Asignare</th>
+            <th>Curs</th>
+            <th>Rol Gestionare</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="assignment : ${assistant.assignments}">
+            <td th:text="${assignment.id}"></td>
+            <td th:text="${assignment.course.title}"></td>
+            <td th:text="${assignment.managing}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <a th:href="@{/assistant}">Înapoi la Asistenți</a>
+</div>
 </body>
 </html>

@@ -98,6 +98,27 @@ a:hover{
     bottom:10%;
     border:2px solid whitesmoke;
     border-radius: 30px;
+    transition: all 0.3s ease;
+    animation: btn 1.2s forwards;
+
+}
+
+.gotoTable:hover{
+    transform: scale(1.1) !important;
+
+}
+
+@keyframes btn {
+    0%{
+        opacity: 0;
+        transform: scale(0);
+
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1);
+
+    }
 }
 
 .letters{
@@ -223,8 +244,8 @@ a:hover{
 }
 
 .card-content img{
-    width:400px;
-    height: 350px;
+    width:650px;
+    height: 500px;
 }
 
 @keyframes tfUp{
