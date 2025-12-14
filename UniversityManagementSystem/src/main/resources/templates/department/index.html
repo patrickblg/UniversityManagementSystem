@@ -28,6 +28,10 @@
             <label>Name:</label>
             <input type="text" name="name" th:value="${name}" placeholder="Filter by name" />
 
+            <label>University Name:</label>
+            <input type="text" name="universityName" th:value="${universityName}" placeholder="Filter by University Name" />
+
+
             <button type="submit">Filter</button>
             <a th:href="@{/department}"><button type="button" style="background-color: #777;">Clear</button></a>
         </form>
