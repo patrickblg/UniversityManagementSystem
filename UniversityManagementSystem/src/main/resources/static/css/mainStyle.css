@@ -15,6 +15,7 @@ img{
     width:100%;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     background-image:radial-gradient(circle at center,rgba(0,0,0,0.7),black);
     justify-content: center;
     align-items: center;
@@ -86,6 +87,7 @@ a:hover{
     position: relative;
     border:1px solid white;
     margin-bottom: 10px;
+    border-radius: 30px;
 }
 .gotoTable {
     width: 20%;
@@ -95,6 +97,7 @@ a:hover{
     position: absolute;
     bottom:10%;
     border:2px solid whitesmoke;
+    border-radius: 30px;
 }
 
 .letters{
@@ -150,7 +153,7 @@ a:hover{
     }
 
     100%{
-        transform: translateY(-35vh) scale(0.5);
+        transform: translateY(-40vh) scale(0.4);
     }
 }
 
@@ -176,19 +179,52 @@ a:hover{
     color: white;
 }
 
-.textField{
+.textField {
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    align-items: stretch;
     justify-content: center;
-    width: 40%;
-    height: 20rem;
-    position: absolute;
-    left:10%;
+    width: 90%;
+    max-width: 1400px;
+    height: auto;
+    min-height: 400px;
+    position: relative;
+    margin-top: 150px;
     opacity: 0;
-    color:whitesmoke;
-    border-radius: 30px;
-    background-color:rgba(0, 0, 0, 0.2);
     animation: tfUp 2.7s forwards;
+    gap: 2rem;
+}
+.card-content {
+    flex: 1;
+    background-color:rgba(0, 0, 0, 0.2);
+    color: whitesmoke;
+    border-radius: 20px;
+    padding: 30px;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: justify;
+    box-shadow:0 0 10px rgba(0,0,0,0.5),
+                0 0 10px rgba(0,0,0,0.5),
+                 0 0 10px white;
+    transition: transform 0.3s ease, background-color 0.3s;
+}
+
+.card-content:hover {
+    transform: translateY(-10px);
+    background-color:rgba(0, 0, 0, 0.2);
+}
+
+.card-content h3 {
+    text-align: center;
+    margin-top: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.card-content img{
+    width:400px;
+    height: 350px;
 }
 
 @keyframes tfUp{
@@ -209,10 +245,7 @@ a:hover{
         opacity: 0.5;
     }
     100%{
-        transform: translateX(0);
+        transform: translateY(-10vh);
         opacity: 1;
-        box-shadow: 0 0 10px rgba(0,0,0,0.5),
-                    0 0 10px rgba(0,0,0,0.5),
-                    0 0 30px white;;
     }
 }
