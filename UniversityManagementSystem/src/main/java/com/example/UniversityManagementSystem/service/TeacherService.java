@@ -27,16 +27,27 @@ public class TeacherService {
     public List<Teacher> findAll(){
         return teacherRepository.findAll();
     }
-    public List<Teacher> findAll(String sortField, String sortDirection){
+    public List<Teacher> findAll(String name, String title, String departmentName, String sortField, String sortDirection) {
         Sort sort;
 
-        if("asc".equals(sortDirection)){
-            sort=Sort.by(sortField).ascending();
-        }else{
-            sort=Sort.by(sortField).descending();
+        if ("asc".equals(sortDirection)) {
+            sort = Sort.by(sortField).ascending();
+        } else {
+            sort = Sort.by(sortField).descending();
         }
 
-        return  teacherRepository.findAll(sort);
+        if (title!=null && !title.isEmpty() && departmentName!=null && !departmentName.isEmpty()){
+            return teacherRepository.findByDepartment_NameContainingIgnoreCaseAndTitleContainingIgnoreCase(departmentName, title, sort);
+        }else if(name!=null && !name.isEmpty()) {
+            return teacherRepository.findByNameContainingIgnoreCase(name, sort);
+        } else if (title!=null && !title.isEmpty()) {
+            return teacherRepository.findByTitleContainingIgnoreCase(title, sort);
+        } else if (departmentName!=null && !departmentName.isEmpty()) {
+            return teacherRepository.findByDepartment_NameContainingIgnoreCase(departmentName, sort);
+        } else {
+            return teacherRepository.findAll(sort);
+        }
+
     }
     public Teacher findById(String id){
         return teacherRepository.findById(id).orElse(null);
