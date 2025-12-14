@@ -19,7 +19,7 @@
         <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}" style="color: red;"></span>
         <br><br>
 
-        <label>Course ID:</label>
+        <label>Course:</label>
         <select th:field="*{course}" required>
             <option value="">-- Selectează Cursul --</option>
             <option th:each="course : ${allCourses}" th:value="${course.id}" th:text="${course.title}">

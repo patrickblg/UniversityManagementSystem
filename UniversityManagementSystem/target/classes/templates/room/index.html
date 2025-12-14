@@ -18,22 +18,51 @@
 </div>
 
 <div class="main">
+    <div class="filter-container">
+        <form th:action="@{/room}" method="get">
+            <input type="hidden" name="sortField" th:value="${sortField}" />
+            <input type="hidden" name="sortDir" th:value="${sortDir}" />
+
+            <label>Number:</label>
+            <input type="text" name="roomNumber" th:value="${roomNumber}" placeholder="Filter by Number" />
+
+            <label>Min Capacity:</label>
+            <input type="number" step="0.1" name="minCapacity" th:value="${minCapacity}" placeholder="Filter by Min Capacity" />
+
+            <label>Name:</label>
+            <input type="text" name="roomName" th:value="${roomName}" placeholder="Filter by Room Name" />
+
+            <label>University Name:</label>
+            <input type="text" name="universityName" th:value="${universityName}" placeholder="Filter by University Name" />
+
+            <button type="submit">Filter</button>
+            <a th:href="@{/room}"><button type="button" style="background-color: #777;">Clear</button></a>
+        </form>
+    </div>
     <a th:href="@{/room/new}">Add New Room</a>
     <table>
         <thead>
         <tr>
             <th>
-                <a th:href="@{'/room'(sortField='id', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                <a th:href="@{'/room'(sortField='id', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'}, roomNumber=${roomNumber}, minCapacity=${minCapacity}, roomName=${roomName}, universityName=${universityName})}">
                     ID <span th:if="${sortField == 'id'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
                 </a>
             </th>
-            <th>Number</th>
             <th>
-                <a th:href="@{'/room'(sortField='capacity', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                <a th:href="@{'/room'(sortField='number', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'}, roomNumber=${roomNumber}, minCapacity=${minCapacity}, roomName=${roomName}, universityName=${universityName})}">
+                    Number <span th:if="${sortField == 'number'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
+                </a>
+            </th>
+            <th>
+                <a th:href="@{'/room'(sortField='capacity', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'}, roomNumber=${roomNumber}, minCapacity=${minCapacity}, roomName=${roomName}, universityName=${universityName})}">
                     Capacity <span th:if="${sortField == 'capacity'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
                 </a>
             </th>
-            <th>Name</th>
+            <th>
+                <a th:href="@{'/room'(sortField='name', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'}, roomNumber=${roomNumber}, minCapacity=${minCapacity}, roomName=${roomName}, universityName=${universityName})}">
+                    Name <span th:if="${sortField == 'name'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
+                </a>
+            </th>
             <th>University</th>
             <th>Action</th>
         </tr>

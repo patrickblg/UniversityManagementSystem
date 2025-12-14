@@ -28,7 +28,7 @@ public class RoomService {
     public List<Room> findAllRooms(){
         return roomRepository.findAll();
     }
-    public List<Room> findAllRooms(String sortField, String sortDirection){
+    public List<Room> findAllRooms(String roomNumber, Double minCapacity, String roomName, String universityName, String sortField, String sortDirection){
         Sort sort;
 
         if("asc".equals(sortDirection)){
@@ -37,7 +37,56 @@ public class RoomService {
             sort=Sort.by(sortField).descending();
         }
 
-        return  roomRepository.findAll(sort);
+        boolean filterByNumber = roomNumber != null && !roomNumber.isEmpty();
+        boolean filterByMinCapacity = minCapacity != null;
+        boolean filterByName = roomName != null && !roomName.isEmpty();
+        boolean filterByUniversity = universityName != null && !universityName.isEmpty();
+
+        //toate
+        if (filterByNumber && filterByMinCapacity && filterByName && filterByUniversity) {
+            return roomRepository.findByNumberContainingIgnoreCaseAndCapacityGreaterThanEqualAndNameContainingIgnoreCaseAndUniversity_NameContainingIgnoreCase(
+                    roomNumber, minCapacity, roomName, universityName, sort);
+        }
+        //fara UniversityName
+        else if (filterByNumber && filterByMinCapacity && filterByName) {
+            return roomRepository.findByNumberContainingIgnoreCaseAndCapacityGreaterThanEqualAndNameContainingIgnoreCase(
+                    roomNumber, minCapacity, roomName, sort);
+        }
+        //fara RoomName
+        else if (filterByNumber && filterByMinCapacity && filterByUniversity) {
+            return roomRepository.findByNumberContainingIgnoreCaseAndCapacityGreaterThanEqualAndUniversity_NameContainingIgnoreCase(
+                    roomNumber, minCapacity, universityName, sort);
+        }
+        //fara RoomNumber
+        else if (filterByMinCapacity && filterByName && filterByUniversity) {
+            return roomRepository.findByCapacityGreaterThanEqualAndNameContainingIgnoreCaseAndUniversity_NameContainingIgnoreCase(
+                    minCapacity, roomName, universityName, sort);
+        }
+        //nume univ + capacitate
+        else if (filterByUniversity && filterByMinCapacity) {
+            return roomRepository.findByCapacityGreaterThanEqualAndUniversity_NameContainingIgnoreCase(minCapacity, universityName, sort);
+        }
+        //RoomName
+        else if (filterByName) {
+            return roomRepository.findByNameContainingIgnoreCase(roomName, sort);
+        }
+        //RoomNumber
+        else if (filterByNumber) {
+            return roomRepository.findByNumberContainingIgnoreCase(roomNumber, sort);
+        }
+        //capacitate minima
+        else if (filterByMinCapacity) {
+            return roomRepository.findByCapacityGreaterThanEqual(minCapacity, sort);
+        }
+        //UniversityName
+        else if (filterByUniversity) {
+            return roomRepository.findByUniversity_NameContainingIgnoreCase(universityName, sort);
+        }
+        //doar sortare
+        else {
+            return roomRepository.findAll(sort);
+        }
+
     }
 
     public Room findRoomById(String id){

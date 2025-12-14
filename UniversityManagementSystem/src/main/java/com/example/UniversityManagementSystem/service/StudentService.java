@@ -21,7 +21,7 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public List<Student> findAllStudents(String sortField, String sortDirection){
+    public List<Student> findAllStudents(String name, String sortField, String sortDirection){
         Sort sort;
 
         if("asc".equals(sortDirection)){
@@ -30,7 +30,11 @@ public class StudentService {
             sort=Sort.by(sortField).descending();
         }
 
-        return  studentRepository.findAll(sort);
+        if(name!=null && !name.isEmpty()) {
+            return studentRepository.findByNameContainingIgnoreCase(name, sort);
+        } else {
+            return studentRepository.findAll(sort);
+        }
     }
     @Transactional
     public Student findStudent(String id){

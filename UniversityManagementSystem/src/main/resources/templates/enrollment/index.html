@@ -17,21 +17,43 @@
     </h2>
 </div>
 
-
 <div class="main">
+    <div class="filter-container">
+        <form th:action="@{/enrollment}" method="get">
+            <input type="hidden" name="sortField" th:value="${sortField}" />
+            <input type="hidden" name="sortDir" th:value="${sortDir}" />
+
+            <label>Student Name:</label>
+            <input type="text" name="studentName" th:value="${studentName}" placeholder="Filter by Student Name" />
+
+            <label>Course Title:</label>
+            <input type="text" name="courseTitle" th:value="${courseTitle}" placeholder="Filter by Course Title" />
+
+            <button type="submit">Filter</button>
+            <a th:href="@{/enrollment}"><button type="button" style="background-color: #777;">Clear</button></a>
+        </form>
+    </div>
     <a th:href="@{/enrollment/new}">Add New Enrollment</a>
     <table>
         <thead>
         <tr>
             <th>
-                <a th:href="@{'/enrollment'(sortField='id', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                <a th:href="@{'/enrollment'(sortField='id', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'}, studentName=${studentName}, courseTitle=${courseTitle})}">
                     ID <span th:if="${sortField == 'id'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
                 </a>
             </th>
-            <th>Student</th>
-            <th>Course</th>
             <th>
-                <a th:href="@{'/enrollment'(sortField='grade', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                <a th:href="@{'/enrollment'(sortField='student.name', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'}, studentName=${studentName}, courseTitle=${courseTitle})}">
+                    Student <span th:if="${sortField == 'student.name'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
+                </a>
+            </th>
+            <th>
+                <a th:href="@{'/enrollment'(sortField='course.title', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'}, studentName=${studentName}, courseTitle=${courseTitle})}">
+                    Course <span th:if="${sortField == 'course.title'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
+                </a>
+            </th>
+            <th>
+                <a th:href="@{'/enrollment'(sortField='grade', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'}, studentName=${studentName}, courseTitle=${courseTitle})}">
                     Grade <span th:if="${sortField == 'grade'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
                 </a>
             </th>
@@ -42,7 +64,9 @@
         <tr th:each="e : ${enrollments}">
             <td th:text="${e.id}">Id</td>
             <td th:text="${e.student.name}">StudentName</td>
+
             <td th:text="${e.course.title}">CourseTitle</td>
+
             <td th:text="${e.grade}">Grade</td>
             <td>
                 <form th:action="@{'/enrollment/' + ${e.id} + '/delete'}" method="post" style="display:inline;">

@@ -40,6 +40,7 @@ public class Room  implements Identifiable{
         this.number = number;
         this.name = name;
     }
+
     public Room() {}
     @Override
     public String getId() {

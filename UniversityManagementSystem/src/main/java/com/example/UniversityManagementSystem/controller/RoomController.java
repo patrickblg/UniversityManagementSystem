@@ -24,12 +24,21 @@ public class RoomController {
 
     @GetMapping
     public String listRooms(Model model,
+                            @RequestParam(value = "roomNumber", required = false) String roomNumber,
+                            @RequestParam(value = "minCapacity", required = false) Double minCapacity,
+                            @RequestParam(value = "roomName", required = false) String roomName,
+                            @RequestParam(value = "universityName", required = false) String universityName,
                             @RequestParam(value = "sortField",defaultValue = "name")String sortField,
                             @RequestParam(value = "sortDir",defaultValue = "asc")String sortDir) {
 
-        model.addAttribute("rooms", roomService.findAllRooms(sortField, sortDir));
+        model.addAttribute("rooms", roomService.findAllRooms(roomNumber, minCapacity, roomName, universityName, sortField, sortDir));
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);
+        model.addAttribute("roomName", roomName);
+        model.addAttribute("universityName", universityName);
+        model.addAttribute("roomNumber", roomNumber);
+        model.addAttribute("minCapacity", minCapacity);
+
         return "room/index";
     }
 

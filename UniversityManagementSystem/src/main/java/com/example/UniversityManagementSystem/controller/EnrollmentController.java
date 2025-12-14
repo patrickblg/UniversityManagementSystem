@@ -26,11 +26,16 @@ public class EnrollmentController {
 
     @GetMapping
     public String showAllEnrollments(Model model,
+                                     @RequestParam(value = "studentName", required = false) String studentName,
+                                     @RequestParam(value = "courseTitle", required = false) String courseTitle,
                                      @RequestParam(value = "sortField",defaultValue = "id")String sortField,
                                      @RequestParam(value = "sortDir",defaultValue = "asc")String sortDir) {
-        model.addAttribute("enrollments",enrollmentService.getAllEnrollments(sortField, sortDir));
+        model.addAttribute("enrollments",enrollmentService.getAllEnrollments(studentName,courseTitle,sortField, sortDir));
+
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);
+        model.addAttribute("studentName", studentName);
+        model.addAttribute("courseTitle", courseTitle);
         return "enrollment/index";
     }
 

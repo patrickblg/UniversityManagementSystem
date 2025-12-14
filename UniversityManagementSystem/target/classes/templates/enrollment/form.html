@@ -19,7 +19,7 @@
         <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}" style="color: red;"></span>
         <br><br>
 
-        <label>Student ID:</label>
+        <label>Student:</label>
         <select th:field="*{student}" required>
             <option value="">-- Selectează Studentul --</option>
             <option th:each="student : ${allStudents}" th:value="${student.id}" th:text="${student.name}">
@@ -28,7 +28,7 @@
         <span th:if="${#fields.hasErrors('student')}" th:errors="*{student}" style="color: red;"></span>
         <br><br>
 
-        <label>Course ID:</label>
+        <label>Course:</label>
         <select th:field="*{course}" required>
             <option value="">-- Selectează Cursul --</option>
             <option th:each="course : ${allCourses}" th:value="${course.id}" th:text="${course.title}">
@@ -46,7 +46,7 @@
     </form>
 
     <br>
-    <a th:href="@{/enrollment}">Back to Enrollment List</a>
+    <a th:href="@{/enrollment}">Back to Enrollments</a>
 </div>
 </body>
 </html>

@@ -29,7 +29,7 @@ public class EnrollmentService {
     public List<Enrollment> getAllEnrollments() {
         return enrollmentRepository.findAll();
     }
-    public List<Enrollment> getAllEnrollments(String sortField, String sortDirection){
+    public List<Enrollment> getAllEnrollments(String studentName, String courseTitle,String sortField, String sortDirection){
         Sort sort;
 
         if("asc".equals(sortDirection)){
@@ -38,8 +38,21 @@ public class EnrollmentService {
             sort=Sort.by(sortField).descending();
         }
 
-        return  enrollmentRepository.findAll(sort);
+        boolean filterByStudent = studentName != null && !studentName.isEmpty();
+        boolean filterByCourse = courseTitle != null && !courseTitle.isEmpty();
+
+        if (filterByStudent && filterByCourse) {
+            return enrollmentRepository.findByStudent_NameContainingIgnoreCaseAndCourse_TitleContainingIgnoreCase(studentName, courseTitle, sort);
+        } else if (filterByStudent) {
+            return enrollmentRepository.findByStudent_NameContainingIgnoreCase(studentName, sort);
+        } else if (filterByCourse) {
+            return enrollmentRepository.findByCourse_TitleContainingIgnoreCase(courseTitle, sort);
+        } else {
+            return enrollmentRepository.findAll(sort);
+        }
     }
+
+
     public void saveEnrollment(Enrollment e) {
         if (e.getStudent() == null || e.getStudent().getId() == null || !studentRepository.existsById(e.getStudent().getId())) {
             throw new IllegalArgumentException("Nu se poate crea înrolarea: Studentul cu ID-ul specificat nu există.");
