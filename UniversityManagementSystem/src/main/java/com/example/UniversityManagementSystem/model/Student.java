@@ -13,10 +13,10 @@ import jakarta.validation.constraints.Size;
 
 public class Student implements Identifiable{
     @Id
-    @NotBlank
+    @NotBlank(message = "id must not be null")
     private String id;
-    @NotBlank
-    @Size(min = 3)
+    @NotBlank(message = "name must not be null")
+    @Size(min = 3,max = 100)
     private String name;
 
     @OneToMany(mappedBy = "student",cascade = CascadeType.ALL, orphanRemoval = true)

@@ -2,6 +2,7 @@ package com.example.UniversityManagementSystem.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -9,7 +10,7 @@ import jakarta.validation.constraints.NotNull;
 public class Assistant extends Staff {
 
     @Enumerated(EnumType.STRING)
-    @NotNull
+    @NotNull(message = "role is required")
     private AssistantRole role;//LAB/TA/GRADER
 
     //Constructor

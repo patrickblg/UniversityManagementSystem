@@ -20,28 +20,22 @@
 
         <br/>
 
-        <label>Department:</label>
-        <select th:field="*{department}" required>
-            <option value="">-- Selectează Departamentul --</option>
-            <option th:each="dept : ${allDepartments}" th:value="${dept.id}" th:text="${dept.name}" th:selected="${teacher.department != null AND dept.id == teacher.department.id}">
-
-            </option>
-        </select>
+        <label>Department ID:</label>
+        <input type="text"
+               th:field="*{department.id}"
+               placeholder="Enter Department ID">
         <span th:if="${#fields.hasErrors('department')}" th:errors="*{department}" style="color: red;"></span>
         <br/>
 
         <label>Name:</label>
-        <input type="text" th:field="*{name}" required/>
+        <input type="text" th:field="*{name}" />
         <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></span>
         <br/>
 
         <label>Title:</label>
-        <input type="text" th:field="*{title}" required/>
+        <input type="text" th:field="*{title}" />
         <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color: red;"></span>
         <br/>
-
-
-
 
         <button type="submit">Save Changes</button>
     </form>

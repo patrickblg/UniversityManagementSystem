@@ -20,14 +20,14 @@
         <br/>
 
         <label>Course:</label>
-        <select th:field="*{course}" required>
+        <select th:field="*{course}">
             <option value="">-- Select Course --</option>
             <option th:each="c : ${allCourses}" th:value="${c.id}" th:text="${c.title}"></option>
         </select>
         <br/>
 
         <label>Staff:</label>
-        <select th:field="*{staff}" required>
+        <select th:field="*{staff}">
             <option value="">-- Select Staff --</option>
             <option th:each="s : ${allTeachers}" th:value="${s.id}" th:text="${s.name}"></option>
             <option th:each="a : ${allAssistants}" th:value="${a.id}" th:text="${a.name}"></option>
@@ -36,7 +36,7 @@
 
 
         <label>Managing:</label>
-        <select th:field="*{managing}" required>
+        <select th:field="*{managing}" >
             <option value="">-- Selectează Rolul --</option>
             <option th:each="role : ${T(com.example.UniversityManagementSystem.model.ManagingRole).values()}"
                     th:value="${role}"

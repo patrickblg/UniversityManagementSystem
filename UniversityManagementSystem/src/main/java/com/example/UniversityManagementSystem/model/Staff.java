@@ -15,9 +15,9 @@ import java.util.ArrayList;
 
 public abstract class Staff implements Identifiable {
     @Id
-    @NotBlank
+    @NotBlank(message = "id is required")
     protected String id;
-    @NotBlank
+    @NotBlank(message = "name is required")
     @Size(min = 3)
     protected String name;
     @OneToMany(mappedBy = "staff",cascade = CascadeType.ALL,orphanRemoval = true)

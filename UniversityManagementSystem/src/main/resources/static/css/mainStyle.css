@@ -2,17 +2,15 @@ html{
     font-family: 'Courier New', monospace;
     color:whitesmoke;
     scroll-behavior: smooth;
-    overflow: hidden; /* REQUIRED */
+    overflow: hidden;
 }
 
-/* ================== GLOBAL ================== */
 
 img{
     max-width: 100%;
     height: auto;
 }
 
-/* ================== SECTIONS ================== */
 
 #welcome,
 #container{
@@ -54,7 +52,6 @@ img{
     transform: scale(1.1)!important;
 }
 
-/* ================== TITLE ================== */
 
 .letters{
     font-size: clamp(9rem, 17vw, 18rem);
@@ -172,7 +169,6 @@ a{
     font-size: clamp(1.5rem, 3vw, 2.3rem);
 }
 
-/* ================== ANIMATIONS ================== */
 
 @keyframes tfUp{
     0%{

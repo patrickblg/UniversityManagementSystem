@@ -32,11 +32,9 @@
         <br/>
 
         <label>Grade:</label>
-        <select th:field="*{grade}" required>
-            <option value="">-- Selectează Nota --</option>
-            <option th:each="grade : ${T(com.example.UniversityManagementSystem.model.Grades).values()}" th:value="${grade}" th:text="${grade}" >
-            </option>
-        </select>
+        <input type="text"
+               th:field="*{grade}"
+               placeholder="e.g. A, B, C">
         <span th:if="${#fields.hasErrors('grade')}" th:errors="*{grade}" style="color: red;"></span>
         <br/><br/>
 

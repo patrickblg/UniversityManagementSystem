@@ -20,7 +20,7 @@
         <br/>
 
         <label>DepartmentId:</label>
-        <select th:field="*{department}" required>
+        <select th:field="*{department}">
             <option value="">-- Selectează Departamentul --</option>
             <option th:each="dept : ${allDepartments}" th:value="${dept.id}" th:text="${dept.name}" th:selected="${course.department != null AND dept.id == course.department.id}">
 
@@ -30,7 +30,7 @@
         <br/>
 
         <label>RoomId:</label>
-        <select th:field="*{room}" required>
+        <select th:field="*{room}">
             <option value="">-- Selectează Sala --</option>
             <option th:each="room : ${allRooms}" th:value="${room.id}" th:text="${room.name}" th:selected="${course.room != null AND room.id == course.room.id}">
             </option>
@@ -40,7 +40,7 @@
 
 
         <label>Title:</label>
-        <input type="text" th:field="*{title}" required/>
+        <input type="text" th:field="*{title}"/>
         <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color: red;"></span>
         <br/>
 

@@ -15,42 +15,32 @@
 
     <form th:action="@{/course/add-course}" method="post" th:object="${course}">
         <label>ID:</label>
-        <input type="text" th:field="*{id}" required>
+        <input type="text" th:field="*{id}">
         <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}" style="color: red;"></span>
         <br><br>
 
         <label>Title:</label>
-        <input type="text" th:field="*{title}" required>
+        <input type="text" th:field="*{title}">
         <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color: red;"></span>
         <br><br>
 
         <label>Credits:</label>
-        <input type="text" th:field="*{credits}" required>
+        <input type="text" th:field="*{credits}">
         <span th:if="${#fields.hasErrors('credits')}" th:errors="*{credits}" style="color: red;"></span>
         <br><br>
 
         <label>Duration:</label>
-        <input type="text" th:field="*{duration}" required>
+        <input type="text" th:field="*{duration}">
         <span th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}" style="color: red;"></span>
         <br><br>
 
-        <label>Department:</label>
-        <select th:field="*{department}" required>
-            <option value="">-- Selectează Departamentul --</option>
-            <option th:each="dept : ${allDepartments}" th:value="${dept.id}" th:text="${dept.name}">
-
-            </option>
-        </select>
+        <label>Department ID:</label>
+        <input type="text" th:field="*{department.id}" placeholder="Enter Department ID">
         <span th:if="${#fields.hasErrors('department')}" th:errors="*{department}" style="color: red;"></span>
         <br><br>
 
-        <label>Room:</label>
-        <select th:field="*{room}" required>
-            <option value="">-- Selectează Sala --</option>
-            <option th:each="room : ${allRooms}" th:value="${room.id}" th:text="${room.name}">
-
-            </option>
-        </select>
+        <label>Room ID:</label>
+        <input type="text" th:field="*{room.id}" placeholder="Enter Room ID">
         <span th:if="${#fields.hasErrors('room')}" th:errors="*{room}" style="color: red;"></span>
         <br><br>
 

@@ -14,12 +14,12 @@
     </div>
     <form th:action="@{/student/add-student}" method="post" th:object="${student}">
         <label>ID:</label>
-        <input type="text" th:field="*{id}" required>
+        <input type="text" th:field="*{id}" >
         <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}" style="color: red;"></span>
         <br><br>
 
         <label>Name:</label>
-        <input type="text" th:field="*{name}" required>
+        <input type="text" th:field="*{name}" >
         <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></span>
         <br><br>
 

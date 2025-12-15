@@ -20,18 +20,12 @@
         <br/>
 
         <label>Name:</label>
-        <input type="text" th:field="*{name}" required/>
+        <input type="text" th:field="*{name}"/>
         <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></span>
         <br/>
 
         <label>Role:</label>
-        <select th:field="*{role}" required>
-            <option value="">-- Selectează Rolul --</option>
-            <option th:each="role : ${T(com.example.UniversityManagementSystem.model.AssistantRole).values()}"
-                    th:value="${role}"
-                    th:text="${role}">
-            </option>
-        </select>
+        <input type="text" th:field="*{role}" placeholder="Role is Enum">
         <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}" style="color: red;"></span> <br/>
         <br/>
 

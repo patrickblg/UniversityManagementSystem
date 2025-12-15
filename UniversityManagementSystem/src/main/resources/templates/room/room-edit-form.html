@@ -35,12 +35,10 @@
         <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></span>
         <br/>
 
-        <label>University:</label>
-        <select th:field="*{university}" required>
-            <option value="">-- Selectează Universitatea --</option>
-            <option th:each="univ : ${allUniversities}" th:value="${univ.id}" th:text="${univ.name}" th:selected="${room.university != null AND univ.id == room.university.id}">
-            </option>
-        </select>
+        <label>University ID:</label>
+        <input type="text"
+               th:field="*{university.id}"
+               placeholder="Enter University ID">
         <span th:if="${#fields.hasErrors('university')}" th:errors="*{university}" style="color: red;"></span>
         <br/>
 

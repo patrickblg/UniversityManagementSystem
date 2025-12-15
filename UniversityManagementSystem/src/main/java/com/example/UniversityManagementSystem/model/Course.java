@@ -13,23 +13,26 @@ import java.util.List;
 
 public class Course implements Identifiable {
     @Id
+    @NotBlank(message = "id is required")
     private String id;
     @NotBlank
-    @Size(min = 3)
+    @Size(min = 3,  max = 100)
     private String title;
-    @NotNull
+    @NotNull(message = "credits must not be null")
     private int credits;
-    @NotNull
+    @NotNull(message = "duration must not be null")
     private double duration;
 
     @ManyToOne
     @JoinColumn(name="room_id")
     @JsonBackReference
+    @NotNull(message = "room must not be null")
     private Room room;
 
     @ManyToOne
     @JoinColumn(name="department_id")
     @JsonBackReference
+    @NotNull(message = "department must not be null")
     private Department department;
 
     @OneToMany(mappedBy = "course",cascade = CascadeType.ALL, orphanRemoval = true)

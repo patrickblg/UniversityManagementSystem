@@ -16,23 +16,19 @@
     <form th:action="@{/department/add-department}" method="post" th:object="${department}">
 
         <label>ID:</label>
-        <input type="text" th:field="*{id}" required>
+        <input type="text" th:field="*{id}">
         <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}" style="color: red;"></span>
         <br><br>
 
         <label>Name:</label>
-        <input type="text" th:field="*{name}" required>
+        <input type="text" th:field="*{name}">
         <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></span>
         <br><br>
 
-        <label>University:</label>
-        <select th:field="*{university}" required>
-            <option value="">-- Selectează Universitatea --</option>
-            <option th:each="univ : ${allUniversities}"
-                    th:value="${univ.id}"
-                    th:text="${univ.name}">
-            </option>
-        </select>
+        <label>University ID:</label>
+        <input type="text"
+               th:field="*{university.id}"
+               placeholder="Enter University ID">
         <span th:if="${#fields.hasErrors('university')}" th:errors="*{university}" style="color: red;"></span>
         <br><br>
 

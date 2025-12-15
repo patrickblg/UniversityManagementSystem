@@ -13,20 +13,21 @@ import jakarta.validation.constraints.Size;
 
 public class Room  implements Identifiable{
     @Id
-    @NotBlank
+    @NotBlank(message = "id must not be null")
     private String id;
-    @NotNull
+    @NotNull(message = "capacity must not be null")
     private double capacity;
-    @NotBlank
+    @NotBlank(message = "number must not be null")
     @Size(min = 1, max = 100)
     private String number;
-    @NotBlank
+    @NotBlank(message = "name must not be null")
     @Size(min = 3)
     private String name;
 
     @ManyToOne
     @JoinColumn(name="university_id")
     @JsonBackReference
+    @NotNull(message = "university must not be null")
     private University university;
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)

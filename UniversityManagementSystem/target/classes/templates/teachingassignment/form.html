@@ -15,21 +15,19 @@
 
     <form th:action="@{/teachingassignment/add-teachingassignment}" method="post" th:object="${teachingAssignment}">
         <label>ID:</label>
-        <input type="text" th:field="*{id}" required>
+        <input type="text" th:field="*{id}">
         <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}" style="color: red;"></span>
         <br><br>
 
-        <label>Course:</label>
-        <select th:field="*{course}" required>
-            <option value="">-- Selectează Cursul --</option>
-            <option th:each="course : ${allCourses}" th:value="${course.id}" th:text="${course.title}">
-            </option>
-        </select>
+        <label>Course ID:</label>
+        <input type="text"
+               th:field="*{course.id}"
+               placeholder="Enter Course ID">
         <span th:if="${#fields.hasErrors('course')}" th:errors="*{course}" style="color: red;"></span>
         <br><br>
 
         <label>Staff Member:</label>
-        <select th:field="*{staff}" required>
+        <select th:field="*{staff}">
             <option value="">-- Selectează Personalul (Staff) --</option>
             <optgroup label="Teachers"> <option th:each="teacher : ${allTeachers}" th:value="${teacher.id}" th:text="${teacher.name}">
             </option>
@@ -38,7 +36,7 @@
         <br><br>
 
         <label>Managing:</label>
-        <input type="text" th:field="*{managing}" required>
+        <input type="text" th:field="*{managing}">
         <span th:if="${#fields.hasErrors('managing')}" th:errors="*{managing}" style="color: red;"></span>
         <br><br>
 

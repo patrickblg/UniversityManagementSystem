@@ -3,26 +3,30 @@ package com.example.UniversityManagementSystem.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 
 @Entity
 
 public class TeachingAssignment implements Identifiable{
     @Id
-    @NotBlank
+    @NotBlank(message = "id must not be null")
     private String id;
 
     @ManyToOne
     @JoinColumn(name="course_id")
     @JsonBackReference
+    @NotNull(message = "course must not be null")
     private Course course;
 
     @ManyToOne
     @JoinColumn(name="staff_id")
     @JsonBackReference
+    @NotNull(message = "staff must not be null")
     private Staff staff;
 
     @Enumerated(EnumType.STRING)
+    @NotNull(message = "managing must not be null")
     private ManagingRole managing;
 
     public TeachingAssignment(String id, Course course, Staff staff, ManagingRole managing) {

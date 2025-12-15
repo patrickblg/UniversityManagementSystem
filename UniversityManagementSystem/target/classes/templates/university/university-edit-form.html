@@ -20,12 +20,12 @@
         <br/>
 
         <label>Name:</label>
-        <input type="text" th:field="*{name}" required/>
+        <input type="text" th:field="*{name}" />
         <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red;"></span>
         <br/>
 
         <label>City:</label>
-        <input type="text" th:field="*{city}" required/>
+        <input type="text" th:field="*{city}" />
         <span th:if="${#fields.hasErrors('city')}" th:errors="*{city}" style="color: red;"></span>
         <br/>
 

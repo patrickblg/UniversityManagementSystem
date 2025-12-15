@@ -3,19 +3,21 @@ package com.example.UniversityManagementSystem.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
 
 public class Teacher extends Staff{
 
-    @NotBlank
-    @Size(min = 3)
+    @NotBlank(message = "title must not be null")
+    @Size(min = 3, max = 100)
     private String title;
 
     @ManyToOne
     @JoinColumn(name="department_id")
     @JsonBackReference
+    @NotNull(message = "department must not be null")
     private Department department;
 
 

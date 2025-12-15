@@ -12,13 +12,13 @@ import java.util.ArrayList;
 
 public class University implements Identifiable{
     @Id
-    @NotBlank
+    @NotBlank(message = "id must not be null")
     private String id;
-    @NotBlank
-    @Size(min = 3)
+    @NotBlank(message = "name must not be null")
+    @Size(min = 3, max = 100)
     private String name;
-    @NotBlank
-    @Size(min = 3)
+    @NotBlank(message = "city must not be null")
+    @Size(min = 3, max = 100)
     private String city;
     @OneToMany(mappedBy = "university",cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference

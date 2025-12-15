@@ -16,13 +16,14 @@ public class Department implements Identifiable {
     @NotBlank(message = "id is required")//validare
     private String id;
     @NotBlank(message = "name is required")
-    @Size(min = 3)
+    @Size(min = 3,max = 100)
     private String name;
 
-    @NotNull(message = "university must not be null")//validare
+    //validare
     @ManyToOne
     @JoinColumn(name="university_id")
     @JsonBackReference
+    @NotNull(message = "university must not be null")
     private University university;
 
     @OneToMany(mappedBy = "department",cascade = CascadeType.ALL, orphanRemoval = true)
