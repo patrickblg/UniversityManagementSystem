@@ -1,272 +1,245 @@
 html{
     font-family: 'Courier New', monospace;
+    color:whitesmoke;
     scroll-behavior: smooth;
-    overflow: hidden;
-
+    overflow: hidden; /* REQUIRED */
 }
+
+/* ================== GLOBAL ================== */
+
 img{
-    width: 40px;
-    height: 40px;
+    max-width: 100%;
+    height: auto;
+}
 
-}
-#welcome{
-    margin: 0;
-    padding: 0;
-    width:100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-image:radial-gradient(circle at center,rgba(0,0,0,0.7),black);
-    justify-content: center;
-    align-items: center;
-}
+/* ================== SECTIONS ================== */
+
+#welcome,
 #container{
-    background-image:radial-gradient(circle at center,rgba(0,0,0,0.7),black);
-    width: 100%;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-}
-.parent{
-    width: 70%;
-    color:whitesmoke;
-    align-items: center;
-    justify-content: center;
-    display: flex;
+    width:100%;
+    height:100svh;
+    display:flex;
     flex-direction:column;
-    border: 2px solid black;
+    justify-content:center;
+    align-items:center;
+    background-image:radial-gradient(circle at center,rgba(0,0,0,0.7),black);
+    position: relative;
+}
+
+/* ================== NAV BUTTONS ================== */
+
+.gotoTable,
+.gotoPres{
+    border:2px solid whitesmoke;
     border-radius:30px;
-    background-color:rgba(0, 0, 0, 0.2);
-    height: 80vh;
-    margin:auto;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5),
-                0 0 10px rgba(0,0,0,0.5),
-                0 0 30px white;
-
-}
-
-.main{
-    height:90px;
-    color: whitesmoke;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-h2{
+    padding: 10px 25px;
+    transition: transform 0.3s ease;
     color:whitesmoke;
-    font-size: 40px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-
-}
-
-a{
-    padding:20px;
     text-decoration: none;
-    font-size: 20px;
-    color:whitesmoke;
-}
-a:hover{
-    cursor: pointer;
 }
 
-.parent:hover>*{
-    opacity: 0.3;
-}
-
-.parent a:hover{
-    opacity: 1;
-    font-size: 40px;
-    color: whitesmoke;
+.gotoTable{
+    position:absolute;
+    bottom:5%;
+    animation: btn 1.2s forwards;
 }
 
 .gotoPres{
-    position: relative;
-    border:1px solid white;
-    margin-bottom: 10px;
-    border-radius: 30px;
-}
-.gotoTable {
-    width: 20%;
-    justify-content: center;
-    align-items: center;
-    display: flex;
     position: absolute;
-    bottom:10%;
-    border:2px solid whitesmoke;
-    border-radius: 30px;
-    transition: all 0.3s ease;
-    animation: btn 1.2s forwards;
-
+    bottom:0;
 }
 
-.gotoTable:hover{
-    transform: scale(1.1) !important;
-
+.gotoTable:hover,
+.gotoPres:hover{
+    transform: scale(1.1)!important;
 }
 
-@keyframes btn {
-    0%{
-        opacity: 0;
-        transform: scale(0);
-
-    }
-    100%{
-        opacity: 1;
-        transform: scale(1);
-
-    }
-}
+/* ================== TITLE ================== */
 
 .letters{
-    font-size: 20rem;
-    display: inline-block;
-    position: absolute;
+    font-size: clamp(9rem, 17vw, 18rem);
+    position:absolute;
     animation: moveHeader 1.2s 1.5s forwards;
 }
-@keyframes slideInLeft {
-    0%{
-        transform: translateX(-100vw);
-        opacity:0
-    }
-    70%{
-        opacity:1;
-    }
-    100%{
-        transform: translateX(0);
-        opacity: 1;
-    }
 
-}
-
-@keyframes slideInTop{
-    0%{
-        transform: translateY(-100vh);
-        opacity: 0;
-    }
-    70%{
-        opacity: 1;
-    }
-    100%{
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-@keyframes slideInRight {
-    0% {
-        transform: translateX(100vw);
-        opacity: 0;
-    }
-    70% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
 @keyframes moveHeader{
     0%{
-        transform:translateY(0) scale(1);
+        transform: translateY(0) scale(1);
     }
-
     100%{
-        transform: translateY(-40vh) scale(0.4);
+        transform: translateY(-32svh) scale(0.45);
     }
 }
 
-.u {
-    display: inline-block;
-    animation: slideInLeft 1.2s  forwards;
-    opacity: 0;
-    color: white;
+.u, .m, .s{
+    display:inline-block;
+    opacity:0;
+    color:white;
 }
 
-.m {
-    display: inline-block;
-    animation: slideInTop 1.2s  forwards;
-    opacity: 0;
-    margin: 0 5px;
-    color: white;
-}
+.u{ animation: slideInLeft 1.2s forwards; }
+.m{ animation: slideInTop 1.2s forwards; margin:0 5px; }
+.s{ animation: slideInRight 1.2s forwards; }
 
-.s {
-    display: inline-block;
-    animation: slideInRight 1.2s  forwards;
-    opacity: 0;
-    color: white;
-}
+/* ================== CONTENT CARDS ================== */
 
-.textField {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    justify-content: center;
-    width: 90%;
-    max-width: 1400px;
-    height: auto;
-    min-height: 400px;
-    position: relative;
-    margin-top: 150px;
-    opacity: 0;
+.textField{
+    display:flex;
+    justify-content:center;
+    align-items:stretch;
+    gap:2rem;
+    width:90%;
+    max-width:1300px;
+    margin-top: clamp(120px, 18svh, 180px);
     animation: tfUp 2.7s forwards;
-    gap: 2rem;
-}
-.card-content {
-    flex: 1;
-    background-color:rgba(0, 0, 0, 0.2);
-    color: whitesmoke;
-    border-radius: 20px;
-    padding: 35px;
-    font-size: 1rem;
-    line-height: 1.8;
-    text-align: justify-all;
-    box-shadow:0 0 10px rgba(0,0,0,0.5),
-                0 0 10px rgba(0,0,0,0.5),
-                 0 0 10px white;
-    transition: transform 0.3s ease, background-color 0.3s;
+    opacity:0;
 }
 
-.card-content:hover {
-    transform: translateY(-10px);
-    background-color:rgba(0, 0, 0, 0.2);
+.card-content{
+    flex:1;
+    background-color:rgba(0,0,0,0.2);
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    color:whitesmoke;
+    border-radius:20px;
+    padding:25px;
+    font-size:0.95rem;
+    line-height:1.6;
+    box-shadow:
+            0 0 10px rgba(0,0,0,0.5),
+            0 0 10px rgba(0,0,0,0.5),
+            0 0 10px white;
+    transition: transform 0.3s ease;
 }
 
-.card-content h3 {
-    text-align: center;
-    margin-top: 0;
-    border-bottom: 1px solid rgba(255,255,255,0.3);
-    padding-bottom: 10px;
-    margin-bottom: 15px;
+.card-content:hover{
+    transform: translateY(-8px);
 }
 
 .card-content img{
-    width:650px;
-    height: 500px;
+    max-height: 360px;
+    object-fit: fill;
 }
+
+/* ================== SECOND PAGE ================== */
+
+.main{
+    height:80px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:whitesmoke;
+}
+
+h2{
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    position: absolute;
+    top:5px;
+}
+
+.parent{
+    width:70%;
+    height:65svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    border-radius:30px;
+    background-color:rgba(0,0,0,0.2);
+    box-shadow:
+            0 0 10px rgba(0,0,0,0.5),
+            0 0 30px white;
+    gap:14px;
+}
+
+.parent:hover>*{
+    opacity:0.3;
+}
+a{
+    text-decoration: none;
+    color:whitesmoke;
+}
+.parent a{
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color:whitesmoke;
+    text-decoration: none;
+}
+
+.parent a:hover{
+    opacity:1;
+    font-size: clamp(1.5rem, 3vw, 2.3rem);
+}
+
+/* ================== ANIMATIONS ================== */
 
 @keyframes tfUp{
     0%{
-        transform: translateY(100vh);
-        opacity: 0;
-    }
-
-    30%{
-        opacity: 0;
-    }
-
-    70%{
-        opacity: 0.2;
-    }
-
-    90%{
-        opacity: 0.5;
+        transform: translateY(60svh);
+        opacity:0;
     }
     100%{
-        transform: translateY(-10vh);
-        opacity: 1;
+        transform: translateY(0);
+        opacity:1;
     }
+}
+
+@keyframes btn{
+    from{
+        opacity:0;
+        transform: scale(0);
+    }
+    to{
+        opacity:1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInLeft{
+    from{ transform: translateX(-100vw); opacity:0; }
+    to{ transform: translateX(0); opacity:1; }
+}
+
+@keyframes slideInTop{
+    from{ transform: translateY(-100svh); opacity:0; }
+    to{ transform: translateY(0); opacity:1; }
+}
+
+@keyframes slideInRight{
+    from{ transform: translateX(100vw); opacity:0; }
+    to{ transform: translateX(0); opacity:1; }
+}
+/* ================== HOME BUTTON FIX ================== */
+
+.main{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 15px;
+}
+
+.main a{
+    padding: 0;          /* remove global link padding */
+    display:flex;
+    align-items:center;
+}
+
+.main img{
+    width: 28px;         /* FIX size */
+    height: 28px;
+    max-width: 28px;
+    max-height: 28px;
+    transition: transform 0.2s ease;
+}
+
+.main img:hover{
+    transform: scale(1.15);
+}
+
+.card-content h3{
+    position: relative;
+    border-bottom:1px solid whitesmoke;
+    width:85%;
+    text-align:center;
 }
