@@ -1,4 +1,5 @@
 package com.example.UniversityManagementSystem.service;
+import com.example.UniversityManagementSystem.model.ManagingRole;
 import com.example.UniversityManagementSystem.model.Student;
 import com.example.UniversityManagementSystem.model.TeachingAssignment;
 import com.example.UniversityManagementSystem.repository.AssistantRepository;
@@ -30,8 +31,6 @@ public class TeachingAssignmentService {
         if (t.getCourse() == null || t.getCourse().getId() == null || !courseRepository.existsById(t.getCourse().getId())) {
             throw new IllegalArgumentException("Nu se poate salva asignarea: Cursul asociat nu există.");
         }
-
-        // Business Logic: Verifică dacă Staff-ul (Profesor sau Asistent) există
         boolean staffExists = teacherRepository.existsById(t.getStaff().getId()) || assistantRepository.existsById(t.getStaff().getId());
         if (!staffExists) {
             throw new IllegalArgumentException("Nu se poate salva asignarea: Membrul de personal (Staff) asociat nu există.");
@@ -42,7 +41,7 @@ public class TeachingAssignmentService {
     public List<TeachingAssignment> findAllTeachingAssignments(){
         return teachingAssignmentRepository.findAll();
     }
-    public List<TeachingAssignment> findAllTeachingAssignments(String sortField, String sortDirection){
+    public List<TeachingAssignment> findAllTeachingAssignments(ManagingRole role, String sortField, String sortDirection){
         Sort sort;
 
         if("asc".equals(sortDirection)){
@@ -51,7 +50,11 @@ public class TeachingAssignmentService {
             sort=Sort.by(sortField).descending();
         }
 
-        return  teachingAssignmentRepository.findAll(sort);
+        if(role!=null){
+            return teachingAssignmentRepository.findByManaging(role,sort);
+        }else{
+            return teachingAssignmentRepository.findAll(sort);
+        }
     }
 
     public TeachingAssignment findTeachingAssignmentById(String id){

@@ -19,17 +19,35 @@
 
 
 <div class="main">
+    <div class="filter-container">
+        <form th:action="@{/teachingassignment}" method="get">
+            <input type="hidden" name="sortField" th:value="${sortField}" />
+            <input type="hidden" name="sortDir" th:value="${sortDir}" />
+
+            <label>Managing:</label>
+            <select name="managing">
+                <option value="">-- All Roles --</option>
+                <option th:each="r : ${allRoles}"
+                        th:value="${r}"
+                        th:text="${r}"
+                        th:selected="${r == managingParam}"></option>
+            </select>
+
+            <button type="submit">Filter</button>
+            <a th:href="@{/teachingassignment}"><button type="button" style="background-color: #777;">Clear</button></a>
+        </form>
+    </div>
     <a th:href="@{/teachingassignment/new}">Add New Teaching Assignment</a>
     <table>
         <thead>
         <tr>
             <th>
-                <a th:href="@{'/teachingassignment'(sortField='id', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                <a th:href="@{'/teachingassignment'(sortField='id', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'},managing=${managingParam})}">
                     ID <span th:if="${sortField == 'id'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
                 </a>
             </th>
             <th>
-                <a th:href="@{'/teachingassignment'(sortField='course', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}">
+                <a th:href="@{'/teachingassignment'(sortField='course', sortDir=${sortDir == 'asc' ? 'desc' : 'asc'},managing=${managingParam})}">
                     Course <span th:if="${sortField == 'course'}" th:text="${sortDir == 'asc' ? '▲' : '▼'}"></span>
                 </a>
             </th>

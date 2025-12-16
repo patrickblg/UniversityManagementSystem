@@ -1,11 +1,13 @@
 package com.example.UniversityManagementSystem.controller;
 
+import com.example.UniversityManagementSystem.model.ManagingRole;
 import com.example.UniversityManagementSystem.model.TeachingAssignment;
 import com.example.UniversityManagementSystem.service.AssistantService;
 import com.example.UniversityManagementSystem.service.CourseService;
 import com.example.UniversityManagementSystem.service.TeacherService;
 import com.example.UniversityManagementSystem.service.TeachingAssignmentService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,11 +32,14 @@ public class TeachingAssignmentController {
 
     @GetMapping
     public String showAllTeachingAssignments(Model model,
+                                             @RequestParam(value = "managing",required = false) ManagingRole managingRole,
                                              @RequestParam(value = "sortField",defaultValue = "id")String sortField,
-                                             @RequestParam(value = "sortDir",defaultValue = "asc")String sortDir) {
-        model.addAttribute("teachingassignments",teachingAssignmentService.findAllTeachingAssignments(sortField, sortDir));
+                                             @RequestParam(value = "sortDir",defaultValue = "asc")String sortDir, Sort sort) {
+        model.addAttribute("teachingassignments",teachingAssignmentService.findAllTeachingAssignments(managingRole,sortField, sortDir));
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);
+        model.addAttribute("allRoles", ManagingRole.values());
+        model.addAttribute("managingParam", managingRole);
         return "teachingassignment/index";
     }
 
